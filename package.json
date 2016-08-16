@@ -1,6 +1,6 @@
 {
   "name": "its-a-date",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Parses a date description into a unixtimestamp number",
   "main": "index.js",
   "scripts": {
