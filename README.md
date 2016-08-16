@@ -10,6 +10,7 @@ Parses a given English date string, absolute or relative, to a Date object.
 
 ```
 var itsadate = require('its-a-date');
+
 // Wed Aug 17 2011 15:44:00 GMT+0300 (Jerusalem Daylight Time)
 console.log(itsadate.parse("5 years ago at 15:44"))
 
