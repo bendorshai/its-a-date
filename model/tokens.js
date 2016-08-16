@@ -1,8 +1,9 @@
 var consts = require ('./consts.js');
 
-module.exports = exports = [{
+module.exports = exports = [
+    {
+        // Example 11/1/1990
         regex: /(\d{1,2})[\/\\.,](\d{1,2})[\/\\.,](\d{4})/,
-        // Token affects are date modifications =]
         affects: [
             // First capture group
             {
@@ -20,5 +21,32 @@ module.exports = exports = [{
                 affectType: consts.reltivity.absolute
             }
         ]
+    },
+    {
+        // Example 1:55
+        regex: /(\d{1,2})[:](\d{1,2})/,
+        affects: [
+            {
+                timeType: consts.timeTypes.hour,
+                affectType: consts.reltivity.absolute
+            },
+            {
+                timeType: consts.timeTypes.minute,
+                affectType: consts.reltivity.absolute
+            }
+        ]
+    },
+    {
+        // Examples: 5 years ago
+        // or: 2 months ago
+        regex: /(?:\s|^)(\d+)\s(.+?)s?\sago(?:\s|$)/,
+        affectsGenerator: function(match)
+        {
+            return [{
+                timeType: consts.timeTypes[match[2]],
+                affectType: consts.reltivity.relative,
+                value: match[1] * (-1)
+            }]
+        }
     }
-]
+];

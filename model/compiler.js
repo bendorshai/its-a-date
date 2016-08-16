@@ -1,11 +1,11 @@
 var parser = require('./parser.js');
 var interpreter = require('./interpreter.js')
-var state = require('./state.js');
+var State = require('./state.js');
 
 exports.getDateFromString = function(dateString)
 {
     // New state each time
-     state = require('./state.js');
+    var state = new State();
     
     // Get all tokens found in date string
     var tokens = parser.getTokens(dateString);
@@ -21,7 +21,7 @@ exports.getDateFromString = function(dateString)
     state.calculateModifications();
     
     // Get value
-    return state.getDate();
+    return state.date;
 }
 
 // TODO: catch errors?

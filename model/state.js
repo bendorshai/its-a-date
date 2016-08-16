@@ -2,16 +2,23 @@ var consts = require('./consts.js');
 var _ = require('underscore');
 const absolute = consts.reltivity.absolute;
 
-// Init date as current
-var date = new Date();
+// ctor
+function State() {
+    
+    // Init date as current
+    this.date = new Date();
+    this.date.setSeconds(0);
+    
+    // Init the modification queue that logs the modification on each date part
+    this.modificationQueues = [];
+    this.modificationQueues[consts.timeTypes.year] = [];
+    this.modificationQueues[consts.timeTypes.month] = [];
+    this.modificationQueues[consts.timeTypes.date] = [];
+    this.modificationQueues[consts.timeTypes.hour] = [];
+    this.modificationQueues[consts.timeTypes.minute] = [];
+}
 
-// Init the modification queue that logs the modification on each date part
-var modificationQueues = [];
-modificationQueues[consts.timeTypes.year] = [];
-modificationQueues[consts.timeTypes.month] = [];
-modificationQueues[consts.timeTypes.date] = [];
-modificationQueues[consts.timeTypes.hour] = [];
-modificationQueues[consts.timeTypes.minute] = [];
+module.exports = exports = State;
 
 // Pushes a modification to acertain time type
 // Example of use:
@@ -22,12 +29,12 @@ modificationQueues[consts.timeTypes.minute] = [];
             value: 1993
         });
 */
-exports.pushModification = function(timeType, modification)
+State.prototype.pushModification = function(timeType, modification)
 {
-    modificationQueues[timeType].push(modification);
+    this.modificationQueues[timeType].push(modification);
 }
 
-exports.calculateModifications = function()
+State.prototype.calculateModifications = function()
 {
     // Foreach time type
     for (var timeTypeIdx in consts.timeTypes)
@@ -35,17 +42,12 @@ exports.calculateModifications = function()
         var timeType = consts.timeTypes[timeTypeIdx];
         
         // Execute it's modification queue, this affects the date object
-        executeModificationsQueue(modificationQueues[timeType], timeType);
+        executeModificationsQueue(this.modificationQueues[timeType], timeType, this);
     }
 }
 
-exports.getDate = function()
-{
-    return date;
-}
-
 // Not finished...
-function executeModificationsQueue(modifications, timeType)
+function executeModificationsQueue(modifications, timeType, context)
 {
     if (modifications.length == 0) {
         return;
@@ -75,33 +77,57 @@ function executeModificationsQueue(modifications, timeType)
     // Execute all modifications
     for (var modification of modifications)
     {
-        executeModification(modification, timeType);
+        executeModification(modification, timeType, context);
     }
 }
  
-function executeModification(modification, timeType)
+function executeModification(modification, timeType, context)
 {
+    var value = modification.value;
+    
     // If avsolute
     if (modification.affectType == absolute)
     {
-        var value = modification.value;
-        
         switch (timeType)
         {
             case consts.timeTypes.year:
-                date.setFullYear(value);
+                context.date.setFullYear(value);
                 return;
             case consts.timeTypes.month:
-                date.setMonth(value-1); // Months are wierd in js
+                context.date.setMonth(value-1); // Months are wierd in js
                 return;
             case consts.timeTypes.date:
-                date.setDate(value);
+                context.date.setDate(value);
                 return;
             case consts.timeTypes.hour:
-                date.setHour(value);
+                context.date.setHours(value);
                 return;
             case consts.timeTypes.minute:
-                date.setMinutes(value);
+                context.date.setMinutes(value);
+                return;
+            default: 
+                throw 'ERROR: Unknown time type in modification excecute';
+        }
+    }
+    // If relative
+    else if (modification.affectType == consts.reltivity.relative)
+    {        
+        switch (timeType)
+        {
+            case consts.timeTypes.year:
+                context.date.setFullYear(context.date.getFullYear() + value);
+                return;
+            case consts.timeTypes.month:
+                context.date.setMonth(context.date.getMonth() + value);
+                return;
+            case consts.timeTypes.date:
+                context.date.setDate(context.date.getDate() + value);
+                return;
+            case consts.timeTypes.hour:
+                context.date.setHours(context.date.getHours() + value);
+                return;
+            case consts.timeTypes.minute:
+                context.date.setMinutes(context.getMinutes() + value);
                 return;
             default: 
                 throw 'ERROR: Unknown time type in modification excecute';

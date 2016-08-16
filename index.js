@@ -1,6 +1,15 @@
 var itsadate = require('./model/compiler.js');
 
-var k = itsadate.getDateFromString("1.9.1993");
-console.log(k);
+
+
+
+
+
+
+
+// YOOO!
+var yo = itsadate.getDateFromString("5 years ago at 15:44")
+
+console.log(yo);
 
 
