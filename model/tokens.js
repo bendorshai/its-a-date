@@ -1,6 +1,6 @@
 var consts = require ('./consts.js');
 
-exports = [{
+module.exports = exports = [{
         regex: /(\d{1,2})[\/\\.,](\d{1,2})[\/\\.,](\d{4})/,
         // Token affects are date modifications =]
         affects: [

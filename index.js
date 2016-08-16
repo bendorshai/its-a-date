@@ -1,15 +1,9 @@
-var koa = require('koa');
-var flow = require('./model/flow.js');
-var app = koa();
+var itsadate = require('./model/compiler.js');
 
-app.use(function *(){
-  this.body = 'Hello World';
-});
+var k = itsadate.getDateFromString("22/10/2014");
+console.log(k);
 
-app.listen(3000);
+k = itsadate.getDateFromString("1.9.1993");
+console.log(k);
 
 
-// compiler Configuration:
-// UTC-variable: 
-// Date format: dd/mm/yyyy or mm/dd/yyyy
-// Ambiguity factor: skip or fail

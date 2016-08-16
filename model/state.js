@@ -1,8 +1,9 @@
 var consts = require('./consts.js');
 var _ = require('underscore');
+const absolute = consts.reltivity.absolute;
 
-// Init date organism
-var date = [];
+// Init date as current
+var date = new Date();
 
 // Init the modification queue that logs the modification on each date part
 var modificationQueues = [];
@@ -11,7 +12,6 @@ modificationQueues[consts.timeTypes.month] = [];
 modificationQueues[consts.timeTypes.date] = [];
 modificationQueues[consts.timeTypes.hour] = [];
 modificationQueues[consts.timeTypes.minute] = [];
-
 
 // Pushes a modification to acertain time type
 // Example of use:
@@ -27,14 +27,29 @@ exports.pushModification = function(timeType, modification)
     modificationQueues[timeType].push(modification);
 }
 
-exports.executeModifications = function()
+exports.calculateModifications = function()
 {
+    // Foreach time type
+    for (var timeTypeIdx in consts.timeTypes)
+    {
+        var timeType = consts.timeTypes[timeTypeIdx];
+        
+        // Execute it's modification queue, this affects the date object
+        executeModificationsQueue(modificationQueues[timeType], timeType);
+    }
+}
+
+exports.getDate = function()
+{
+    return date;
 }
 
 // Not finished...
-function sumModifications(modifications, )
+function executeModificationsQueue(modifications, timeType)
 {
-    const absolute = 'absolute'; // yo!
+    if (modifications.length == 0) {
+        return;
+    }
     
     // Count the absolute affect types (allowed between 1-0)
     var affectTypes = _.pluck(modifications, 'affectType');
@@ -49,45 +64,47 @@ function sumModifications(modifications, )
     }
     
     // If there is one absolute I want to calculate it first, so I sort by it
-    if (absoluteCount == 1)
+    if (absoluteCount == 1 && modifications.length > 1)
     {
-        modifications = _.sortBy(modifications, function(type) {
-           return type == absolute ? 0 : 1;
+        modifications = _.sortBy(modifications, function(mod) {
+           // Absolute will be first
+           return mod.affectType == absolute ? 1 : 2;
         });
-        
-        var absoluteModification = modifications[0];
-        
-        switch (absoluteModification.timeType)
-        {
-            case consts.timeTypes.year:
-                date.setYear()
-                break;
-            case consts.timeTypes.month:
-                break;
-            case consts.timeTypes.date:
-                break;
-            case consts.timeTypes.hour:
-                break;
-            case consts.timeTypes.minute:
-                break;
-        } 
+    }
+    
+    // Execute all modifications
+    for (var modification of modifications)
+    {
+        executeModification(modification, timeType);
     }
 }
-
-// Return a vector with date parts in different array cells
-function getDateParts(date) {
-    
-    var parts = [];
-    
-    parts[consts.timeTypes.year] = date.getFullYear();
-    parts[consts.timeTypes.month] = date.getMonth();
-    parts[consts.timeTypes.date] = date.getDate();
-    parts[consts.timeTypes.hour] = date.getUTCHours();
-    parts[consts.timeTypes.minute] = date.getMinutes();
-    
-    return parts;
-}
-
-   
-    
-    
+ 
+function executeModification(modification, timeType)
+{
+    // If avsolute
+    if (modification.affectType == absolute)
+    {
+        var value = modification.value;
+        
+        switch (timeType)
+        {
+            case consts.timeTypes.year:
+                date.setFullYear(value);
+                return;
+            case consts.timeTypes.month:
+                date.setMonth(value-1); // Months are wierd in js
+                return;
+            case consts.timeTypes.date:
+                date.setDate(value);
+                return;
+            case consts.timeTypes.hour:
+                date.setHour(value);
+                return;
+            case consts.timeTypes.minute:
+                date.setMinutes(value);
+                return;
+            default: 
+                throw 'ERROR: Unknown time type in modification excecute';
+        }
+    }
+}  

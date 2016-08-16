@@ -1,13 +1,14 @@
-exports = {
+// Some enums
+module.exports = exports = {
     reltivity: { 
-        relative: 1,
-        absolute: 0
+        relative: 'relative',
+        absolute: 'absolute'
     },
-    timeTypes:{
-        year: 0,
-        month: 1,
-        date: 2,
-        hour: 3,
-        minute: 4
+    timeTypes: {
+        year: 'year',
+        month: 'month',
+        date: 'date',
+        hour: 'hour',
+        minute: 'minute'
     }
 }
