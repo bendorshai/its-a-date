@@ -4,11 +4,13 @@ Parses a given English date string, absolute or relative, to a Date object.
 
 ## Installation
 
-`npm install its-a-date`
+```
+$ npm install its-a-date
+```
 
 ## Code Example
 
-```
+```js
 var itsadate = require('its-a-date');
 
 // Wed Aug 17 2011 15:44:00 GMT+0300 (Jerusalem Daylight Time)

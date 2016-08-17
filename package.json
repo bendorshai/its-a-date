@@ -1,6 +1,6 @@
 {
   "name": "its-a-date",
-  "version": "0.0.21",
+  "version": "0.0.23",
   "description": "Parses a date description into a Date object",
   "main": "index.js",
   "scripts": {
@@ -10,5 +10,12 @@
   "license": "ISC",
   "dependencies": {
     "underscore": "^1.8.3"
-  }
+  },
+  "keywords": [
+      "date",
+      "time",
+      "parse",
+      "free text",
+      "format"
+  ]
 }

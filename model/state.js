@@ -46,7 +46,6 @@ State.prototype.calculateModifications = function()
     }
 }
 
-// Not finished...
 function executeModificationsQueue(modifications, timeType, context)
 {
     if (modifications.length == 0) {
