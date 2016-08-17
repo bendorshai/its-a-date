@@ -1,6 +1,6 @@
 var consts = require ('../consts.js');
 
-module.exports = exports = [
+exports.tokens = [
     {
         // Examples: 5 years ago. 2 months ago, 1 day before __
         regex: /(?:\s|^)(\d+)\s+(.+?)s?\s+(?:ago|before)(?:\s|$)/,
@@ -26,3 +26,6 @@ module.exports = exports = [
         }
     }
 ];
+
+// export words for other token verifiers
+exports.relativeWords = ['ago','before','since','after']

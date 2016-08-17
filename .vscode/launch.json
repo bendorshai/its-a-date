@@ -5,7 +5,7 @@
 			"name": "Launch",
 			"type": "node",
 			"request": "launch",
-			"program": "index.js",
+			"program": "tester.js",
 			"stopOnEntry": false,
 			"args": [],
 			"cwd": ".",

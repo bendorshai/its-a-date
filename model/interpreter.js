@@ -5,9 +5,18 @@ exports.executeToken = function(token, dateString, state) {
     
     var match = token.regex.exec(dateString);
     
+    // If token has a verifier
+    if (token.verifier) {
+        
+        // If verifier doesn't indicate true, break token
+        if (!token.verifier(match,dateString, state)) {
+            return;
+        }
+    }
+    
     // If token doesn't have predefined affects
-    if (!token.affects)
-    {
+    if (!token.affects) {
+        
         // Call affects generator, to create affects
         token.affects = token.affectsGenerator(match);
     }

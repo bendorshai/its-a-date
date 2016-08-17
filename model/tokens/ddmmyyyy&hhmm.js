@@ -1,8 +1,8 @@
 var consts = require ('../consts.js');
 
-module.exports = exports = [ {
+exports.tokens = [ {
         // Example 11/1/1990
-        regex: /(\d{1,2})[\/\\.,](\d{1,2})[\/\\.,](\d{4})/,
+        regex: /(?:^|\s)(\d{1,2})[\/\\.,](\d{1,2})[\/\\.,](\d{4})(?:$|\s)/,
         affects: [
             // First capture group
             {
@@ -23,7 +23,7 @@ module.exports = exports = [ {
     },
     {
         // Example 1:55
-        regex: /(\d{1,2})[:](\d{1,2})/,
+        regex: /(?:^|\s)(\d{1,2})[:](\d{1,2})(?:$|\s)/,
         affects: [
             {
                 timeType: consts.timeTypes.hour,
