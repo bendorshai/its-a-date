@@ -25,6 +25,11 @@ console.log(itsadate.parse("3 months after 11/01/1990"))
 1. Allows a user to type a date more naturally in a web page or social media.
 2. Allows crawlers to parse relative dates easily.
 
+## Strategy (How it works?)
+
+A micro-compiler is implemented. It parses date part tokens &
+interpret them as modifications on the perceived date.
+
 ## Git
 
 https://github.com/bendorshai/its-a-date
