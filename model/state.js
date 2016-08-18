@@ -1,5 +1,7 @@
 var consts = require('./consts.js');
 var _ = require('underscore');
+var moment = require('moment');
+
 const absolute = consts.reltivity.absolute;
 
 // ctor
@@ -110,26 +112,16 @@ function executeModification(modification, timeType, context)
     }
     // If relative
     else if (modification.affectType == consts.reltivity.relative)
-    {        
-        switch (timeType)
-        {
-            case consts.timeTypes.year:
-                context.date.setFullYear(context.date.getFullYear() + value);
-                return;
-            case consts.timeTypes.month:
-                context.date.setMonth(context.date.getMonth() + value);
-                return;
-            case consts.timeTypes.date:
-                context.date.setDate(context.date.getDate() + value);
-                return;
-            case consts.timeTypes.hour:
-                context.date.setHours(context.date.getHours() + value);
-                return;
-            case consts.timeTypes.minute:
-                context.date.setMinutes(context.getMinutes() + value);
-                return;
-            default: 
-                throw 'ERROR: Unknown time type in modification excecute';
+    {    
+        var m = moment(context.date);
+        
+        // Convert to moment time type
+        var momentTimeType = timeType;
+        if (timeType == consts.timeTypes.date) {
+            momentTimeType = "days";
         }
+        
+        context.date = m.add(value,momentTimeType).toDate();
+       
     }
 }  

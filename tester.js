@@ -1,5 +1,5 @@
 var itsadate = require('./index.js');
-
+var moment = require('moment')
 // YOOO!
 var yo = itsadate.parse("5 years ago at 15:44")
 yo = itsadate.parse("3 months after 11/01/1990")
@@ -40,3 +40,6 @@ test(itsadate.parse("11/1/1990").getDate() == 11,'11');
 test(itsadate.parse("16:20").getHours() == 16,'16:00');
 test(itsadate.parse("16:20").getMinutes() == 20,'20 minutes');
 
+var now = new Date();
+var yesterDate = moment(now).add(-1,'day').toDate().getDate();
+test(itsadate.parse("yesterday").getDate() == yesterDate ,'yesterDate');
