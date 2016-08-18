@@ -1,57 +1,40 @@
 var consts = require ('../consts.js');
-var _ = require('underscore');
-var ago_and_since = require('./ago&since.js');
 
-exports.tokens = [ {
-        // Example 1945
-        regex: /(?:^|\s)(\d{4})(?:$|\s)/,
-        affects: [
-            {
-                timeType: consts.timeTypes.year,
-                affectType: consts.reltivity.absolute
+exports.tokens = [
+    {
+        // Examples: 5 years ago. 2 months ago, 1 day before __
+        regex: /(?:\s|^)(\d+)\s+(.+?)s?\s+(?:ago|before)(?:\s|$)/,
+        affectsGenerator: function(match)
+        {
+            var timeType = match[2];
+
+            if(timeType == 'day') {
+                timeType = 'date';
             }
-        ]
+
+            return [{
+                timeType: consts.timeTypes[timeType],
+                affectType: consts.reltivity.relative,
+                value: match[1] * (-1)
+            }]
+        }
     },
     {
-        // Example 31th
-        regex: /(?:^|\s)(\d{1,2})(?:th|st|nd|rd)?(?:$|\s)/,
-        affects: [
-            {
-                timeType: consts.timeTypes.date,
-                affectType: consts.reltivity.absolute
+        // Examples: 5 years since ___, 2 months after
+        regex: /(?:\s|^)(\d+)\s+(.+?)s?\s+(?:since|after)(?:\s|$)/,
+        affectsGenerator: function(match)
+        {
+            var timeType = match[2];
+
+            if(timeType == 'day') {
+                timeType = 'date';
             }
-        ],
-        // only if verifier returns true the affects take place
-        verifier: function(match, dateString, state) {
-            
-            // Verify that this number doesn't relate to 'ago', exmaple: 4 days ago
-            var components = dateString.split(' ');
-            
-            // tri, all
-            components = _.map(components, function(comp) {
-                return comp.trim();
-            });
-            
-            // for each component index except last two 
-            for (var i = 0; i < components.length-2; i++)
-            {
-                var comp = components[i];
-                var nextNext = components[i+2];
-                
-                // if component doesn't equal to what matched (example 15)
-                if (comp != match[1]) {
-                    continue;
-                }
-                
-                // If nextNext can't be found in since/ago relative words
-                if (ago_and_since.relativeWords.indexOf(nextNext) == -1) {
-                    continue;
-                }
-               
-                // Matched value does not relate to a date its the variable X in: X ____ ago (e.g., 5 months ago)
-                return false;
-            }
-            
-            return true;
+
+            return [{
+                timeType: consts.timeTypes[timeType],
+                affectType: consts.reltivity.relative,
+                value: match[1]
+            }]
         }
-    }];
+    }
+];
