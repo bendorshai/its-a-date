@@ -20,7 +20,7 @@ itsadate.parse("3 months after 11/01/1990");
 ```
 ## More Code Examples
 
-### Parse hour & date
+### Parse Hour & Date
 
 ```js
 // Fri Aug 19 2016 11:47:00 GMT+0300 (Jerusalem Daylight Time) 
@@ -33,7 +33,7 @@ itsadate.parse("27.3.2012");
 itsadate.parse("27/3/2012 12:00");
 ```
 
-### Parse relatives 
+### Parse Relatives 
 
 ```js
 // Thu Aug 18 2016 14:05:00 GMT+0300 (Jerusalem Daylight Time)
@@ -48,7 +48,7 @@ itsadate.parse("5 years ago");
 // Fri Aug 19 2011 15:44:00 GMT+0300 (Jerusalem Daylight Time)
 itsadate.parse("5 years ago at 15:44");
 ```
-### Parse the extreme (not recommended) 
+### Parse the Extreme (Not Recommended) 
 
 When it-a-date doesn't know what date it is, it will resolve current datetime. 
 However many times it surprises.
@@ -60,6 +60,15 @@ itsadate.parse("it was on the 1st of January, the dark cold winter of 1984");
 // Fri Aug 19 2016 14:05:15 GMT+0300 (Jerusalem Daylight Time)
 itsadate.parse("pikachu");
 ```
+
+### Learn More
+
+Hit brag to console out example from each token implemented
+
+```js
+itsadate.brag()
+```
+
 
 ### Exceptions
 
@@ -83,6 +92,7 @@ interpret them as modifications on the perceived date.
 ## Upcoming Features
 1. UTC control
 2. Basic format hints, optional
+3. Custom tokens insertion
 
 ## Git
 

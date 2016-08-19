@@ -4,6 +4,7 @@ exports.tokens = [
     {
         // Examples: 5 years ago. 2 months ago, 1 day before __
         example: '5 years ago',
+        category: 'ago since before & after',
         regex: /(?:\b|^)(\d+)\s+(.+?)s?\s+(?:ago|before)(?:\b|$)/,
         affectsGenerator: function(match)
         {
@@ -23,6 +24,7 @@ exports.tokens = [
     {
         // Examples: 5 years since ___, 2 months after
         example: '2 days since',
+        category: 'ago since before & after',
         regex: /(?:\b|^)(\d+)\s+(.+?)s?\s+(?:since|after)(?:\b|$)/,
         affectsGenerator: function(match)
         {

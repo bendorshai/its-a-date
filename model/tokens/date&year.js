@@ -5,6 +5,7 @@ var ago_and_since = require('./ago&since.js');
 exports.tokens = [
     {
     example: '1945',
+    category: 'year & date',
     regex: /(?:^|\s)(\d{4})(?:$|\s)/,
     affects: [{
         timeType: consts.timeTypes.year,
@@ -13,6 +14,7 @@ exports.tokens = [
     }, 
     {
     example: '1st',
+    category: 'year & date',
     regex: /(?:^|\s)(\d{1,2})(?:th|st|nd|rd)?(?:$|\s)/,
     affects: [{
         timeType: consts.timeTypes.date,

@@ -2,6 +2,8 @@ var consts = require ('../consts.js')
 
 exports.tokens = [ 
     {
+        example: 'jan',
+        category: 'months',
         regex: /(^|\b)(jan|january)(\b|$)/,
         affects: [{
             timeType: consts.timeTypes.month,
@@ -10,6 +12,8 @@ exports.tokens = [
             }]
     },
     {
+        example: 'february',
+        category: 'months',
         regex: /(^|\b)(feb|february)(\b|$)/,
         affects: [{
             timeType: consts.timeTypes.month,
@@ -18,6 +22,8 @@ exports.tokens = [
             }]
     },
     {
+        example: 'mar',
+        category: 'months',
         regex: /(^|\b)(mar|march)(\b|$)/,
         affects: [{
             timeType: consts.timeTypes.month,
@@ -26,6 +32,8 @@ exports.tokens = [
             }]
     },
     {
+        example: 'april',
+        category: 'months',
         regex: /(^|\b)(apr|april)(\b|$)/,
         affects: [{
             timeType: consts.timeTypes.month,
@@ -34,6 +42,8 @@ exports.tokens = [
             }]
     },
     {
+        example: 'may',
+        category: 'months',
         regex: /(^|\b)(may)(\b|$)/,
         affects: [{
             timeType: consts.timeTypes.month,
@@ -42,6 +52,8 @@ exports.tokens = [
             }]
     },
     {
+        example: 'june',
+        category: 'months',
         regex: /(^|\b)(jun|june)(\b|$)/,
         affects: [{
             timeType: consts.timeTypes.month,
@@ -50,6 +62,8 @@ exports.tokens = [
             }]
     },
     {
+        example: 'july',
+        category: 'months',
         regex: /(^|\b)(jul|july)(\b|$)/,
         affects: [{
             timeType: consts.timeTypes.month,
@@ -58,6 +72,8 @@ exports.tokens = [
             }]
     },
     {
+        example: 'aug',
+        category: 'months',
         regex: /(^|\b)(aug|august)(\b|$)/,
         affects: [{
             timeType: consts.timeTypes.month,
@@ -66,6 +82,8 @@ exports.tokens = [
             }]
     },
     {
+        example: 'sep',
+        category: 'months',
         regex: /(^|\b)(sep|september)(\b|$)/,
         affects: [{
             timeType: consts.timeTypes.month,
@@ -74,6 +92,8 @@ exports.tokens = [
             }]
     },
     {
+        example: 'oct',
+        category: 'months',
         regex: /(^|\b)(oct|october)(\b|$)/,
         affects: [{
             timeType: consts.timeTypes.month,
@@ -82,6 +102,8 @@ exports.tokens = [
             }]
     },
     {
+        example: 'november',
+        category: 'months',
         regex: /(^|\b)(nov|november)(\b|$)/,
         affects: [{
             timeType: consts.timeTypes.month,
@@ -90,6 +112,8 @@ exports.tokens = [
             }]
     },
     {
+        example: 'dec',
+        category: 'months',
         regex: /(^|\b)(dec|december)(\b|$)/,
         affects: [{
             timeType: consts.timeTypes.month,

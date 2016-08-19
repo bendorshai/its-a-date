@@ -42,8 +42,22 @@ test(itsadate.parse("16:20").getHours() == 16,'16:00');
 test(itsadate.parse("16:20").getMinutes() == 20,'20 minutes');
 
 var now = new Date();
-var yesterDate = moment(now).add(-1,'day').toDate().getDate();
+var m = moment(now);
+
+var yesterDate = m.add(-1,'day').toDate().getDate();
 test(itsadate.parse("yesterday").getDate() == yesterDate ,'yesterDate');
 
+m = moment(now);
+test(itsadate.parse("3 mins").getMinutes() == m.add(-3,'minute').minute() ,'3 mins');
 
+m = moment(now);
+test(itsadate.parse("3 hrs").getHours() == m.add(-3,'hour').hours() ,'3 hrs');
+
+m = moment(now);
+test(itsadate.parse("1 min").getMinutes() == m.add(-1,'minute').minute() ,'1 min');
+
+m = moment(now);
+test(itsadate.parse("1 hr").getHours() == m.add(-1,'hours').hours() ,'3 hr');
 console.log('finished testing.')
+
+itsadate.brag();

@@ -14,19 +14,25 @@ exports.executeToken = function(token, dateString, state) {
         }
     }
     
+    var affects = [];
+    
     // If token doesn't have predefined affects
     if (!token.affects) {
         
         // Call affects generator, to create affects
-        token.affects = token.affectsGenerator(match);
+        affects = token.affectsGenerator(match);
+    }
+    // If it does have, store them in local
+    else {
+        affects = token.affects;
     }
     
     var captureGroup = 1;
     
     // For each affect
-    for (var idx = 0; idx < token.affects.length; idx++) {
+    for (var idx = 0; idx < affects.length; idx++) {
         
-        var affect = token.affects[idx];
+        var affect = affects[idx];
         var calculatedValue = null;
         
         // If affect have predefined value, use it
