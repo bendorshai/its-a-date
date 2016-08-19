@@ -3,7 +3,7 @@ var consts = require ('../consts.js');
 exports.tokens = [ {
         example:'11.1.1990',
         category: 'ddmmyyyy & hhmm',
-        regex: /(?:^|\b)(\d{1,2})[\/\\.](\d{1,2})[\/\\.](\d{4})(?:$|\b)/,
+        regex: /(?:^|\b)(\d{1,2})[-\/\\.](\d{1,2})[-\/\\.](\d{4})(?:$|\b)/,
         affects: [
             // First capture group
             {
