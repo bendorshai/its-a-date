@@ -107,7 +107,7 @@ function executeModification(modification, timeType, context)
                 context.date.setMinutes(value);
                 return;
             default: 
-                throw 'ERROR: Unknown time type in modification excecute';
+                throw 'ERROR: Unknown time type in modification excecution';
         }
     }
     // If relative
