@@ -1,15 +1,20 @@
 var consts = require ('../consts.js');
-var _ = require('underscore');
-var ago_and_since = require('./ago&since.js');
 
 exports.tokens = [
     {
         // Examples: 5 years ago. 2 months ago, 1 day before __
-        regex: /(?:\s|^)(\d+)\s+(.+?)s?\s+(?:ago|before)(?:\s|$)/,
+        example: '5 years ago',
+        regex: /(?:\b|^)(\d+)\s+(.+?)s?\s+(?:ago|before)(?:\b|$)/,
         affectsGenerator: function(match)
         {
+            var timeType = match[2];
+
+            if(timeType == 'day') {
+                timeType = 'date';
+            }
+
             return [{
-                timeType: consts.timeTypes[match[2]],
+                timeType: consts.timeTypes[timeType],
                 affectType: consts.reltivity.relative,
                 value: match[1] * (-1)
             }]
@@ -17,11 +22,18 @@ exports.tokens = [
     },
     {
         // Examples: 5 years since ___, 2 months after
-        regex: /(?:\s|^)(\d+)\s+(.+?)s?\s+(?:since|after)(?:\s|$)/,
+        example: '2 days since',
+        regex: /(?:\b|^)(\d+)\s+(.+?)s?\s+(?:since|after)(?:\b|$)/,
         affectsGenerator: function(match)
         {
+            var timeType = match[2];
+
+            if(timeType == 'day') {
+                timeType = 'date';
+            }
+
             return [{
-                timeType: consts.timeTypes[match[2]],
+                timeType: consts.timeTypes[timeType],
                 affectType: consts.reltivity.relative,
                 value: match[1]
             }]

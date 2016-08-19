@@ -2,7 +2,7 @@ var consts = require ('../consts.js')
 
 exports.tokens = [ 
     {
-        // Examples: yesterday
+        example: 'yesterday',
         regex: /(?:\b|^)(yesterday)(?:\b|$)/,
         affects: [{
             timeType: consts.timeTypes.date,
@@ -11,7 +11,7 @@ exports.tokens = [
             }]
     },
     {
-        // Examples: tomorrow
+        example: 'tomorrow',
         regex: /(?:\b|^)(tomorrow)(?:\b|$)/,
         affects: [{
             timeType: consts.timeTypes.date,
