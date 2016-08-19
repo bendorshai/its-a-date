@@ -6,7 +6,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Shai Ben - Dor",
+  "author": { "name" : "Shai Ben - Dor", 
+              "email" : "bendorshai@gmail.com", 
+              "url" : "https://github.com/bendorshai/"},
+  "contributors": [{
+      "name": "Shahar Katz",
+      "email": "skatz1990@gmail.com",
+      "url" : "https://github.com/skatz1990"
+  }],
   "license": "ISC",
   "dependencies": {
     "moment": "2.14.1",
