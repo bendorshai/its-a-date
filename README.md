@@ -50,7 +50,7 @@ itsadate.parse("5 years ago at 15:44");
 ```
 ### Parse the Extreme (Not Recommended) 
 
-When it-a-date doesn't know what date it is, it will resolve current datetime. 
+When its-a-date doesn't know what date it is, it will resolve current datetime. 
 However many times it surprises.
 
 ```js
