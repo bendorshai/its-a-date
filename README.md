@@ -29,7 +29,7 @@ itsadate.parse("11:47");
 // Tue Mar 27 2012 14:05:00 GMT+0200 (Jerusalem Standard Time)
 itsadate.parse("27.3.2012");
 
-Tue Mar 27 2012 12:00:00 GMT+0200 (Jerusalem Standard Time)
+// Tue Mar 27 2012 12:00:00 GMT+0200 (Jerusalem Standard Time)
 itsadate.parse("27/3/2012 12:00");
 ```
 
