@@ -32,7 +32,7 @@ exports.tokens = [ {
             
             if (match[3] == 'pm')
             {
-                hour += 12;
+                hour = Number(hour) + 12;
             }
             
             return [

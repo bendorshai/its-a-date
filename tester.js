@@ -39,6 +39,8 @@ test(itsadate.parse("11/1/1990").getMonth() == 0,'January');
 test(itsadate.parse("11/1/1990").getDate() == 11,'11');
 test(itsadate.parse("23-5-1983").getDate() == 23,'23');
 
+
+test(itsadate.parse("1:00pm").getHours() == 13,'1:00pm');
 test(itsadate.parse("16:20").getHours() == 16,'16:00');
 test(itsadate.parse("16:20").getMinutes() == 20,'20 minutes');
 
