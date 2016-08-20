@@ -85,13 +85,13 @@ itsadate.parse("11/1/1990");
 
 ### Learn More
 
-Hit brag() to console out example from each token implemented
+Hit brag() to console out examples of any token implemented
 
 ```js
 itsadate.brag();
 ```
 
-Hit settings() to get all configuration setting object with descriptions
+Hit settings() to get settings object with configutations you can alter. descriptions included.
 
 ```js
 itsadate.settings();
