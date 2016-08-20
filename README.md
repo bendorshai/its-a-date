@@ -72,7 +72,7 @@ itsadate.brag()
 
 ### Exceptions
 
-When date description has inner conflicts it resolves to ```js undefined ```
+When date description has inner conflicts it resolves to undefined
 
 ```js
 // undefined
