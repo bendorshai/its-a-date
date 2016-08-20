@@ -85,4 +85,19 @@ test(now1.getDate() == now2.getDate() ,'now day');
 test(now1.getMonth() == now2.getMonth(),'now month');
 test(now1.getFullYear() == now2.getFullYear(),'now YEARRR');
 
+itsadate.settings({'day_before_month':false});
+test(itsadate.parse("11/1/1990").getFullYear() == 1990,'day_before_mont 1990');
+test(itsadate.parse("11/1/1990").getMonth() == 10,'day_before_mont November');
+test(itsadate.parse("11/1/1990").getDate() == 1,'day_before_mont 1st');
+itsadate.restoreSettings();
+test(itsadate.parse("11/1/1990").getFullYear() == 1990,'setting restore 1990');
+test(itsadate.parse("11/1/1990").getMonth() == 0,'setting restore January');
+test(itsadate.parse("11/1/1990").getDate() == 11,'setting restore 11');
+
+
+itsadate.settings({'day_before_month':false});
+console.log(itsadate.parse("11/1/1990"))
+itsadate.restoreSettings();
+console.log(itsadate.parse("11/1/1990"))
+
 console.log('finished testing.')

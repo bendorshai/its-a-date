@@ -2,7 +2,7 @@ var parser = require('./parser.js');
 var interpreter = require('./interpreter.js')
 var State = require('./state.js');
 
-exports.getDateFromString = function(dateString)
+exports.getDateFromString = function(dateString, settings)
 {
     // New state each time
     var state = new State();
@@ -18,7 +18,7 @@ exports.getDateFromString = function(dateString)
     for (var token of tokens) {
         
         // Execute the token from the dateString onto the state
-        interpreter.executeToken(token, dateString, state);
+        interpreter.executeToken(token, dateString, state, settings);
     }
     
     // Caculate the state

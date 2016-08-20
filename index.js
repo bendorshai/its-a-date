@@ -1,6 +1,10 @@
 var compiler = require('./model/compiler.js');
 var tokens = require('./model/tokens.js');
 var parser = require('./model/parser.js');
+var Settings = require('./model/settings.js');
+
+// Init a setting object
+var settings = new Settings();
 
 exports.parse = function(dateString) {
     
@@ -10,7 +14,7 @@ exports.parse = function(dateString) {
     var of_the_king;
     
     try {
-        of_the_king = compiler.getDateFromString(dateString);
+        of_the_king = compiler.getDateFromString(dateString, settings);
     }
     catch(e) {
         // If compiler didn't succeed
@@ -19,20 +23,6 @@ exports.parse = function(dateString) {
     
     // If all is well
     return of_the_king;
-}
-
-// Parse and return in UnixTimestamp format
-exports.parseToUnixTimestamp = function(dateString) {
-     
-    return this.parse(dateString).getTime()/1000;
-}
-
-// Define the base format of the input string,
-// The default format is little-endian (day, month, year), e.g. 22/04/96.
-// This method will set it to middle-endian (month, day, year), e.g. 04/22/96.
-exports.setMiddleEndianFormat = function() {
-
-    parser.setMiddleEndianFormat();
 }
 
 // Expose all tokens and what they can do to you!
@@ -47,8 +37,27 @@ exports.brag = function() {
             console.log(' ~ ' + category + ' ~ ');
         }
         
-        console.log(token.example + ' --> ' + compiler.getDateFromString(token.example))
+        console.log(token.example + ' --> ' + compiler.getDateFromString(token.example, settings))
     }
+}
+
+/* get or set setting object
+examples:  
+    settings('def') --> returns the setting named def
+    settings({'def':4}) -- > sets def to 5
+ */
+exports.settings = function(query) {
+    if (query == undefined) {
+        return settings.get();
+    }
+    else {
+        settings.set(query);
+    }
+}
+
+// restore stting to default
+exports.restoreSettings = function() {
+    settings.restoreDefault();
 }
 
 /* todo: add settings function for this module.

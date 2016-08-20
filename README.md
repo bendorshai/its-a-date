@@ -70,6 +70,25 @@ Hit brag to console out example from each token implemented
 itsadate.brag()
 ```
 
+### Settings and Formats
+
+Use settings to alter the format expected if needed
+
+```js
+// Tells its-a-date to prefer mm/dd/yyyy over dd/mm/yyyy
+itsadate.settings({'day_before_month':false});
+
+// Thu Nov 01 1990 01:55:00 GMT+0200 (Jerusalem Standard Time)
+itsadate.parse("11/1/1990");
+
+// Restore setting back to default (day_before_month=true)
+itsadate.restoreSettings();
+
+// Thu Jan 11 1990 01:55:00 GMT+0200 (Jerusalem Standard Time)
+itsadate.parse("11/1/1990");
+
+```
+
 ### Exceptions
 
 When date description has inner conflicts it resolves to undefined

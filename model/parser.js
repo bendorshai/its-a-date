@@ -1,9 +1,5 @@
 var tokens = require('./tokens.js');
 
-// If false, the input string will be parsed as little-endian formt (day, month, year), e.g. 22/04/96.
-// If true as middle-endian format (month, day, year), e.g. 04/22/96.
-var middle_endian_format = false; 
-
 // Get all token that appear in date string
 exports.getTokens = function (dateString) {
     
@@ -20,9 +16,4 @@ exports.getTokens = function (dateString) {
     }
     
     return of_the_jedi;
-}
-
-this.setMiddleEndianFormat = function () {
-    
-    this.middle_endian_format = true;
 }

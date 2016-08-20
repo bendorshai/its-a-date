@@ -1,7 +1,7 @@
 var consts = require('./consts.js');
 
 // Execute every given token onto the state
-exports.executeToken = function(token, dateString, state) {
+exports.executeToken = function(token, dateString, state, settings) {
     
     var match = token.regex.exec(dateString);
     
@@ -9,7 +9,7 @@ exports.executeToken = function(token, dateString, state) {
     if (token.verifier) {
         
         // If verifier doesn't indicate true, break token
-        if (!token.verifier(match,dateString, state)) {
+        if (!token.verifier(match, dateString, state, settings)) {
             return;
         }
     }
@@ -20,7 +20,7 @@ exports.executeToken = function(token, dateString, state) {
     if (!token.affects) {
         
         // Call affects generator, to create affects
-        affects = token.affectsGenerator(match);
+        affects = token.affectsGenerator(match, settings);
     }
     // If it does have, store them in local
     else {
@@ -36,7 +36,7 @@ exports.executeToken = function(token, dateString, state) {
         var calculatedValue = null;
         
         // If affect have predefined value, use it
-        if (affect.value)
+        if (affect.value != undefined)
         {
             calculatedValue = affect.value;
         }
