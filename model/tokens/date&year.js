@@ -17,11 +17,11 @@ exports.tokens = [
     category: 'year & date',
     regex: /(?:^|\s)(\d{1,2})(?:th|st|nd|rd)?(?:$|\s)/,
     affects: [{
-        timeType: consts.timeTypes.date,
+        timeType: consts.timeTypes.day,
         affectType: consts.reltivity.absolute
     }],
     variables: {
-        date: 1
+        day: 1
     },
     // only if verifier returns true the affects take place
     // Verify that this number doesn't relate to 'ago', exmaple: '4 days ago', 4 is not the number of the date
@@ -51,7 +51,7 @@ exports.tokens = [
         // Note: this is true for both AGO & SINCE tokens...
         var valueIdx = ago_and_since.tokens[AGO].variables.value;
         
-        var date = match[this.variables.date];
+        var date = match[this.variables.day];
         
         // If the ago relate to the same value of date
         if (collisionMatch[valueIdx] != date) {

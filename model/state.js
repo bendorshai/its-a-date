@@ -15,7 +15,7 @@ function State() {
     this.modificationQueues = [];
     this.modificationQueues[consts.timeTypes.year] = [];
     this.modificationQueues[consts.timeTypes.month] = [];
-    this.modificationQueues[consts.timeTypes.date] = [];
+    this.modificationQueues[consts.timeTypes.day] = [];
     this.modificationQueues[consts.timeTypes.hour] = [];
     this.modificationQueues[consts.timeTypes.minute] = [];
 }
@@ -97,7 +97,7 @@ function executeModification(modification, timeType, context)
             case consts.timeTypes.month:
                 context.date.setMonth(value-1); // Months are wierd in js
                 return;
-            case consts.timeTypes.date:
+            case consts.timeTypes.day:
                 context.date.setDate(value);
                 return;
             case consts.timeTypes.hour:
@@ -117,10 +117,7 @@ function executeModification(modification, timeType, context)
         
         // Convert to moment time type
         var momentTimeType = timeType;
-        if (timeType == consts.timeTypes.date) {
-            momentTimeType = "days";
-        }
-        
+ 
         context.date = m.add(value,momentTimeType).toDate();
     }
 }  

@@ -7,7 +7,7 @@ exports.tokens = [ {
         affects: [
             // First capture group
             {
-                timeType: consts.timeTypes.date,
+                timeType: consts.timeTypes.day,
                 affectType: consts.reltivity.absolute
             },
             // Second capture group

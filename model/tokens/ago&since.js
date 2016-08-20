@@ -15,10 +15,6 @@ exports.tokens = [
         {
             var timeType = match[this.variables.timeType];
 
-            if(timeType == 'day') {
-                timeType = 'date';
-            }
-
             return [{
                 timeType: consts.timeTypes[timeType],
                 affectType: consts.reltivity.relative,
@@ -38,11 +34,7 @@ exports.tokens = [
         affectsGenerator: function(match)
         {
             var timeType = match[this.variables.timeType];
-
-            if(timeType == 'day') {
-                timeType = 'date';
-            }
-
+            
             return [{
                 timeType: consts.timeTypes[timeType],
                 affectType: consts.reltivity.relative,

@@ -7,7 +7,7 @@ module.exports = exports = {
     timeTypes: {
         year: 'year',
         month: 'month',
-        date: 'date',
+        day: 'day',
         hour: 'hour',
         minute: 'minute'
     }

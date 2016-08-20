@@ -6,7 +6,7 @@ exports.tokens = [
         category: 'yesterday & tommorow',
         regex: /(?:\b|^)(yesterday)(?:\b|$)/,
         affects: [{
-            timeType: consts.timeTypes.date,
+            timeType: consts.timeTypes.day,
             affectType: consts.reltivity.relative,
             value: -1
             }]
@@ -16,7 +16,7 @@ exports.tokens = [
         category: 'yesterday & tommorow',
         regex: /(?:\b|^)(tomorrow)(?:\b|$)/,
         affects: [{
-            timeType: consts.timeTypes.date,
+            timeType: consts.timeTypes.day,
             affectType: consts.reltivity.relative,
             value: 1
             }]
