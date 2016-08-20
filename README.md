@@ -123,8 +123,3 @@ interpret them as modifications on the perceived date.
 ## Git
 
 https://github.com/bendorshai/its-a-date
-
-## Note
-
-The package is still at very early stages and it is not complete.
-

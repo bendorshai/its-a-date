@@ -6,6 +6,9 @@ var Settings = require('./model/settings.js');
 // Init a setting object
 var settings = new Settings();
 
+/* parse the string,
+alternativeSettings is optional parameter. 
+*/
 exports.parse = function(dateString, alternativeSettings) {
     
     // Lower
