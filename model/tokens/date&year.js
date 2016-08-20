@@ -20,36 +20,46 @@ exports.tokens = [
         timeType: consts.timeTypes.date,
         affectType: consts.reltivity.absolute
     }],
+    variables: {
+        date: 1
+    },
     // only if verifier returns true the affects take place
+    // Verify that this number doesn't relate to 'ago', exmaple: '4 days ago', 4 is not the number of the date
     verifier: function(match, dateString, state) {
-
-        // Verify that this number doesn't relate to 'ago', exmaple: 4 days ago
-        var components = dateString.split(' ');
-
-        // tri, all
-        components = _.map(components, function(comp) {
-            return comp.trim();
-        });
-
-        // for each component index except last two 
-        for (var i = 0; i < components.length - 2; i++) {
-            var comp = components[i];
-            var nextNext = components[i + 2];
-
-            // if component doesn't equal to what matched (example 15)
-            if (comp != match[1]) {
-                continue;
-            }
-
-            // If nextNext can't be found in since/ago relative words
-            if (ago_and_since.relativeWords.indexOf(nextNext) == -1) {
-                continue;
-            }
-
+        
+        const AGO = 0;
+        const SINCE = 1;
+        
+        var collisionMatch = []
+        
+        collisionMatch[AGO] = ago_and_since.tokens[AGO].regex.exec(dateString);
+        collisionMatch[SINCE] = ago_and_since.tokens[SINCE].regex.exec(dateString);
+        
+        // If both didn't match, it is safe to continue
+        if (!collisionMatch[AGO] && !collisionMatch[SINCE]) {
+            return true;
+        }
+        
+        // Assume that only one should match
+        if (collisionMatch[AGO]) {
+            collisionMatch = collisionMatch[AGO];
+        }
+        else {
+             collisionMatch = collisionMatch[SINCE];
+        }
+        
+        // Note: this is true for both AGO & SINCE tokens...
+        var valueIdx = ago_and_since.tokens[AGO].variables.value;
+        
+        var date = match[this.variables.date];
+        
+        // If the ago relate to the same value of date
+        if (collisionMatch[valueIdx] != date) {
+            return true;
+        }
+        else {
             // Matched value does not relate to a date its the variable X in: X ____ ago (e.g., 5 months ago)
             return false;
         }
-
-        return true;
     }
 }];

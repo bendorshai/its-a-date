@@ -122,6 +122,5 @@ function executeModification(modification, timeType, context)
         }
         
         context.date = m.add(value,momentTimeType).toDate();
-       
     }
 }  

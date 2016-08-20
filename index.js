@@ -30,4 +30,12 @@ exports.brag = function() {
  - base format: day before month or vise versa
  - utc change */
  
- // add custom tokens?
+ // todo: add custom tokens?
+ 
+ 
+ 
+ // todo: improve verifiers readabillity & responsibillity:
+ /* Tokens should be prioritized over one another. should think of a system to implement this:
+ 1. verify from bottom-up: like now but add option for token to directly operate other token by requiring it...
+ 2. verify from up-botton: a single verifier object will prioritize all tokens. */
+  

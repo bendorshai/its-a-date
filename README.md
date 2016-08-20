@@ -55,7 +55,8 @@ However many times it surprises.
 
 ```js
 // Sun Jan 01 1984 14:05:00 GMT+0200 (Jerusalem Standard Time)
-itsadate.parse("it was on the 1st of January, the dark cold winter of 1984");
+itsadate.parse('it was on the 1st of January, ' +
+                    'the dark cold winter of 1984');
 
 // Fri Aug 19 2016 14:05:15 GMT+0300 (Jerusalem Daylight Time)
 itsadate.parse("pikachu");

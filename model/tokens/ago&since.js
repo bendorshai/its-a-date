@@ -6,9 +6,14 @@ exports.tokens = [
         example: '5 years ago',
         category: 'ago since before & after',
         regex: /(?:\b|^)(\d+)\s+(.+?)s?\s+(?:ago|before)(?:\b|$)/,
+        // The indexes of capturing gorups in the match
+        variables: {
+          value: 1,
+          timeType: 2  
+        },
         affectsGenerator: function(match)
         {
-            var timeType = match[2];
+            var timeType = match[this.variables.timeType];
 
             if(timeType == 'day') {
                 timeType = 'date';
@@ -17,7 +22,7 @@ exports.tokens = [
             return [{
                 timeType: consts.timeTypes[timeType],
                 affectType: consts.reltivity.relative,
-                value: match[1] * (-1)
+                value: match[this.variables.value] * (-1)
             }]
         }
     },
@@ -26,9 +31,13 @@ exports.tokens = [
         example: '2 days since',
         category: 'ago since before & after',
         regex: /(?:\b|^)(\d+)\s+(.+?)s?\s+(?:since|after)(?:\b|$)/,
+        variables: {
+          value: 1,
+          timeType: 2  
+        },
         affectsGenerator: function(match)
         {
-            var timeType = match[2];
+            var timeType = match[this.variables.timeType];
 
             if(timeType == 'day') {
                 timeType = 'date';
@@ -37,7 +46,7 @@ exports.tokens = [
             return [{
                 timeType: consts.timeTypes[timeType],
                 affectType: consts.reltivity.relative,
-                value: match[1]
+                value: match[this.variables.value]
             }]
         }
     }
