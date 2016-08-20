@@ -61,18 +61,9 @@ itsadate.parse('it was on the 1st of January, ' +
 // undefined
 itsadate.parse("pikachu");
 ```
-
-### Learn More
-
-Hit brag to console out example from each token implemented
-
-```js
-itsadate.brag()
-```
-
 ### Settings and Formats
 
-Use settings to alter the format expected if needed
+Use settings to alter the format expected
 
 ```js
 // Tells its-a-date to prefer mm/dd/yyyy over dd/mm/yyyy
@@ -80,16 +71,33 @@ itsadate.settings({'day_before_month':false});
 
 // Thu Nov 01 1990 01:55:00 GMT+0200 (Jerusalem Standard Time)
 itsadate.parse("11/1/1990");
+```
 
+Restore settings to default
+
+```js
 // Restore setting back to default (day_before_month=true)
 itsadate.restoreSettings();
 
 // Thu Jan 11 1990 01:55:00 GMT+0200 (Jerusalem Standard Time)
 itsadate.parse("11/1/1990");
-
 ```
 
-### Exceptions
+### Learn More
+
+Hit brag() to console out example from each token implemented
+
+```js
+itsadate.brag();
+```
+
+Hit settings() to get all configuration setting object with descriptions
+
+```js
+itsadate.settings();
+```
+
+### No Exceptions
 
 When date description has inner conflicts it resolves to undefined
 
