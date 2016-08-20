@@ -1,5 +1,6 @@
 var compiler = require('./model/compiler.js');
 var tokens = require('./model/tokens.js');
+var parser = require('./model/parser.js');
 
 exports.parse = function(dateString) {
     
@@ -18,6 +19,20 @@ exports.parse = function(dateString) {
     
     // If all is well
     return of_the_king;
+}
+
+// Parse and return in UnixTimestamp format
+exports.parseToUnixTimestamp = function(dateString) {
+     
+    return this.parse(dateString).getTime()/1000;
+}
+
+// Define the base format of the input string,
+// The default format is little-endian (day, month, year), e.g. 22/04/96.
+// This method will set it to middle-endian (month, day, year), e.g. 04/22/96.
+exports.setMiddleEndianFormat = function() {
+
+    parser.setMiddleEndianFormat();
 }
 
 // Expose all tokens and what they can do to you!
