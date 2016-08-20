@@ -18,6 +18,9 @@ function test(expected, name)
     }
 }
 
+itsadate.brag();
+
+
 test(itsadate.parse("jan").getMonth() == 0,'jan');
 test(itsadate.parse("feb").getMonth() == 1,'feb');
 test(itsadate.parse("mar").getMonth() == 2,'mar');
@@ -61,6 +64,13 @@ test(itsadate.parse("1 min").getMinutes() == m.add(-1,'minute').minute() ,'1 min
 
 m = moment(now);
 test(itsadate.parse("1 hr").getHours() == m.add(-1,'hours').hours() ,'3 hr');
-console.log('finished testing.')
 
-itsadate.brag();
+m = moment(new Date());
+var momentDate = m.add(-14,'d').date();
+test(itsadate.parse("2 weeks ago").getDate() == momentDate ,'2 weeks ago');
+
+m = moment(new Date());
+momentDate = m.add(-7,'d').date();
+test(itsadate.parse("1 week ago").getDate() ==  momentDate, '1 week ago');
+
+console.log('finished testing.')

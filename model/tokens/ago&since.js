@@ -14,11 +14,17 @@ exports.tokens = [
         affectsGenerator: function(match)
         {
             var timeType = match[this.variables.timeType];
-
+             var calculated =  match[this.variables.value] * (-1);
+             
+            if (timeType == 'week') {
+                timeType = 'day';
+                calculated *= 7;
+            }
+            
             return [{
                 timeType: consts.timeTypes[timeType],
                 affectType: consts.reltivity.relative,
-                value: match[this.variables.value] * (-1)
+                value: calculated
             }]
         }
     },
@@ -34,11 +40,17 @@ exports.tokens = [
         affectsGenerator: function(match)
         {
             var timeType = match[this.variables.timeType];
+            var calculated = match[this.variables.value]
+            
+            if (timeType == 'week') {
+                timeType = 'day';
+                calculated *= 7;
+            }
             
             return [{
                 timeType: consts.timeTypes[timeType],
                 affectType: consts.reltivity.relative,
-                value: match[this.variables.value]
+                value: calculated
             }]
         }
     }
