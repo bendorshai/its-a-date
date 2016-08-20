@@ -17,7 +17,7 @@ exports.tokens = [ {
                 },
                 // Second capture group
                 {
-                    timeType: consts.timeTypes.date,
+                    timeType: consts.timeTypes.day,
                     affectType: consts.reltivity.absolute
                 },
                 // Third capture group
@@ -31,7 +31,7 @@ exports.tokens = [ {
                 return [
                 // First capture group
                 {
-                    timeType: consts.timeTypes.date,
+                    timeType: consts.timeTypes.day,
                     affectType: consts.reltivity.absolute
                 },
                 // Second capture group
@@ -45,8 +45,8 @@ exports.tokens = [ {
                     affectType: consts.reltivity.absolute
                 }]
             }
-        }   
-    },
+        }
+    },     
     {
         example:'1990.1.11',
         category: 'ddmmyyyy & hhmm',
@@ -63,7 +63,7 @@ exports.tokens = [ {
                 },
                 // Second capture group
                 {
-                    timeType: consts.timeTypes.date,
+                    timeType: consts.timeTypes.day,
                     affectType: consts.reltivity.absolute
                 },
                 // Third capture group
@@ -87,7 +87,7 @@ exports.tokens = [ {
                 },
                 // Third capture group
                 {
-                    timeType: consts.timeTypes.date,
+                    timeType: consts.timeTypes.day,
                     affectType: consts.reltivity.absolute
                 }]
             }
