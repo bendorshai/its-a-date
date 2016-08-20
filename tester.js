@@ -14,7 +14,7 @@ function test(expected, name)
     }
     else
     {
-        console.log('Green , . , . ')
+        console.log('Green , . , . ' + name)
     }
 }
 
@@ -73,12 +73,9 @@ m = moment(new Date());
 momentDate = m.add(-7,'d').date();
 test(itsadate.parse("1 week ago").getDate() ==  momentDate, '1 week ago');
 
-try {
-    itsadate.parse("askdjasd");
-    console.log('ERROR: in askdjasd');
-}
-catch (e){
-    console.log('Green , . , . ');
-}
+test(itsadate.parse("askdjasd") == undefined, 'undefined');
+test(itsadate.parse('1st of november 02/03/2000') == undefined, 'conflict');
+
+
 
 console.log('finished testing.')

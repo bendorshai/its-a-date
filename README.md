@@ -50,7 +50,7 @@ itsadate.parse("5 years ago at 15:44");
 ```
 ### Parse the Extreme (Not Recommended) 
 
-When its-a-date doesn't know what date it is, it will throw exception. 
+When its-a-date doesn't know what date it is, it will return undefined. 
 However many times it surprises.
 
 ```js
@@ -58,7 +58,7 @@ However many times it surprises.
 itsadate.parse('it was on the 1st of January, ' +
                     'the dark cold winter of 1984');
 
-// ERROR: No token matched the string
+// undefined
 itsadate.parse("pikachu");
 ```
 
@@ -70,13 +70,12 @@ Hit brag to console out example from each token implemented
 itsadate.brag()
 ```
 
-
 ### Exceptions
 
-When date description has inner conflicts an exception will be thrown
+When date description has inner conflicts it resolves to ```js undefined ```
 
 ```js
-// ERROR: Two or more absolute modifications are not allowed on the same date entity
+// undefined
 itsadate.parse('1st of november 02/03/2000')
 ```
 

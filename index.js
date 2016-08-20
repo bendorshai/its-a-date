@@ -6,7 +6,18 @@ exports.parse = function(dateString) {
     // Lower
     dateString = dateString.toLowerCase();
     
-    return compiler.getDateFromString(dateString);
+    var of_the_king;
+    
+    try {
+        of_the_king = compiler.getDateFromString(dateString);
+    }
+    catch(e) {
+        // If compiler didn't succeed
+        return undefined;
+    }
+    
+    // If all is well
+    return of_the_king;
 }
 
 // Expose all tokens and what they can do to you!
