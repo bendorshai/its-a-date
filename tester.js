@@ -94,10 +94,4 @@ test(itsadate.parse("11/1/1990").getFullYear() == 1990,'setting restore 1990');
 test(itsadate.parse("11/1/1990").getMonth() == 0,'setting restore January');
 test(itsadate.parse("11/1/1990").getDate() == 11,'setting restore 11');
 
-
-itsadate.settings({'day_before_month':false});
-console.log(itsadate.parse("11/1/1990"))
-itsadate.restoreSettings();
-console.log(itsadate.parse("11/1/1990"))
-
 console.log('finished testing.')
