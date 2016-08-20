@@ -6,7 +6,7 @@ var Settings = require('./model/settings.js');
 // Init a setting object
 var settings = new Settings();
 
-exports.parse = function(dateString) {
+exports.parse = function(dateString, alternativeSettings) {
     
     // Lower
     dateString = dateString.toLowerCase();
@@ -14,7 +14,8 @@ exports.parse = function(dateString) {
     var of_the_king;
     
     try {
-        of_the_king = compiler.getDateFromString(dateString, settings);
+        // Run compiler with aleternative settings if provided, otherwise with default settings
+        of_the_king = compiler.getDateFromString(dateString, alternativeSettings || settings);
     }
     catch(e) {
         // If compiler didn't succeed
@@ -62,7 +63,6 @@ exports.restoreSettings = function() {
 
 /* todo: add settings function for this module.
  settings will include:
- - base format: day before month or vise versa
  - utc change */
  
  // todo: add custom tokens?
