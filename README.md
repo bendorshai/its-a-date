@@ -110,7 +110,6 @@ interpret them as modifications on the perceived date.
 
 ## Upcoming Features
 1. UTC control
-2. Basic format hints, optional
 3. Custom tokens insertion
 
 ## Git
