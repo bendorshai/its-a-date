@@ -76,6 +76,13 @@ test(itsadate.parse("1 week ago").getDate() ==  momentDate, '1 week ago');
 test(itsadate.parse("askdjasd") == undefined, 'undefined');
 test(itsadate.parse('1st of november 02/03/2000') == undefined, 'conflict');
 
+var now1 = itsadate.parse("now");
+var now2 = new Date();
 
+test(now1.getMinutes() == now2.getMinutes() ,'now minutes');
+test(now1.getHours() == now2.getHours() ,'now hours');
+test(now1.getDate() == now2.getDate() ,'now day');
+test(now1.getMonth() == now2.getMonth(),'now month');
+test(now1.getFullYear() == now2.getFullYear(),'now YEARRR');
 
 console.log('finished testing.')
