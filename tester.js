@@ -73,4 +73,12 @@ m = moment(new Date());
 momentDate = m.add(-7,'d').date();
 test(itsadate.parse("1 week ago").getDate() ==  momentDate, '1 week ago');
 
+try {
+    itsadate.parse("askdjasd");
+    console.log('ERROR: in askdjasd');
+}
+catch (e){
+    console.log('Green , . , . ');
+}
+
 console.log('finished testing.')

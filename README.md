@@ -50,7 +50,7 @@ itsadate.parse("5 years ago at 15:44");
 ```
 ### Parse the Extreme (Not Recommended) 
 
-When its-a-date doesn't know what date it is, it will resolve current datetime. 
+When its-a-date doesn't know what date it is, it will throw exception. 
 However many times it surprises.
 
 ```js
@@ -58,7 +58,7 @@ However many times it surprises.
 itsadate.parse('it was on the 1st of January, ' +
                     'the dark cold winter of 1984');
 
-// Fri Aug 19 2016 14:05:15 GMT+0300 (Jerusalem Daylight Time)
+// ERROR: No token matched the string
 itsadate.parse("pikachu");
 ```
 

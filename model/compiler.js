@@ -10,6 +10,10 @@ exports.getDateFromString = function(dateString)
     // Get all tokens found in date string
     var tokens = parser.getTokens(dateString);
     
+    if (tokens.length == 0) {
+        throw 'ERROR: No token matched the string'
+    }
+    
     // Execute all tokens
     for (var token of tokens) {
         
