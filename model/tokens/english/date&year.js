@@ -1,4 +1,4 @@
-var consts = require('../consts.js');
+var consts = require('../../consts.js');
 var _ = require('underscore');
 var ago_and_since = require('./ago&since.js');
 

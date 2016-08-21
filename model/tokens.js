@@ -1,11 +1,11 @@
 var consts = require ('./consts.js');
-var ddmmyyyy_and_hhmm = require('./tokens/ddmmyyyy&hhmm.js')
-var ago_and_sice = require('./tokens/ago&since.js');
-var months = require('./tokens/months.js');
-var date_and_year = require('./tokens/date&year.js');
-var yesterday_and_tomorrow = require('./tokens/yesterday&tomorrow.js');
-var facebook = require('./tokens/facebook.js');
-var now = require('./tokens/now.js');
+var ddmmyyyy_and_hhmm = require('./tokens/english/ddmmyyyy&hhmm.js')
+var ago_and_sice = require('./tokens/english/ago&since.js');
+var months = require('./tokens/english/months.js');
+var date_and_year = require('./tokens/english/date&year.js');
+var yesterday_and_tomorrow = require('./tokens/english/yesterday&tomorrow.js');
+var facebook = require('./tokens/english/facebook.js');
+var now = require('./tokens/english/now.js');
 
 module.exports = exports = [];
  
