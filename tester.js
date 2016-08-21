@@ -94,4 +94,12 @@ test(itsadate.parse("11/1/1990").getFullYear() == 1990,'setting restore 1990');
 test(itsadate.parse("11/1/1990").getMonth() == 0,'setting restore January');
 test(itsadate.parse("11/1/1990").getDate() == 11,'setting restore 11');
 
+
+test(itsadate.parse("11/1/1990",{
+        format_hits: [{
+                day_before_month: false,
+                desc : 'when true then its-a-date expects dd/mm/yyyy, otherwise mm/dd/yyyy'
+            }]
+        }).getDate() == 1, 'alternative settings day')
+
 console.log('finished testing.');

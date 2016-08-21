@@ -1,7 +1,7 @@
-function Settings() {
+function Settings(_alternativeSettings) {
     
-    // Settings that affect its-a-date actions
-    this.settings = {
+    // Settings that affect its-a-date actions, if alternative settings provided use them
+    this.settings = _alternativeSettings || {
         format_hits: [{
                 day_before_month: true,
                 desc : 'when true then its-a-date expects dd/mm/yyyy, otherwise mm/dd/yyyy'

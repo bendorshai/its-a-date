@@ -17,6 +17,12 @@ exports.parse = function(dateString, alternativeSettings) {
     var of_the_king;
     
     try {
+
+        // If user requested to use alternative settings, create an object
+        if (alternativeSettings) {
+            alternativeSettings = new Settings(alternativeSettings);
+        }
+
         // Run compiler with aleternative settings if provided, otherwise with default settings
         of_the_king = compiler.getDateFromString(dateString, alternativeSettings || settings);
     }
