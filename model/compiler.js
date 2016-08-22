@@ -27,5 +27,3 @@ exports.getDateFromString = function(dateString, settings)
     // Get value
     return state.date;
 }
-
-// TODO: catch errors?

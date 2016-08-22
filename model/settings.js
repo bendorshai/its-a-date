@@ -1,12 +1,23 @@
-function Settings(_alternativeSettings) {
+function Settings(alternativeSettings) {
     
-    // Settings that affect its-a-date actions, if alternative settings provided use them
-    this.settings = _alternativeSettings || {
+    var that = this;
+    
+    var defaultSettings = {
         format_hits: [{
                 day_before_month: true,
-                desc : 'when true then its-a-date expects dd/mm/yyyy, otherwise mm/dd/yyyy'
-            }]
-        };  
+                desc : 'When true then its-a-date expects dd/mm/yyyy, otherwise mm/dd/yyyy'
+            }],
+        timezone : [{
+            gmt: 'auto',
+            desc: 'The GMT offset to add to the date in hours (e.g. -3)'
+        }],
+        restore: function() {
+            that.settings = (new Settings()).settings;
+        }
+    }; 
+    
+    // Settings that affect its-a-date actions, if alternative settings provided use them
+    this.settings = alternativeSettings || defaultSettings; 
 }
 
 module.exports = exports = Settings;
@@ -31,11 +42,6 @@ Settings.prototype.set = function(nameValue)
     }
 }
 
-// Get a specific setting by name
-Settings.prototype.restoreDefault = function() {
-    this.settings = (new Settings()).settings;
-}
-
 /* 
  Gets or sets a setting, recursivly.
  If value is assigned then value of setting is altered
@@ -53,7 +59,7 @@ function traverseSettingByNameRecursive (name, settings, value) {
         }
         
         // If current property is traversable
-        if(settings.propertyIsEnumerable(key)) {
+        if(settings.propertyIsEnumerable(key) && typeof(settings) == 'object') {
             
             // Traverse trhough it
             var setting = traverseSettingByNameRecursive(name, settings[key] , value);

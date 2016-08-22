@@ -61,7 +61,7 @@ itsadate.parse('it was on the 1st of January, ' +
 // undefined
 itsadate.parse("pikachu");
 ```
-### Settings and Formats
+### Settings, Formats & Time Differences
 
 Use settings to alter the format expected
 
@@ -77,10 +77,17 @@ Restore settings to default
 
 ```js
 // Restore setting back to default (day_before_month=true)
-itsadate.restoreSettings();
+itsadate.settings().restore();
 
 // Thu Jan 11 1990 01:55:00 GMT+0200 (Jerusalem Standard Time)
 itsadate.parse("11/1/1990");
+```
+
+Alter GMT to overcome time difference
+```js
+// Set GMT+5.5, Mumbai India
+itsadate.settings({gmt: 5.5});
+itsadate.parse("now");
 ```
 
 ### Learn More
@@ -117,7 +124,6 @@ A micro-compiler is implemented. It parses date part tokens &
 interpret them as modifications on the perceived date.
 
 ## Upcoming Features
-1. UTC control
 3. Custom tokens insertion
 
 ## Git

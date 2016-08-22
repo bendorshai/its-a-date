@@ -89,7 +89,7 @@ itsadate.settings({'day_before_month':false});
 test(itsadate.parse("11/1/1990").getFullYear() == 1990,'day_before_mont 1990');
 test(itsadate.parse("11/1/1990").getMonth() == 10,'day_before_mont November');
 test(itsadate.parse("11/1/1990").getDate() == 1,'day_before_mont 1st');
-itsadate.restoreSettings();
+itsadate.settings().restore();
 test(itsadate.parse("11/1/1990").getFullYear() == 1990,'setting restore 1990');
 test(itsadate.parse("11/1/1990").getMonth() == 0,'setting restore January');
 test(itsadate.parse("11/1/1990").getDate() == 11,'setting restore 11');
@@ -101,5 +101,19 @@ test(itsadate.parse("11/1/1990",{
                 desc : 'when true then its-a-date expects dd/mm/yyyy, otherwise mm/dd/yyyy'
             }]
         }).getDate() == 1, 'alternative settings day')
+
+// GMT Testss
+itsadate.settings().restore();
+var date = new Date();
+var ilNow = itsadate.parse("now")
+test(date.getHours() == ilNow.getHours(),'auto gmt');
+
+itsadate.settings({gmt:-2.5});
+var gmt_minus_5_halfs = itsadate.parse("now")
+
+itsadate.settings({gmt:1.5});
+var gmt_plus_3_halfs = itsadate.parse("now")
+
+test(gmt_minus_5_halfs.getHours() == gmt_plus_3_halfs.getHours()-4,'gmt -2.5 & +1.5');
 
 console.log('finished testing.');
