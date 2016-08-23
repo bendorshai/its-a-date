@@ -1,4 +1,4 @@
-var consts = require ('../../consts.js');
+var consts = require('../../consts.js');
 
 exports.tokens = [
     {
@@ -8,19 +8,18 @@ exports.tokens = [
         regex: /(?:\b|^)(\d+)\s+(.+?)s?\s+(?:ago|before)(?:\b|$)/,
         // The indexes of capturing gorups in the match
         variables: {
-          value: 1,
-          timeType: 2  
+            value: 1,
+            timeType: 2
         },
-        affectsGenerator: function(match)
-        {
+        affectsGenerator: function (match) {
             var timeType = match[this.variables.timeType];
-             var calculated =  match[this.variables.value] * (-1);
-             
+            var calculated = match[this.variables.value] * (-1);
+
             if (timeType == 'week') {
                 timeType = 'day';
                 calculated *= 7;
             }
-            
+
             return [{
                 timeType: consts.timeTypes[timeType],
                 affectType: consts.reltivity.relative,
@@ -34,19 +33,18 @@ exports.tokens = [
         category: 'ago since before & after',
         regex: /(?:\b|^)(\d+)\s+(.+?)s?\s+(?:since|after)(?:\b|$)/,
         variables: {
-          value: 1,
-          timeType: 2  
+            value: 1,
+            timeType: 2
         },
-        affectsGenerator: function(match)
-        {
+        affectsGenerator: function (match) {
             var timeType = match[this.variables.timeType];
             var calculated = match[this.variables.value]
-            
+
             if (timeType == 'week') {
                 timeType = 'day';
                 calculated *= 7;
             }
-            
+
             return [{
                 timeType: consts.timeTypes[timeType],
                 affectType: consts.reltivity.relative,
@@ -55,6 +53,3 @@ exports.tokens = [
         }
     }
 ];
-
-// export words for other token verifiers
-exports.relativeWords = ['ago','before','since','after']
