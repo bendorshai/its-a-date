@@ -1,12 +1,11 @@
-var consts = require ('../consts.js');
+var consts = require('../../consts.js');
 
 exports.tokens = [
     {
         example: '2 hrs',
         category: 'facebook',
         regex: /(?:\b|^)(\d+)\s+hrs?(?:\b|$)/,
-        affectsGenerator: function(match)
-        {
+        affectsGenerator: function (match) {
             return [{
                 timeType: consts.timeTypes[consts.timeTypes.hour],
                 affectType: consts.reltivity.relative,
@@ -18,8 +17,7 @@ exports.tokens = [
         example: '16 mins',
         category: 'facebook',
         regex: /(?:\b|^)(\d+)\s+mins?(?:\b|$)/,
-        affectsGenerator: function(match)
-        {
+        affectsGenerator: function (match) {
             return [{
                 timeType: consts.timeTypes[consts.timeTypes.minute],
                 affectType: consts.reltivity.relative,
@@ -27,4 +25,4 @@ exports.tokens = [
             }]
         }
     }
-    ];
+];

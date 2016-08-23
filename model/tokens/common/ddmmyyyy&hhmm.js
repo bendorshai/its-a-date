@@ -1,4 +1,4 @@
-var consts = require ('../consts.js');
+var consts = require ('../../consts.js');
 
 exports.tokens = [ {
         example:'11.1.1990',

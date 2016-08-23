@@ -1,6 +1,6 @@
-var consts = require ('../consts.js')
+var consts = require('../../consts.js')
 
-exports.tokens = [ 
+exports.tokens = [
     {
         example: 'yesterday',
         category: 'yesterday & tommorow',
@@ -9,7 +9,7 @@ exports.tokens = [
             timeType: consts.timeTypes.day,
             affectType: consts.reltivity.relative,
             value: -1
-            }]
+        }]
     },
     {
         example: 'tomorrow',
@@ -19,5 +19,5 @@ exports.tokens = [
             timeType: consts.timeTypes.day,
             affectType: consts.reltivity.relative,
             value: 1
-            }]
+        }]
     }];

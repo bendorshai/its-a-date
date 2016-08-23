@@ -1,14 +1,13 @@
-var consts = require ('../consts.js');
+var consts = require('../../consts.js');
 
 exports.tokens = [
     {
         example: 'now',
         category: 'now',
         regex: /(?:\b|^)now(?:\b|$)/,
-        affectsGenerator: function()
-        {
+        affectsGenerator: function () {
             var now = new Date();
-                        
+
             return [
                 {
                     timeType: consts.timeTypes.year,
@@ -18,7 +17,7 @@ exports.tokens = [
                 {
                     timeType: consts.timeTypes.month,
                     affectType: consts.reltivity.absolute,
-                    value: now.getMonth()+1 //  <-- stupidest thing in js :(
+                    value: now.getMonth() + 1 //  <-- stupidest thing in js :(
                 },
                 {
                     timeType: consts.timeTypes.day,

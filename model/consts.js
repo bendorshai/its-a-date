@@ -1,6 +1,6 @@
 // Some enums
 module.exports = exports = {
-    reltivity: { 
+    reltivity: {
         relative: 'relative',
         absolute: 'absolute'
     },
