@@ -1,6 +1,6 @@
-var consts = require ('../../consts.js')
+var consts = require('../../consts.js')
 
-exports.tokens = [ 
+exports.tokens = [
     {
         example: 'jan',
         category: 'months',
@@ -9,17 +9,17 @@ exports.tokens = [
             timeType: consts.timeTypes.month,
             affectType: consts.reltivity.absolute,
             value: 1
-            }]
+        }]
     },
     {
-        example: 'february',
+        example: 'feb',
         category: 'months',
         regex: /(^|\b)(feb|february)(\b|$)/,
         affects: [{
             timeType: consts.timeTypes.month,
             affectType: consts.reltivity.absolute,
             value: 2
-            }]
+        }]
     },
     {
         example: 'mar',
@@ -29,17 +29,17 @@ exports.tokens = [
             timeType: consts.timeTypes.month,
             affectType: consts.reltivity.absolute,
             value: 3
-            }]
+        }]
     },
     {
-        example: 'april',
+        example: 'apr',
         category: 'months',
         regex: /(^|\b)(apr|april)(\b|$)/,
         affects: [{
             timeType: consts.timeTypes.month,
             affectType: consts.reltivity.absolute,
             value: 4
-            }]
+        }]
     },
     {
         example: 'may',
@@ -49,27 +49,27 @@ exports.tokens = [
             timeType: consts.timeTypes.month,
             affectType: consts.reltivity.absolute,
             value: 5
-            }]
+        }]
     },
     {
-        example: 'june',
+        example: 'jun',
         category: 'months',
         regex: /(^|\b)(jun|june)(\b|$)/,
         affects: [{
             timeType: consts.timeTypes.month,
             affectType: consts.reltivity.absolute,
             value: 6
-            }]
+        }]
     },
     {
-        example: 'july',
+        example: 'jul',
         category: 'months',
         regex: /(^|\b)(jul|july)(\b|$)/,
         affects: [{
             timeType: consts.timeTypes.month,
             affectType: consts.reltivity.absolute,
             value: 7
-            }]
+        }]
     },
     {
         example: 'aug',
@@ -79,7 +79,7 @@ exports.tokens = [
             timeType: consts.timeTypes.month,
             affectType: consts.reltivity.absolute,
             value: 8
-            }]
+        }]
     },
     {
         example: 'sep',
@@ -89,7 +89,7 @@ exports.tokens = [
             timeType: consts.timeTypes.month,
             affectType: consts.reltivity.absolute,
             value: 9
-            }]
+        }]
     },
     {
         example: 'oct',
@@ -99,17 +99,17 @@ exports.tokens = [
             timeType: consts.timeTypes.month,
             affectType: consts.reltivity.absolute,
             value: 10
-            }]
+        }]
     },
     {
-        example: 'november',
+        example: 'nov',
         category: 'months',
         regex: /(^|\b)(nov|november)(\b|$)/,
         affects: [{
             timeType: consts.timeTypes.month,
             affectType: consts.reltivity.absolute,
             value: 11
-            }]
+        }]
     },
     {
         example: 'dec',
@@ -119,5 +119,5 @@ exports.tokens = [
             timeType: consts.timeTypes.month,
             affectType: consts.reltivity.absolute,
             value: 12
-            }]
+        }]
     }]; // Until next year
