@@ -90,6 +90,10 @@ itsadate.settings({gmt: 5.5});
 itsadate.parse("now");
 ```
 
+### Languages
+Currently English & Russian are supported. 
+More languages are expected to be added.
+
 ### Learn More
 
 Hit brag() to console out examples of any token implemented
@@ -124,7 +128,7 @@ A micro-compiler is implemented. It parses date part tokens &
 interpret them as modifications on the perceived date.
 
 ## Upcoming Features
-3. Custom tokens insertion
+1. Arabic datesting support 
 
 ## Git
 
