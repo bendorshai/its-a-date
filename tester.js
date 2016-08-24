@@ -17,7 +17,7 @@ function test(expected, name) {
 
 itsadate.brag();
 
-console.log('-------------------Tester-------------------');
+console.log('--------------------------------------------------------Tester--------------------------------------------------------');
 
 // English dates tests
 test(itsadate.parse("jan").getMonth() == 0, 'jan');
@@ -107,7 +107,13 @@ test(itsadate.parse("Окт").getMonth() == 9, 'Ru oct');
 test(itsadate.parse("Ноя").getMonth() == 10, 'Ru nov');
 test(itsadate.parse("Дек").getMonth() == 11, 'Ru dec');
 
-test(itsadate.parse('1 день назад').getDate() == yesterDate, 'Ru yesterDate');
+test(itsadate.parse('вчера в 22:50').getDate() == yesterDate, 'Ru yesterday at 22:50');
+
+m = moment(new Date());
+momentDate = m.add(1, 'd').date();
+test(itsadate.parse('завтра в 18:58').getDate() == momentDate, 'Ru tomorrow at 18:58');
+
+test(itsadate.parse('1 день назад').getDate() == yesterDate, 'Ru 1 day ago');
 
 m = moment(now);
 test(itsadate.parse('1 МИНУТУ НАЗАД').getMinutes() == m.add(-1, 'minute').minute(), 'Ru 1 min ago');
