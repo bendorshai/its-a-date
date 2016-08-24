@@ -1,7 +1,7 @@
 # its-a-date
 
 No need to know exact date format. Leave its-a-date to figure it out.
-* Currently, English & Russion are supported.
+* Currently, English & Russian are supported.
 
 ## Installation
 
