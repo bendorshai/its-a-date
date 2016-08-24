@@ -113,12 +113,24 @@ m = moment(now);
 test(itsadate.parse('1 МИНУТУ НАЗАД').getMinutes() == m.add(-1, 'minute').minute(), 'Ru 1 min ago');
 
 m = moment(now);
+test(itsadate.parse('25 минут назад').getMinutes() == m.add(-25, 'minute').minute(), 'Ru 25 mins ago');
+
+m = moment(now);
+test(itsadate.parse('1 час назад').getHours() == m.add(-1, 'hours').hours(), 'Ru 1 hour ago');
+
+m = moment(now);
+test(itsadate.parse('13 часов назад').getHours() == m.add(-13, 'hours').hours(), 'Ru 13 hours ago');
+
+m = moment(now);
+test(itsadate.parse('23 часа назад').getHours() == m.add(-23, 'hours').hours(), 'Ru 23 hours ago');
+
+m = moment(now);
 var fourDaysAgo = m.add(-4, 'day').toDate().getDate();
-test(itsadate.parse('4 дня назад').getDate() == fourDaysAgo, 'Ru fourDaysAgo');
+test(itsadate.parse('4 дня назад').getDate() == fourDaysAgo, 'Ru 4 days ago');
 
 m = moment(now);
 var fiveDaysAgo = m.add(-5, 'day').toDate().getDate();
-test(itsadate.parse('5 дней назад').getDate() == fiveDaysAgo, 'Ru fiveDaysAgo');
+test(itsadate.parse('5 дней назад').getDate() == fiveDaysAgo, 'Ru 5 days ago');
 
 test(itsadate.parse("Дек 19, 2015").getDate() == 19, '19');
 test(itsadate.parse("Дек 19, 2015").getMonth() == 11, '11');
@@ -163,7 +175,7 @@ test(itsadate.parse("11/1/1990",{
             }]
         }).getDate() == 1, 'alternative settings day')
 
-// GMT Testss
+// GMT Tests
 itsadate.settings().restore();
 var date = new Date();
 var ilNow = itsadate.parse("now")

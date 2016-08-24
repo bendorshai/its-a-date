@@ -9,7 +9,13 @@ exports.russianToEnglish = function (russianConvention) {
         return consts.timeTypes[consts.timeTypes.day];
     }
 
-    if (russianConvention == 'минуту') {
+    // Minute conventions
+    if (russianConvention == 'минуту' || russianConvention == 'минут') {
         return consts.timeTypes[consts.timeTypes.minute];
+    }
+
+    // Hour conventions
+    if (russianConvention == 'час' || russianConvention == 'часов' || russianConvention == 'часа') {
+        return consts.timeTypes[consts.timeTypes.hour];
     }
 }
