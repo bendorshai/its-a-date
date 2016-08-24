@@ -110,6 +110,9 @@ test(itsadate.parse("Дек").getMonth() == 11, 'Ru dec');
 test(itsadate.parse('1 день назад').getDate() == yesterDate, 'Ru yesterDate');
 
 m = moment(now);
+test(itsadate.parse('1 МИНУТУ НАЗАД').getMinutes() == m.add(-1, 'minute').minute(), 'Ru 1 min ago');
+
+m = moment(now);
 var fourDaysAgo = m.add(-4, 'day').toDate().getDate();
 test(itsadate.parse('4 дня назад').getDate() == fourDaysAgo, 'Ru fourDaysAgo');
 
