@@ -6,7 +6,7 @@ exports.tokens = [ {
         regex: /(?:^|\b)(\d{1,2})[-\/\\.](\d{1,2})[-\/\\.](\d{4})(?:$|\b)/,
         affectsGenerator: function(match, settings) {
             
-            var day_before_month = settings.get().format_hits[0].day_before_month;
+            var day_before_month = settings.get('day_before_month');
             
             // If the day_before_month format flag is on,
             // set first capture group as day and second as month
@@ -56,7 +56,7 @@ exports.tokens = [ {
         regex: /(?:^|\b)(\d{4})[-\/\\.](\d{1,2})[-\/\\.](\d{1,2})(?:$|\b)/,
         affectsGenerator: function(match, settings) {
             
-            var day_before_month = settings.get().format_hits[0].day_before_month;
+            var day_before_month = settings.get('day_before_month');
             
             // If the middle endian format flag is on,
             // Set first capture group as month and second as day
