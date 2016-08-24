@@ -2,6 +2,7 @@ var compiler = require('./model/compiler.js');
 var tokens = require('./model/tokens.js');
 var parser = require('./model/parser.js');
 var Settings = require('./model/settings.js');
+var utils = require('./utils.js')
 
 // Init a setting object
 var settings = new Settings();
@@ -17,8 +18,21 @@ exports.parse = function (dateString, alternativeSettings) {
     var of_the_king;
 
     try {
+
+        // If user requested to use alternative settings, create an object
+        if (alternativeSettings) {
+            alternativeSettings = new Settings(alternativeSettings);
+        }
+
         // Run compiler with aleternative settings if provided, otherwise with default settings
         of_the_king = compiler.getDateFromString(dateString, alternativeSettings || settings);
+        
+        // calculate GMT
+        var gmt = settings.get('gmt');
+        
+        if (gmt != 'auto') {
+            of_the_king = utils.calculateGMT(of_the_king, gmt);
+        }
     }
     catch (e) {
         // If compiler didn't succeed
@@ -57,11 +71,6 @@ exports.settings = function (query) {
     else {
         settings.set(query);
     }
-}
-
-// restore stting to default
-exports.restoreSettings = function () {
-    settings.restoreDefault();
 }
 
 /* todo: add settings function for this module.

@@ -1,7 +1,7 @@
 {
   "name": "its-a-date",
-  "version": "0.0.71",
-  "description": "Parses a given English date string, absolute or relative, to a Date object. ",
+  "version": "0.0.75",
+  "description": "Parses a given date description to a Date object.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,7 +17,7 @@
   {
       "name": "Aviad Gal",
       "email": "",
-      "url" : ""
+      "url" : "https://github.com/aviadgal"
   }],
   "repository": { "type" : "git", 
                   "url" : "https://github.com/bendorshai.git"},
