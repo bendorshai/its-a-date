@@ -174,4 +174,16 @@ var gmt_plus_3_halfs = itsadate.parse("now")
 
 test(gmt_minus_5_halfs.getHours() == gmt_plus_3_halfs.getHours()-4,'gmt -2.5 & +1.5');
 
+itsadate.settings({'gmt':'auto'});
+test(itsadate.parse("11:00 PM").getHours() == 23, 'am/pm 11 pm');
+test(itsadate.parse("12:00 PM").getHours() == 12, 'am/pm 12 pm');
+
+test(itsadate.parse("June 18, 2015").getDate() == 18, 'June 18, 2015');
+
+itsadate.settings({'gmt':3});
+itsadate.settings().restore();
+var gmt = itsadate.settings('gmt');
+test(gmt == 'auto', 'resote settings')
+
 console.log('finished testing.');
+

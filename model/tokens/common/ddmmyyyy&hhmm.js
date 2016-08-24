@@ -103,11 +103,17 @@ exports.tokens = [ {
         example:'1:55pm',
         category: 'ddmmyyyy & hhmm',
         regex: /(?:^|\b)(\d{1,2})[:](\d{1,2})(?::\d{1,2})?\s*(am|pm)?(?:$|\b)/,
+        vaiarbles: {
+            hour: 1,
+            minute: 2,
+            ampm: 3
+        },
         affectsGenerator: function(match) {
             
-            var hour = match[1];
+            var hour = match[this.vaiarbles.hour];
             
-            if (match[3] == 'pm')
+            // If pm, add 12 only if the hour is until 11
+            if (match[this.vaiarbles.ampm] == 'pm' && hour <=11)
             {
                 hour = Number(hour) + 12;
             }
@@ -121,7 +127,7 @@ exports.tokens = [ {
             {
                 timeType: consts.timeTypes.minute,
                 affectType: consts.reltivity.absolute,
-                value: match[2]
+                value: match[this.vaiarbles.minute]
             }]
         }
     }];
