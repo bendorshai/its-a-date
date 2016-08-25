@@ -30,3 +30,8 @@ var ru_yesterday_and_tomorrow = require('./tokens/russian/yesterday&tomorrow.js'
 exports.push.apply(exports, ru_months.tokens);
 exports.push.apply(exports, ru_ago_and_sice.tokens);
 exports.push.apply(exports, ru_yesterday_and_tomorrow.tokens);
+
+// Arabic section
+var ar_months = require('./tokens/arabic/months.js');
+
+exports.push.apply(exports, ar_months.tokens);
