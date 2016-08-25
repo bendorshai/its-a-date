@@ -51,5 +51,31 @@ exports.tokens = [
                 value: calculated
             }]
         }
+    },
+    {
+        // Examples: a hour ago. a minute ago, an hour ago
+        example: 'an hour ago',
+        category: 'ago since before & after',
+        regex: /(?:\b|^)(a|an)\s+(.+?)s?\s+(?:ago|before)(?:\b|$)/,
+        // The indexes of capturing gorups in the match
+        variables: {
+            value: 1,
+            timeType: 2
+        },
+        affectsGenerator: function (match) {
+            var timeType = match[this.variables.timeType];
+            var calculated = (-1);
+
+            if (timeType == 'week') {
+                timeType = 'day';
+                calculated *= 7;
+            }
+
+            return [{
+                timeType: consts.timeTypes[timeType],
+                affectType: consts.reltivity.relative,
+                value: calculated
+            }]
+        }
     }
 ];
