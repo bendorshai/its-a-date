@@ -6,7 +6,7 @@ No need to know exact date format. Leave its-a-date to figure it out.
 ## Installation
 
 ```
-$ npm install its-a-date
+$ npm install its-a-date --save
 ```
 ## Code Example
 
@@ -18,6 +18,9 @@ itsadate.parse("5 years ago at 15:44");
 
 // Wed Apr 11 1990 00:45:00 GMT+0300 (Jerusalem Daylight Time)
 itsadate.parse("3 months after 11/01/1990");
+
+// Sat Aug 26 1989 02:43:00 GMT+0300 (Jerusalem Daylight Time)
+itsadate.parse("10000 days before 11/01/2017")
 ```
 ## More Code Examples
 
