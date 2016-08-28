@@ -5,7 +5,7 @@ exports.tokens = [
         // january
         example: 'يناير',
         category: 'months',
-        regex: /(^|[\s,\.-])(يناير|جانفي|يناير)([\s,\.-]|$)/,
+        regex: /(^|[\s,\.-])(يناير|جانفي)([\s,\.-]|$)/,
         affects: [{
             timeType: consts.timeTypes.month,
             affectType: consts.reltivity.absolute,
