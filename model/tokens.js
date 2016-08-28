@@ -33,5 +33,7 @@ exports.push.apply(exports, ru_yesterday_and_tomorrow.tokens);
 
 // Arabic section
 var ar_months = require('./tokens/arabic/months.js');
+var ar_ago_and_sice = require('./tokens/arabic/ago&since.js');
 
 exports.push.apply(exports, ar_months.tokens);
+exports.push.apply(exports, ar_ago_and_sice.tokens);
