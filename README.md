@@ -1,4 +1,4 @@
-![alt tag](./logo.png)
+![alt tag](https://github.com/bendorshai/its-a-date/blob/master/logo.png)
 
 No need to know exact date format. Leave its-a-date to figure it out.
 Currently supporting languages:
