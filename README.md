@@ -1,7 +1,10 @@
 # its-a-date
 
 No need to know exact date format. Leave its-a-date to figure it out.
-* Currently, English & Russian are supported.
+Currently supporting languages:
+* English
+* Russian
+* Arabic 
 
 ## Installation
 
@@ -132,7 +135,8 @@ A micro-compiler is implemented. It parses date part tokens &
 interpret them as modifications on the perceived date.
 
 ## Upcoming Features
-1. Arabic datesting support 
+1. Custom token insetion
+2. More Languages perhaps
 
 ## Git
 

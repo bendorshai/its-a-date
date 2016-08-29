@@ -3,6 +3,7 @@ var _ = require('underscore');
 var ago_and_since = require('../english/ago&since.js');
 var en_ago_and_since = require('../english/ago&since.js');
 var ru_ago_and_since = require('../russian/ago&since.js');
+var ar_ago_and_since = require('../arabic/ago&since.js');
 
 exports.tokens = [
     {
@@ -33,6 +34,9 @@ exports.tokens = [
             return false;
         }
         if (isCollision(match, ru_ago_and_since, dateString, token)) {
+            return false;
+        }
+        if (isCollision(match, ar_ago_and_since, dateString, token)) {
             return false;
         }
         return true;

@@ -8,8 +8,9 @@ const absolute = consts.reltivity.absolute;
 function State() {
 
     // Init date as current
-    this.date = new Date();
-    this.date.setSeconds(0);
+    this.date = moment();
+    this.date.seconds(0);
+    this.date.milliseconds(0);
 
     // Init the modification queue that logs the modification on each date part
     this.modificationQueues = [];
@@ -36,7 +37,7 @@ State.prototype.pushModification = function (timeType, modification) {
 }
 
 State.prototype.calculateModifications = function () {
-    // Foreach time type
+    // Foreach time type, from the biggest to the small (IMPORTANT)
     for (var timeTypeIdx in consts.timeTypes) {
         var timeType = consts.timeTypes[timeTypeIdx];
 
@@ -78,24 +79,25 @@ function executeModificationsQueue(modifications, timeType, context) {
 
 function executeModification(modification, timeType, context) {
     var value = modification.value;
+    value = parseInt(value);
 
     // If avsolute
     if (modification.affectType == absolute) {
         switch (timeType) {
             case consts.timeTypes.year:
-                context.date.setFullYear(value);
+                context.date.year(value);
                 return;
             case consts.timeTypes.month:
-                context.date.setMonth(value - 1); // Months are wierd in js
+                context.date.month(value-1); 
                 return;
             case consts.timeTypes.day:
-                context.date.setDate(value);
+                context.date.date(value);
                 return;
             case consts.timeTypes.hour:
-                context.date.setHours(value);
+                context.date.hours(value);
                 return;
             case consts.timeTypes.minute:
-                context.date.setMinutes(value);
+                context.date.minutes(value);
                 return;
             default:
                 throw 'ERROR: Unknown time type in modification excecution';
@@ -103,11 +105,10 @@ function executeModification(modification, timeType, context) {
     }
     // If relative
     else if (modification.affectType == consts.reltivity.relative) {
-        var m = moment(context.date);
 
-        // Convert to moment time type
+        // Convert to moment time type, lol
         var momentTimeType = timeType;
 
-        context.date = m.add(value, momentTimeType).toDate();
+        context.date.add(value, momentTimeType);
     }
 }  
