@@ -19,6 +19,10 @@ itsadate.brag();
 
 console.log('-------------------Tester-------------------');
 
+
+test(itsadate.parse('now').getHours() == (new Date()).getHours(), 'hours of now');
+
+
 // English dates tests
 test(itsadate.parse("jan").getMonth() == 0, 'jan');
 test(itsadate.parse("feb").getMonth() == 1, 'feb');
@@ -117,6 +121,8 @@ m = moment(now);
 var fiveDaysAgo = m.add(-5, 'day').toDate().getDate();
 test(itsadate.parse('5 дней назад').getDate() == fiveDaysAgo, 'Ru fiveDaysAgo');
 
+test(itsadate.parse('now').getHours() == (new Date()).getHours(), 'hours of now');
+
 test(itsadate.parse("Дек 19, 2015").getDate() == 19, '19');
 test(itsadate.parse("Дек 19, 2015").getMonth() == 11, '11');
 
@@ -174,4 +180,18 @@ var gmt_plus_3_halfs = itsadate.parse("now")
 
 test(gmt_minus_5_halfs.getHours() == gmt_plus_3_halfs.getHours()-4,'gmt -2.5 & +1.5');
 
+itsadate.settings({'gmt':'auto'});
+test(itsadate.parse("11:00 PM").getHours() == 23, 'am/pm 11 pm');
+test(itsadate.parse("12:00 PM").getHours() == 12, 'am/pm 12 pm');
+
+test(itsadate.parse("June 18, 2015").getDate() == 18, 'June 18, 2015');
+
+itsadate.settings({'gmt':3});
+itsadate.settings().restore();
+var gmt = itsadate.settings('gmt');
+test(gmt == 'auto', 'resote settings')
+
+test(itsadate.parse('now').getHours() == (new Date()).getHours(), 'hours of now');
+
 console.log('finished testing.');
+

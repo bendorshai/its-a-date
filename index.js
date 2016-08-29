@@ -65,11 +65,20 @@ examples:
     settings({'def':4}) -- > sets def to 5
  */
 exports.settings = function (query) {
+
+    // Return all if no parameter sent
     if (query == undefined) {
         return settings.get();
     }
-    else {
+    // if an object sent then update
+    else if (typeof(query) == 'object')
+    {
         settings.set(query);
+    }
+    // parameter is not an object
+    else 
+    {
+        return settings.get(query);
     }
 }
 

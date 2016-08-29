@@ -6,7 +6,7 @@ exports.tokens = [ {
         regex: /(?:^|\b)(\d{1,2})[-\/\\.](\d{1,2})[-\/\\.](\d{4})(?:$|\b)/,
         affectsGenerator: function(match, settings) {
             
-            var day_before_month = settings.get().format_hits[0].day_before_month;
+            var day_before_month = settings.get('day_before_month');
             
             // If the day_before_month format flag is on,
             // set first capture group as day and second as month
@@ -56,7 +56,7 @@ exports.tokens = [ {
         regex: /(?:^|\b)(\d{4})[-\/\\.](\d{1,2})[-\/\\.](\d{1,2})(?:$|\b)/,
         affectsGenerator: function(match, settings) {
             
-            var day_before_month = settings.get().format_hits[0].day_before_month;
+            var day_before_month = settings.get('day_before_month');
             
             // If the middle endian format flag is on,
             // Set first capture group as month and second as day
@@ -103,11 +103,17 @@ exports.tokens = [ {
         example:'1:55pm',
         category: 'ddmmyyyy & hhmm',
         regex: /(?:^|\b)(\d{1,2})[:](\d{1,2})(?::\d{1,2})?\s*(am|pm)?(?:$|\b)/,
+        vaiarbles: {
+            hour: 1,
+            minute: 2,
+            ampm: 3
+        },
         affectsGenerator: function(match) {
             
-            var hour = match[1];
+            var hour = match[this.vaiarbles.hour];
             
-            if (match[3] == 'pm')
+            // If pm, add 12 only if the hour is until 11
+            if (match[this.vaiarbles.ampm] == 'pm' && hour <=11)
             {
                 hour = Number(hour) + 12;
             }
@@ -121,7 +127,7 @@ exports.tokens = [ {
             {
                 timeType: consts.timeTypes.minute,
                 affectType: consts.reltivity.absolute,
-                value: match[2]
+                value: match[this.vaiarbles.minute]
             }]
         }
     }];
