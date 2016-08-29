@@ -1,4 +1,11 @@
-# its-a-date
+```
+:::::::::::::::: .::::::.       :::.         :::::::-.    :::. ::::::::::::.,::::::  
+;;;,';;;;;;;;'''';;;`    `       ;;`;;         ;;,   `';,  ;;`;;;;;;;;;;'''';;;;''''  
+[[[       [[     '[==/[[[[,     ,[[ '[[,       `[[     [[ ,[[ '[[,   [[      [[cccc   
+$$$       $$       '''    $    c$$$cc$$$c       $$,    $$c$$$cc$$$c  $$      $$""""   
+888       88,     88b    dP     888   888,      888_,o8P' 888   888, 88,     888oo,__ 
+MMM       MMM      "YMmMY"      YMM   ""`       MMMMP"`   YMM   ""`  MMM     """"YUMMM 
+```
 
 No need to know exact date format. Leave its-a-date to figure it out.
 Currently supporting languages:
