@@ -4,6 +4,9 @@ var moment = require('moment')
 var failCount = 0;
 var successCount = 0;
 
+// example
+itsadate.parse('yesterday at 16:20');
+
 // YOOO!
 var yo = itsadate.parse("5 years ago at 15:44")
 yo = itsadate.parse("3 months after 11/01/1990")

@@ -1,26 +1,32 @@
 {
   "name": "its-a-date",
-  "version": "0.0.82",
+  "version": "0.0.83",
   "description": "Parses a given date description to a Date object.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": { "name" : "Shai Ben - Dor", 
-              "email" : "bendorshai@gmail.com", 
-              "url" : "https://github.com/bendorshai/"},
-  "contributors": [{
+  "author": {
+    "name": "Shai Ben - Dor",
+    "email": "bendorshai@gmail.com",
+    "url": "https://github.com/bendorshai/"
+  },
+  "contributors": [
+    {
       "name": "Shahar Katz",
       "email": "skatz1990@gmail.com",
-      "url" : "https://github.com/skatz1990"
-  },
-  {
+      "url": "https://github.com/skatz1990"
+    },
+    {
       "name": "Aviad Gal",
       "email": "",
-      "url" : "https://github.com/aviadgal"
-  }],
-  "repository": { "type" : "git", 
-                  "url" : "https://github.com/bendorshai.git"},
+      "url": "https://github.com/aviadgal"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bendorshai.git"
+  },
   "license": "ISC",
   "dependencies": {
     "moment": "2.14.1",
@@ -35,5 +41,6 @@
     "parse date",
     "date formatter",
     "date parser"
-  ]
+  ],
+  "tonicExampleFilename": "example.js"
 }
