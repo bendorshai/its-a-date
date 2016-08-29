@@ -78,6 +78,7 @@ function executeModificationsQueue(modifications, timeType, context) {
 
 function executeModification(modification, timeType, context) {
     var value = modification.value;
+    value = parseInt(value);
 
     // If avsolute
     if (modification.affectType == absolute) {

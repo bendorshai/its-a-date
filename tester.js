@@ -332,6 +332,19 @@ test(gmt == 'auto', 'restore settings')
 
 test(itsadate.parse('now').getHours() == (new Date()).getHours(), 'hours of now');
 
+
+var undef = itsadate.parse('11/01/1990 12/01/1991');
+
+// Bugs
+itsadate.settings({'day_before_month': false});
+test(itsadate.parse('02.05.2015, 12:13').getMonth()==1,'feb bug');
+
 console.log('--------------------------------------------------------Finished testing--------------------------------------------------------');
 console.log('-------------------------------------------------------Success count: ' + successCount + '-------------------------------------------------------');
 console.log('----------------------------------------------------------Fail count: ' + failCount + '----------------------------------------------------------');
+
+
+
+
+
+// Check that token is not twice?
