@@ -3,7 +3,7 @@ var consts = require('../../consts.js');
 exports.tokens = [{
     example: '11.1.1990',
     category: 'ddmmyyyy & hhmm',
-    regex: /(?:^|\b)(\d{1,2})[-\/\\.](\d{1,2})[-\/\\.](\d{2}|\d{4})(?:$|\b)/,
+    regex: /(?:^|\b)(\d{1,2})[\u2027\/\\.-](\d{1,2})[\u2027\/\\.-](\d{2}|\d{4})(?:$|\b)/,
     variables: {
         year: 3,
     },
@@ -74,7 +74,7 @@ exports.tokens = [{
     {
         example: '1990.1.11',
         category: 'ddmmyyyy & hhmm',
-        regex: /(?:^|\b)(\d{4})[-\/\\.](\d{1,2})[-\/\\.](\d{1,2})(?:$|\b)/,
+        regex: /(?:^|\b)(\d{4})[\u2027\/\\.-](\d{1,2})[\u2027\/\\.-](\d{1,2})(?:$|\b)/,
         affectsGenerator: function (match, settings) {
 
             var day_before_month = settings.get('day_before_month');
