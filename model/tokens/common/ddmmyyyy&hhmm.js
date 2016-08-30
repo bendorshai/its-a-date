@@ -60,7 +60,7 @@ exports.tokens = [ {
             
             // If the middle endian format flag is on,
             // Set first capture group as month and second as day
-            if (day_before_month) {
+            if (!day_before_month) {
                return [
                 // First capture group
                 {
