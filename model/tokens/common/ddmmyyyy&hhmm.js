@@ -102,7 +102,7 @@ exports.tokens = [ {
     {
         example:'1:55pm',
         category: 'ddmmyyyy & hhmm',
-        regex: /(?:^|\b)(\d{1,2})[\s:](\d{1,2})(?:[\s:]\d{1,2})?\s*(am|pm)?(?:$|\b)/,
+        regex: /(?:^|\b)(\d{1,2}):(\d{1,2})(?::\d{1,2})?\s*(am|pm)?(?:$|\b)/,
         vaiarbles: {
             hour: 1,
             minute: 2,

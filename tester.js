@@ -346,13 +346,17 @@ test(itsadate.parse('02.05.2015, 12:13').getMonth()==1,'feb bug');
 itsadate.settings({'day_before_month': false});
 test(itsadate.parse('2015-11-2').getDate() == 2, 'day before month dd/mm/yyyy');
 
+itsadate.settings().restore();
+//    /(?:^|\b)(\d{1,2}):(\d{1,2})(?::\d{1,2})?\s*(am|pm)?(?:$|\b)/
+test(itsadate.parse("16:29:15").getMinutes() == 29, ' minutes');
+test(itsadate.parse("16:29").getMinutes() == 29, ' minutes');
+
+itsadate.settings({'day_before_month': false});
+test(itsadate.parse("2015.11.08 04:09:46").getDate() == 08, ' minutes');
 
 console.log('--------------------------------------------------------Finished testing--------------------------------------------------------');
 console.log('-------------------------------------------------------Success count: ' + successCount + '-------------------------------------------------------');
 console.log('----------------------------------------------------------Fail count: ' + failCount + '----------------------------------------------------------');
-
-
-
 
 
 // Check that token is not twice?
