@@ -342,6 +342,11 @@ var undef = itsadate.parse('11/01/1990 12/01/1991');
 itsadate.settings({'day_before_month': false});
 test(itsadate.parse('02.05.2015, 12:13').getMonth()==1,'feb bug');
 
+
+itsadate.settings({'day_before_month': false});
+test(itsadate.parse('2015-11-2').getDate() == 2, 'day before month dd/mm/yyyy');
+
+
 console.log('--------------------------------------------------------Finished testing--------------------------------------------------------');
 console.log('-------------------------------------------------------Success count: ' + successCount + '-------------------------------------------------------');
 console.log('----------------------------------------------------------Fail count: ' + failCount + '----------------------------------------------------------');
