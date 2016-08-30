@@ -9,7 +9,7 @@ exports.tokens = [
     {
     example: '1945',
     category: 'year & date',
-    regex: /(?:^|\s)(\d{4})(?:$|\s)/,
+    regex: /(?:^|[\s,])(\d{4})(?:$|[\s,])/,
     affects: [{
         timeType: consts.timeTypes.year,
         affectType: consts.reltivity.absolute
@@ -43,7 +43,7 @@ exports.tokens = [
     }
 }];
 
-// Return true if there is absolute collision, for exmple: ago token matched in a certain language
+// Return true if there is absolute collision, for example: ago token matched in a certain language
 function isCollision(match, multiLanguageAgoAndSince, dateString, token) {
     const AGO = 0;
     const SINCE = 1;
