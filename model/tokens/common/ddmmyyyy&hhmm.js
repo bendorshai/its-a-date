@@ -3,6 +3,7 @@ var consts = require('../../consts.js');
 exports.tokens = [{
     example: '11.1.1990',
     category: 'ddmmyyyy & hhmm',
+    // \u2027 stands for russian dot :/
     regex: /(?:^|\b)(\d{1,2})[\u2027\/\\.-](\d{1,2})[\u2027\/\\.-](\d{2}|\d{4})(?:$|\b)/,
     variables: {
         year: 3,
