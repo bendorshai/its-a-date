@@ -16,8 +16,8 @@ $ npm install its-a-date --save
 ```js
 var itsadate = require('its-a-date');
 
-// Wed Aug 17 2011 15:44:00 GMT+0300 (Jerusalem Daylight Time)
-itsadate.parse("5 years ago at 15:44");
+// Mon May 02 2016 05:48:00 GMT+0300 (Jerusalem Daylight Time)`
+itsadate.parse("May 2 05:48:29 2016");
 
 // Wed Apr 11 1990 00:45:00 GMT+0300 (Jerusalem Daylight Time)
 itsadate.parse("3 months after 11/01/1990");
@@ -97,10 +97,6 @@ itsadate.settings({gmt: 5.5});
 itsadate.parse("now");
 ```
 
-### Languages
-Currently English & Russian are supported. 
-More languages are expected to be added.
-
 ### Learn More
 
 Hit brag() to console out examples of any token implemented
@@ -135,7 +131,7 @@ A micro-compiler is implemented. It parses date part tokens &
 interpret them as modifications on the perceived date.
 
 ## Upcoming Features
-1. Custom token insetion
+1. Custom token insertion
 2. More Languages perhaps
 
 ## Git
