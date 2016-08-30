@@ -3,7 +3,7 @@ var consts = require ('../../consts.js');
 exports.tokens = [ {
         example:'11.1.1990',
         category: 'ddmmyyyy & hhmm',
-        regex: /(?:^|\b)(\d{1,2})[-\/\\.](\d{1,2})[-\/\\.](\d{4})(?:$|\b)/,
+        regex: /(?:^|\b)(\d{1,2})[\s-\/\\.](\d{1,2})[\s-\/\\.](\d{4})(?:$|\b)/,
         affectsGenerator: function(match, settings) {
             
             var day_before_month = settings.get('day_before_month');
@@ -53,7 +53,7 @@ exports.tokens = [ {
     {
         example:'1990.1.11',
         category: 'ddmmyyyy & hhmm',
-        regex: /(?:^|\b)(\d{4})[-\/\\.](\d{1,2})[-\/\\.](\d{1,2})(?:$|\b)/,
+        regex: /(?:^|\b)(\d{4})[\s-\/\\.](\d{1,2})[\s-\/\\.](\d{1,2})(?:$|\b)/,
         affectsGenerator: function(match, settings) {
             
             var day_before_month = settings.get('day_before_month');
@@ -102,7 +102,7 @@ exports.tokens = [ {
     {
         example:'1:55pm',
         category: 'ddmmyyyy & hhmm',
-        regex: /(?:^|\b)(\d{1,2})[:](\d{1,2})(?::\d{1,2})?\s*(am|pm)?(?:$|\b)/,
+        regex: /(?:^|\b)(\d{1,2})[\s:](\d{1,2})(?:[\s:]\d{1,2})?\s*(am|pm)?(?:$|\b)/,
         vaiarbles: {
             hour: 1,
             minute: 2,
