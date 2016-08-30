@@ -30,7 +30,6 @@ console.log('--------------------------------------------------------Tester-----
 
 test(itsadate.parse('now').getHours() == (new Date()).getHours(), 'hours of now');
 
-
 // English dates tests
 test(itsadate.parse("jan").getMonth() == 0, 'jan');
 test(itsadate.parse("feb").getMonth() == 1, 'feb');
@@ -52,6 +51,9 @@ test(itsadate.parse("11/1/1990").getFullYear() == 1990, '1990');
 test(itsadate.parse("11/1/1990").getMonth() == 0, 'January');
 test(itsadate.parse("11/1/1990").getDate() == 11, '11');
 test(itsadate.parse("23-5-1983").getDate() == 23, '23');
+test(itsadate.parse('27-08-11 06:14').getFullYear() == 2011, '2011');
+test(itsadate.parse('27-08-17 06:14').getFullYear() == 1917, '1917');
+test(itsadate.parse('27-08-95 06:14').getFullYear() == 1995, '1995');
 
 
 test(itsadate.parse("1:00pm").getHours() == 13, '1:00pm');
