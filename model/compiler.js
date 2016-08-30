@@ -23,6 +23,6 @@ exports.getDateFromString = function (dateString, settings) {
     // Caculate the state
     state.calculateModifications();
 
-    // Get value
-    return state.date;
+    // Get value, convert moment object to native js date object
+    return state.date.toDate();
 }

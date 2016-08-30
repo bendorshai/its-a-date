@@ -4,6 +4,9 @@ var moment = require('moment')
 var failCount = 0;
 var successCount = 0;
 
+// example
+itsadate.parse('yesterday at 16:20');
+
 // YOOO!
 var yo = itsadate.parse("5 years ago at 15:44")
 yo = itsadate.parse("3 months after 11/01/1990")
@@ -332,6 +335,24 @@ test(gmt == 'auto', 'restore settings')
 
 test(itsadate.parse('now').getHours() == (new Date()).getHours(), 'hours of now');
 
+
+var undef = itsadate.parse('11/01/1990 12/01/1991');
+
+// Bugs
+itsadate.settings({'day_before_month': false});
+test(itsadate.parse('02.05.2015, 12:13').getMonth()==1,'feb bug');
+
+
+itsadate.settings({'day_before_month': false});
+test(itsadate.parse('2015-11-2').getDate() == 2, 'day before month dd/mm/yyyy');
+
+
 console.log('--------------------------------------------------------Finished testing--------------------------------------------------------');
 console.log('-------------------------------------------------------Success count: ' + successCount + '-------------------------------------------------------');
 console.log('----------------------------------------------------------Fail count: ' + failCount + '----------------------------------------------------------');
+
+
+
+
+
+// Check that token is not twice?

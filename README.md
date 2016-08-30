@@ -1,12 +1,15 @@
-# its-a-date
+![alt tag](https://github.com/bendorshai/its-a-date/blob/master/logo.png?raw=true)
 
 No need to know exact date format. Leave its-a-date to figure it out.
-* Currently, English & Russian are supported.
+Currently supporting languages:
+* English
+* Russian
+* Arabic 
 
 ## Installation
 
 ```
-$ npm install its-a-date
+$ npm install its-a-date --save
 ```
 ## Code Example
 
@@ -18,6 +21,9 @@ itsadate.parse("5 years ago at 15:44");
 
 // Wed Apr 11 1990 00:45:00 GMT+0300 (Jerusalem Daylight Time)
 itsadate.parse("3 months after 11/01/1990");
+
+// Sat Aug 26 1989 02:43:00 GMT+0300 (Jerusalem Daylight Time)
+itsadate.parse("10000 days before 11/01/2017")
 ```
 ## More Code Examples
 
@@ -129,7 +135,8 @@ A micro-compiler is implemented. It parses date part tokens &
 interpret them as modifications on the perceived date.
 
 ## Upcoming Features
-1. Arabic datesting support 
+1. Custom token insetion
+2. More Languages perhaps
 
 ## Git
 
