@@ -13,7 +13,8 @@ exports.tokens = [{
 
         var year = match[this.variables.year];
 
-        // A two - digit year? 
+        // A two-digit year?
+        // Note: if year is 95 then it is probably 1995, if year is 16 then it is probably 2016 
         if (year && year.length == 2) {
             year = parseInt(year);
 
