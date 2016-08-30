@@ -1,6 +1,6 @@
 {
   "name": "its-a-date",
-  "version": "0.0.88",
+  "version": "0.0.89",
   "description": "Parses a given date description to a Date object.",
   "main": "index.js",
   "scripts": {
