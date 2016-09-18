@@ -1,6 +1,8 @@
 ![alt tag](https://github.com/bendorshai/its-a-date/blob/master/logo.png?raw=true)
 
-No need to know exact date format. Leave its-a-date to figure it out.
+When given a Date description, it returns a Date object.
+No need to know exact date format.
+
 Currently supporting languages:
 * English
 * Russian
