@@ -1,7 +1,7 @@
 {
   "name": "its-a-date",
-  "version": "1.0.3",
-  "description": "Parses a given date description to a Date object.",
+  "version": "1.0.4",
+  "description": "A Natural Language Date Description Processor",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
