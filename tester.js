@@ -356,6 +356,10 @@ test(itsadate.parse("16:29").getMinutes() == 29, ' minutes');
 itsadate.settings({'day_before_month': false});
 test(itsadate.parse("2015.11.08 04:09:46").getDate() == 08, ' minutes');
 
+
+// For Doron
+test(itsadate.parse('2 days before 1 days after tomorrow').getDate() == itsadate.parse('now').getDate(), 'Doron Test');
+
 console.log('--------------------------------------------------------Finished testing--------------------------------------------------------');
 console.log('-------------------------------------------------------Success count: ' + successCount + '-------------------------------------------------------');
 console.log('----------------------------------------------------------Fail count: ' + failCount + '----------------------------------------------------------');
