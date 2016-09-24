@@ -6,7 +6,7 @@ var moment = require('moment')
 
 // When trying to set invalid month, a different month is set
 var d = new Date(1990, 1-1, 31)
-d.setMonth(1);
+d.setMonth(2-1);
 var k = d.getDate()
 
 // When trying to set invalid date, nothing happens
