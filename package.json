@@ -4,7 +4,7 @@
   "description": "Parses a given date description to a Date object.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tape test.js | tap-min"
   },
   "author": {
     "name": "Shai Ben - Dor",
@@ -42,6 +42,9 @@
     "date formatter",
     "date parser"
   ],
-  "tonicExampleFilename": "example.js"
+  "tonicExampleFilename": "example.js",
+  "devDependencies": {
+    "tap-min": "^1.1.0",
+    "tape": "4.6.0"
+  }
 }
- 
