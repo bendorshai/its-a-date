@@ -3,17 +3,22 @@ function Settings(alternativeSettings) {
     var that = this;
 
     var defaultSettings = {
-        format_hits: {
+        format_hints: {
                 day_before_month: true,
                 desc : 'When true then its-a-date expects dd/mm/yyyy, otherwise mm/dd/yyyy'
-            },
+        },
+        hint_strict: {
+            strict: false,
+            desc: 'when not strict, its-a-date will try different formats to prevent error'
+        },
         timezone : {
             gmt: 'auto',
             desc: 'The GMT offset to add to the date in hours (e.g. -3)'
         },
         restore: function() {
             that.set({'gmt':'auto',
-                      'day_before_month':true})
+                      'day_before_month':true,
+                      'strict':false});
         }
     }; 
     

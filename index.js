@@ -17,30 +17,65 @@ exports.parse = function (dateString, alternativeSettings) {
 
     var of_the_king;
 
+    // Init fallback settings
+    var currentSettings = settings;
+
+    // If user requested to use alternative settings, create an object
+    if (alternativeSettings) {
+        currentSettings.set(alternativeSettings);
+    }
+
     try {
-
-        // If user requested to use alternative settings, create an object
-        if (alternativeSettings) {
-            alternativeSettings = new Settings(alternativeSettings);
-        }
-
         // Run compiler with aleternative settings if provided, otherwise with default settings
-        of_the_king = compiler.getDateFromString(dateString, alternativeSettings || settings);
+        of_the_king = compiler.getDateFromString(dateString, currentSettings);
         
-        // calculate GMT
-        var gmt = settings.get('gmt');
+        // Gmt fix
+        of_the_king = gmtFix(of_the_king, currentSettings);
         
-        if (gmt != 'auto') {
-            of_the_king = utils.calculateGMT(of_the_king, gmt);
-        }
+        // Finish
+        return of_the_king;
     }
     catch (e) {
-        // If compiler didn't succeed
+
+        // If in strict mode
+        if (currentSettings.get('strict')) {
+            // Compiler didn't succeed
+            return undefined;
+        }
+    }
+
+    // Flip hint because strick is false
+    var normal = currentSettings.get('day_before_month');
+    var flipped = !normal;
+    currentSettings.set({'day_before_month':flipped});
+
+    try {
+
+        // Run compiler with aleternative settings if provided, otherwise with default settings
+        of_the_king = compiler.getDateFromString(dateString, settings);
+        
+        // Gmt fix
+        of_the_king = gmtFix(of_the_king, currentSettings);
+    }
+    catch (e) {
         return undefined;
     }
 
     // If all is well
     return of_the_king;
+}
+
+
+function gmtFix(date, settings) {
+    
+    // calculate GMT
+    var gmt = settings.get('gmt');
+        
+    if (gmt != 'auto') {
+        date = utils.calculateGMT(date, gmt);
+    }
+
+    return date;
 }
 
 // Expose all tokens and what they can do to you!

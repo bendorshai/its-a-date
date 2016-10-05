@@ -319,13 +319,7 @@ test('Arabic dates tests', t => {
 });
 
 test('alternative settings day', t => {
-	const actual = parse("11/1/1990", {
-	    format_hits: [{
-	        day_before_month: false,
-	        desc: 'when true then its-a-date expects dd/mm/yyyy, otherwise mm/dd/yyyy'
-	    }]
-	}).getDate();
-
+	const actual = parse("11/1/1990", {'day_before_month': false}).getDate();
 	t.equal(actual, 1);
 	t.end();
 });
@@ -391,6 +385,17 @@ test('Doron test', t => {
 
 	t.end();
 });
+
+
+test('auto hint switch', t=> {
+	// Doesn't work according to day_before_month hint, but because it is not in strict mode, it will try the other way around
+	t.equal(parse('2016-09-21').getDate(), 21);
+	t.end();
+});
+
+
+
+
 
 // var undef = itsadate.parse('11/01/1990 12/01/1991');
 
