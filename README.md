@@ -75,11 +75,26 @@ itsadate.parse("pikachu");
 Use settings to alter the format expected
 
 ```js
-// Tells its-a-date to prefer mm/dd/yyyy over dd/mm/yyyy
+// Hint its-a-date to prefer mm/dd/yyyy over dd/mm/yyyy
 itsadate.settings({'day_before_month':false});
 
 // Thu Nov 01 1990 01:55:00 GMT+0200 (Jerusalem Standard Time)
 itsadate.parse("11/1/1990");
+```
+
+```js
+// Don't allow its-a-date to guess any other format then specified (day MUST be before month or vise-versa)
+itsadate.settings({'strict':true});
+```
+
+You can prevent changing the settings globaly, by delivering them as a second parameter
+
+```js
+// November 3rd 2014
+itsadate.parse("11-3-2014",{'day_before_month':false});
+
+// Doesn't use prev settings March 11th 2014 
+itsadate.parse("11-3-2014");
 ```
 
 Restore settings to default
