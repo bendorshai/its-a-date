@@ -1,6 +1,7 @@
 ![alt tag](https://github.com/bendorshai/its-a-date/blob/master/logo.png?raw=true)
 
-When given a Date description, it returns a Date object. No need to know exact date format.
+When given a Date description, it returns a Date object.
+No need to know exact date format.
 
 Currently supporting languages:
 * English
