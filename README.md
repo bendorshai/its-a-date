@@ -87,7 +87,7 @@ itsadate.parse("11/1/1990");
 itsadate.settings({'strict':true});
 ```
 
-You can prevent changing the settings globaly, by delivering them as a second parameter
+You can prevent changing the settings globaly, by delivering it as a second parameter
 
 ```js
 // November 3rd 2014
