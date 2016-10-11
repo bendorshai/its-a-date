@@ -81,6 +81,9 @@ function executeModification(modification, timeType, context) {
     var value = modification.value;
     value = parseInt(value);
 
+    // Throw exception if there is an error
+    modificationVerifier(modification.affectType, timeType, value);
+
     // If avsolute
     if (modification.affectType == absolute) {
         switch (timeType) {
@@ -112,3 +115,28 @@ function executeModification(modification, timeType, context) {
         context.date.add(value, momentTimeType);
     }
 }  
+
+
+function modificationVerifier(affectType, timeTypes, value) {
+    
+    // Only absolutes can be not verified
+    if (affectType != absolute) {
+        return true;
+    }
+
+    if (timeTypes == consts.timeTypes.minute && value > 60) {
+        throw 'ERROR: Invalid value for minutes';
+    }
+
+    if (timeTypes == consts.timeTypes.hour && value > 60) {
+        throw 'ERROR: Invalid value for hours';
+    }
+
+    if (timeTypes == consts.timeTypes.day && value > 31) {
+        throw 'ERROR: Invalid value for day';
+    }
+
+    if (timeTypes == consts.timeTypes.month && value > 12) {
+         throw 'ERROR: Invalid value for month';
+    }
+}

@@ -1,10 +1,10 @@
 {
   "name": "its-a-date",
-  "version": "0.0.90",
-  "description": "Parses a given date description to a Date object.",
+  "description": "A Natural Language Date Description Processor",
+  "version": "1.0.7",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tape test.js | tap-min"
   },
   "author": {
     "name": "Shai Ben - Dor",
@@ -19,8 +19,11 @@
     },
     {
       "name": "Aviad Gal",
-      "email": "",
       "url": "https://github.com/aviadgal"
+    },
+    {
+      "name": "Doron Brikman",
+      "url": "https://github.com/doronbrikman"
     }
   ],
   "repository": {
@@ -40,7 +43,12 @@
     "format",
     "parse date",
     "date formatter",
-    "date parser"
+    "date parser",
+    "natural language"
   ],
-  "tonicExampleFilename": "example.js"
+  "tonicExampleFilename": "example.js",
+  "devDependencies": {
+    "tap-min": "^1.1.0",
+    "tape": "4.6.0"
+  }
 }

@@ -1,6 +1,8 @@
 ![alt tag](https://github.com/bendorshai/its-a-date/blob/master/logo.png?raw=true)
 
-No need to know exact date format. Leave its-a-date to figure it out.
+When given a Date description, it returns a Date object.
+No need to know exact date format.
+
 Currently supporting languages:
 * English
 * Russian
@@ -16,8 +18,8 @@ $ npm install its-a-date --save
 ```js
 var itsadate = require('its-a-date');
 
-// Wed Aug 17 2011 15:44:00 GMT+0300 (Jerusalem Daylight Time)
-itsadate.parse("5 years ago at 15:44");
+// Mon May 02 2016 05:48:00 GMT+0300 (Jerusalem Daylight Time)`
+itsadate.parse("May 2 05:48:29 2016");
 
 // Wed Apr 11 1990 00:45:00 GMT+0300 (Jerusalem Daylight Time)
 itsadate.parse("3 months after 11/01/1990");
@@ -73,11 +75,26 @@ itsadate.parse("pikachu");
 Use settings to alter the format expected
 
 ```js
-// Tells its-a-date to prefer mm/dd/yyyy over dd/mm/yyyy
+// Hint its-a-date to prefer mm/dd/yyyy over dd/mm/yyyy
 itsadate.settings({'day_before_month':false});
 
 // Thu Nov 01 1990 01:55:00 GMT+0200 (Jerusalem Standard Time)
 itsadate.parse("11/1/1990");
+```
+
+```js
+// Don't allow its-a-date to guess any other format then specified (day MUST be before month or vise-versa)
+itsadate.settings({'strict':true});
+```
+
+You can prevent changing the settings globaly, by delivering it as a second parameter
+
+```js
+// November 3rd 2014
+itsadate.parse("11-3-2014",{'day_before_month':false});
+
+// Doesn't use prev settings March 11th 2014 
+itsadate.parse("11-3-2014");
 ```
 
 Restore settings to default
@@ -96,10 +113,6 @@ Alter GMT to overcome time difference
 itsadate.settings({gmt: 5.5});
 itsadate.parse("now");
 ```
-
-### Languages
-Currently English & Russian are supported. 
-More languages are expected to be added.
 
 ### Learn More
 
@@ -135,7 +148,7 @@ A micro-compiler is implemented. It parses date part tokens &
 interpret them as modifications on the perceived date.
 
 ## Upcoming Features
-1. Custom token insetion
+1. Custom token insertion
 2. More Languages perhaps
 
 ## Git
