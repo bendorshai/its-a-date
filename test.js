@@ -86,6 +86,49 @@ test('English dates tests', t => {
 	t.equal(parse("askdjasd"), undefined, 'undefined');
 	t.equal(parse('1st of november 02/03/2000'), undefined, 'conflict');
 
+	// These tests are tricky and require manual check 
+	parse('this tuesday');
+	parse('Last friday');
+	parse('Next sunday');
+
+	wrapper('Last year', (t, m) => {
+		t.equal(parse("Last year").getFullYear(), m.add(-1, 'year').year());
+	});
+	wrapper('Last month', (t, m) => {
+		t.equal(parse("Last month").getMonth(), m.add(-1, 'month').month());
+	});
+	wrapper('Last week', (t, m) => {
+		t.equal(parse("Last week").getDate(), m.add(-7, 'd').date());
+	});
+	wrapper('Last day', (t, m) => {
+		t.equal(parse("Last day").getDate(), m.add(-1, 'd').date());
+	});
+	wrapper('Last hour', (t, m) => {
+		t.equal(parse("Last hour").getHours(), m.add(-1, 'hour').hours());
+	});
+	wrapper('Last minute', (t, m) => {
+		t.equal(parse("Last minute").getMinutes(), m.add(-1, 'minute').minute());
+	});
+
+	wrapper('Next year', (t, m) => {
+		t.equal(parse("Next year").getFullYear(), m.add(1, 'year').year());
+	});
+	wrapper('Next month', (t, m) => {
+		t.equal(parse("Next month").getMonth(), m.add(1, 'month').month());
+	});
+	wrapper('Next week', (t, m) => {
+		t.equal(parse("Next week").getDate(), m.add(7, 'd').date());
+	});
+	wrapper('Next day', (t, m) => {
+		t.equal(parse("Next day").getDate(), m.add(1, 'd').date());
+	});
+	wrapper('Next hour', (t, m) => {
+		t.equal(parse("Next hour").getHours(), m.add(1, 'hour').hours());
+	});
+	wrapper('Next minute', (t, m) => {
+		t.equal(parse("Next minute").getMinutes(), m.add(1, 'minute').minute());
+	});
+
 	const now1 = parse("now");
 	const now2 = new Date();
 
@@ -319,7 +362,7 @@ test('Arabic dates tests', t => {
 });
 
 test('alternative settings day', t => {
-	const actual = parse("11/1/1990", {'day_before_month': false}).getDate();
+	const actual = parse("11/1/1990", { 'day_before_month': false }).getDate();
 	t.equal(actual, 1);
 	t.end();
 });
@@ -362,10 +405,10 @@ test('hours of now', t => {
 });
 
 test('Bugs', t => {
-	settings({'day_before_month': false});
+	settings({ 'day_before_month': false });
 	test(parse('02.05.2015, 12:13').getMonth(), 1, 'feb bug');
 
-	settings({'day_before_month': false});
+	settings({ 'day_before_month': false });
 	t.equal(parse('2015-11-2').getDate(), 2, 'day before month dd/mm/yyyy');
 
 	settings().restore();
@@ -373,7 +416,7 @@ test('Bugs', t => {
 	t.equal(parse("16:29:15").getMinutes(), 29, ' minutes');
 	t.equal(parse("16:29").getMinutes(), 29, ' minutes');
 
-	settings({'day_before_month': false});
+	settings({ 'day_before_month': false });
 	t.equal(parse("2015.11.08 04:09:46").getDate(), 08, ' minutes');
 	settings().restore();
 
@@ -387,7 +430,7 @@ test('Doron test', t => {
 });
 
 
-test('auto hint switch', t=> {
+test('auto hint switch', t => {
 	// Doesn't work according to day_before_month hint, but because it is not in strict mode, it will try the other way around
 	t.equal(parse('2016-09-21').getDate(), 21);
 	t.end();
@@ -399,17 +442,17 @@ test('auto hint switch', t=> {
 
 // var undef = itsadate.parse('11/01/1990 12/01/1991');
 
-function wrapper (description, fn) {
-  test(description, t => {
-    const m = setup();
-    fn(t, m);
-    t.end();
-  });
+function wrapper(description, fn) {
+	test(description, t => {
+		const m = setup();
+		fn(t, m);
+		t.end();
+	});
 }
 
 function setup() {
 	const now = new Date();
 	const date = moment(now);
 
-  	return date;
+	return date;
 }
