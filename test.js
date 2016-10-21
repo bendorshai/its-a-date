@@ -154,7 +154,7 @@ test('English dates tests', t => {
 	t.equal(parse('2 months before 11/1/1990').getMonth(), 10, '2 month before 11/1/1990');
 	t.equal(parse('2 years before 11/1/1990').getFullYear(), 1988, '2 year before 11/1/1990');
 
-	t.equal(parse('1/1/1990 at midnight').getHours(), 0, 'Midnight')
+	t.equal(parse('1/1/1990 at midnight').getHours(), 0, 'Midnight');
 
 	t.end();
 });
