@@ -191,6 +191,14 @@ test('Russian dates tests', t => {
 		t.equal(parse('25 минут назад').getMinutes(), m.add(-25, 'minute').minute());
 	});
 
+	wrapper('Ru 43 mins ago', (t, m) => {
+		t.equal(parse('43 мин. назад').getMinutes(), m.add(-43, 'minute').minute());
+	});
+
+	wrapper('Ru today at 10:07', (t, m) => {
+		t.equal(parse('Сегодня, в 10:07').getHours(), 10);
+	});
+
 	wrapper('Ru 1 hour ago', (t, m) => {
 		t.equal(parse('1 час назад').getHours(), m.add(-1, 'hours').hours());
 	});
@@ -248,6 +256,15 @@ test('Russian dates tests', t => {
 
 	t.equal(parse("Янв 26, 2016").getDate(), 26, 'Ru January 26 2016 - first check');
 	t.equal(parse("Янв 26, 2016").getMonth(), 0, 'Ru January 26 2016 - second check');
+
+	// These tests are tricky and require manual check 
+	parse('Воскресенье в 18:37');
+	parse('Понедельник в 18:37');
+	parse('Вторник в 18:37');
+	parse('Среда в 18:37');
+	parse('Четверг в 18:37');
+	parse('Пятница в 18:37');
+	parse('Суббота в 18:37');
 
 	t.end();
 });

@@ -28,10 +28,12 @@ exports.push.apply(exports, en_yesterday_and_tomorrow.tokens);
 
 // Russian section
 var ru_months = require('./tokens/russian/months.js');
+var ru_last_next = require('./tokens/russian/last&next.js');
 var ru_ago_and_sice = require('./tokens/russian/ago&since.js');
 var ru_yesterday_and_tomorrow = require('./tokens/russian/yesterday&tomorrow.js');
 
 exports.push.apply(exports, ru_months.tokens);
+exports.push.apply(exports, ru_last_next.tokens);
 exports.push.apply(exports, ru_ago_and_sice.tokens);
 exports.push.apply(exports, ru_yesterday_and_tomorrow.tokens);
 

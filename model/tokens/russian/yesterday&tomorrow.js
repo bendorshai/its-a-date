@@ -5,7 +5,7 @@ exports.tokens = [
         // yesterday
         example: 'вчера',
         category: 'yesterday & tommorow',
-        regex: /(?:[\s,\.-]|^)(вчера)(?:[\s,\.-]|$)/,
+        regex: /(?:[\s,\.-]|^)(вчера|Вчера)(?:[\s,\.-]|$)/,
         affects: [{
             timeType: consts.timeTypes.day,
             affectType: consts.reltivity.relative,

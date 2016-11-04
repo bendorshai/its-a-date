@@ -9,37 +9,37 @@ exports.translate = function (dayConvention) {
     dayConvention = dayConvention.toLowerCase();
 
     // Sunday conventions
-    if (dayConvention == 'sunday') {
+    if (dayConvention == 'sunday' || dayConvention == 'воскресенье') {
         return 0;
     }
 
     // Monday conventions
-    if (dayConvention == 'monday') {
+    if (dayConvention == 'monday' || dayConvention == 'понедельник') {
         return 1;
     }
 
     // Tuesday conventions
-    if (dayConvention == 'tuesday') {
+    if (dayConvention == 'tuesday' || dayConvention == 'вторник') {
         return 2;
     }
 
     // Wednesday conventions
-    if (dayConvention == 'wednesday') {
+    if (dayConvention == 'wednesday' || dayConvention == 'среда') {
         return 3;
     }
 
     // Thursday conventions
-    if (dayConvention == 'thursday') {
+    if (dayConvention == 'thursday' || dayConvention == 'четверг') {
         return 4;
     }
 
     // Friday conventions
-    if (dayConvention == 'friday') {
+    if (dayConvention == 'friday' || dayConvention == 'пятница') {
         return 5;
     }
 
     // Saturday conventions
-    if (dayConvention == 'saturday') {
+    if (dayConvention == 'saturday' || dayConvention == 'суббота') {
         return 6;
     }
 
