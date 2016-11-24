@@ -1,7 +1,7 @@
 {
   "name": "its-a-date",
   "description": "A Natural Language Date Description Processor",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "main": "index.js",
   "scripts": {
     "test": "tape test.js | tap-min"
