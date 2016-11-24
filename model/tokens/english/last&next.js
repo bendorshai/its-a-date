@@ -1,5 +1,5 @@
 var consts = require('../../consts.js');
-var converter = require('../common/week_day_converter.js');
+var converter = require('../../tokens_util/common/week_day_converter.js');
 
 exports.tokens = [
     {

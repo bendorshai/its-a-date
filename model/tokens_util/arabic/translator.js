@@ -22,6 +22,8 @@ exports.arabicToEnglish = function (arabicConvention) {
     if (arabicConvention == 'ساعات' || arabicConvention == 'ساعة') {
         return consts.timeTypes[consts.timeTypes.hour];
     }
+
+    return undefined;
 }
 
 exports.twoConvention = function (arabicConvention) {
@@ -40,4 +42,8 @@ exports.twoConvention = function (arabicConvention) {
     if (arabicConvention == 'ساعتين') {
         return consts.timeTypes[consts.timeTypes.hour];
     }
+
+    return undefined;
 }
+
+exports.translators = [exports.arabicToEnglish, exports.twoConvention]

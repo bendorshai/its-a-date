@@ -18,4 +18,8 @@ exports.russianToEnglish = function (russianConvention) {
     if (russianConvention == 'час' || russianConvention == 'часов' || russianConvention == 'часа') {
         return consts.timeTypes[consts.timeTypes.hour];
     }
+
+    return undefined;
 }
+
+exports.translators = [exports.russianToEnglish]
