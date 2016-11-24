@@ -33,7 +33,7 @@ exports.dayOfWeekToNum = function (day) {
     }
 
     // Friday conventions
-    if (day == 'Friday') {
+    if (day == 'friday') {
         return 5;
     }
 
