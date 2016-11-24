@@ -53,11 +53,11 @@ exports.tokens = [
         }
     },
     {
-        // Examples: a hour ago. a minute ago, an hour ago
+        // Examples: an hour ago. a minute ago, an year ago
         example: 'an hour ago',
         category: 'ago since before & after',
         regex: /(?:\b|^)(a|an)\s+(day|month|year|week|hour|minute)s?\s+(?:ago|before)(?:\b|$)/,
-        // The indexes of capturing gorups in the match
+        // The indexes of capturing groups in the match
         variables: {
             value: 1,
             timeType: 2

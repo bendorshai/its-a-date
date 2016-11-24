@@ -13,21 +13,27 @@ exports.push.apply(exports, ddmmyyyy_and_hhmm.tokens);
 var en_now = require('./tokens/english/now.js');
 var en_months = require('./tokens/english/months.js');
 var en_facebook = require('./tokens/english/facebook.js');
+var en_last_next = require('./tokens/english/last&next.js');
 var en_ago_and_sice = require('./tokens/english/ago&since.js');
+var en_special_hours = require('./tokens/english/special_hours.js');
 var en_yesterday_and_tomorrow = require('./tokens/english/yesterday&tomorrow.js');
 
 exports.push.apply(exports, en_now.tokens);
 exports.push.apply(exports, en_months.tokens);
 exports.push.apply(exports, en_facebook.tokens);
+exports.push.apply(exports, en_last_next.tokens);
 exports.push.apply(exports, en_ago_and_sice.tokens);
+exports.push.apply(exports, en_special_hours.tokens);
 exports.push.apply(exports, en_yesterday_and_tomorrow.tokens);
 
 // Russian section
 var ru_months = require('./tokens/russian/months.js');
+var ru_last_next = require('./tokens/russian/last&next.js');
 var ru_ago_and_sice = require('./tokens/russian/ago&since.js');
 var ru_yesterday_and_tomorrow = require('./tokens/russian/yesterday&tomorrow.js');
 
 exports.push.apply(exports, ru_months.tokens);
+exports.push.apply(exports, ru_last_next.tokens);
 exports.push.apply(exports, ru_ago_and_sice.tokens);
 exports.push.apply(exports, ru_yesterday_and_tomorrow.tokens);
 

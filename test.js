@@ -86,6 +86,49 @@ test('English dates tests', t => {
 	t.equal(parse("askdjasd"), undefined, 'undefined');
 	t.equal(parse('1st of november 02/03/2000'), undefined, 'conflict');
 
+	// These tests are tricky and require manual check 
+	parse('this tuesday');
+	parse('Last friday');
+	parse('Next sunday');
+
+	wrapper('Last year', (t, m) => {
+		t.equal(parse("Last year").getFullYear(), m.add(-1, 'year').year());
+	});
+	wrapper('Last month', (t, m) => {
+		t.equal(parse("Last month").getMonth(), m.add(-1, 'month').month());
+	});
+	wrapper('Last week', (t, m) => {
+		t.equal(parse("Last week").getDate(), m.add(-7, 'd').date());
+	});
+	wrapper('Last day', (t, m) => {
+		t.equal(parse("Last day").getDate(), m.add(-1, 'd').date());
+	});
+	wrapper('Last hour', (t, m) => {
+		t.equal(parse("Last hour").getHours(), m.add(-1, 'hour').hours());
+	});
+	wrapper('Last minute', (t, m) => {
+		t.equal(parse("Last minute").getMinutes(), m.add(-1, 'minute').minute());
+	});
+
+	wrapper('Next year', (t, m) => {
+		t.equal(parse("Next year").getFullYear(), m.add(1, 'year').year());
+	});
+	wrapper('Next month', (t, m) => {
+		t.equal(parse("Next month").getMonth(), m.add(1, 'month').month());
+	});
+	wrapper('Next week', (t, m) => {
+		t.equal(parse("Next week").getDate(), m.add(7, 'd').date());
+	});
+	wrapper('Next day', (t, m) => {
+		t.equal(parse("Next day").getDate(), m.add(1, 'd').date());
+	});
+	wrapper('Next hour', (t, m) => {
+		t.equal(parse("Next hour").getHours(), m.add(1, 'hour').hours());
+	});
+	wrapper('Next minute', (t, m) => {
+		t.equal(parse("Next minute").getMinutes(), m.add(1, 'minute').minute());
+	});
+
 	const now1 = parse("now");
 	const now2 = new Date();
 
@@ -106,6 +149,12 @@ test('English dates tests', t => {
 	t.equal(parse("11/1/1990").getDate(), 11, 'setting restore 11');
 
 	t.equal(parse('now').getHours(), (new Date()).getHours(), 'hours of now');
+
+	t.equal(parse('2 day before 11/1/1990').getDate(), 9, '2 days before a 11/1/1990');
+	t.equal(parse('2 months before 11/1/1990').getMonth(), 10, '2 month before 11/1/1990');
+	t.equal(parse('2 years before 11/1/1990').getFullYear(), 1988, '2 year before 11/1/1990');
+
+	t.equal(parse('1/1/1990 at midnight').getHours(), 0, 'Midnight');
 
 	t.end();
 });
@@ -140,6 +189,14 @@ test('Russian dates tests', t => {
 
 	wrapper('Ru 25 mins ago', (t, m) => {
 		t.equal(parse('25 минут назад').getMinutes(), m.add(-25, 'minute').minute());
+	});
+
+	wrapper('Ru 43 mins ago', (t, m) => {
+		t.equal(parse('43 мин. назад').getMinutes(), m.add(-43, 'minute').minute());
+	});
+
+	wrapper('Ru today at 10:07', (t, m) => {
+		t.equal(parse('Сегодня, в 10:07').getHours(), 10);
 	});
 
 	wrapper('Ru 1 hour ago', (t, m) => {
@@ -199,6 +256,15 @@ test('Russian dates tests', t => {
 
 	t.equal(parse("Янв 26, 2016").getDate(), 26, 'Ru January 26 2016 - first check');
 	t.equal(parse("Янв 26, 2016").getMonth(), 0, 'Ru January 26 2016 - second check');
+
+	// These tests are tricky and require manual check 
+	parse('Воскресенье в 18:37');
+	parse('Понедельник в 18:37');
+	parse('Вторник в 18:37');
+	parse('Среда в 18:37');
+	parse('Четверг в 18:37');
+	parse('Пятница в 18:37');
+	parse('Суббота в 18:37');
 
 	t.end();
 });
@@ -319,7 +385,7 @@ test('Arabic dates tests', t => {
 });
 
 test('alternative settings day', t => {
-	const actual = parse("11/1/1990", {'day_before_month': false}).getDate();
+	const actual = parse("11/1/1990", { 'day_before_month': false }).getDate();
 	t.equal(actual, 1);
 	t.end();
 });
@@ -362,10 +428,10 @@ test('hours of now', t => {
 });
 
 test('Bugs', t => {
-	settings({'day_before_month': false});
+	settings({ 'day_before_month': false });
 	test(parse('02.05.2015, 12:13').getMonth(), 1, 'feb bug');
 
-	settings({'day_before_month': false});
+	settings({ 'day_before_month': false });
 	t.equal(parse('2015-11-2').getDate(), 2, 'day before month dd/mm/yyyy');
 
 	settings().restore();
@@ -373,7 +439,7 @@ test('Bugs', t => {
 	t.equal(parse("16:29:15").getMinutes(), 29, ' minutes');
 	t.equal(parse("16:29").getMinutes(), 29, ' minutes');
 
-	settings({'day_before_month': false});
+	settings({ 'day_before_month': false });
 	t.equal(parse("2015.11.08 04:09:46").getDate(), 08, ' minutes');
 	settings().restore();
 
@@ -387,7 +453,7 @@ test('Doron test', t => {
 });
 
 
-test('auto hint switch', t=> {
+test('auto hint switch', t => {
 	// Doesn't work according to day_before_month hint, but because it is not in strict mode, it will try the other way around
 	t.equal(parse('2016-09-21').getDate(), 21);
 	t.end();
@@ -399,17 +465,17 @@ test('auto hint switch', t=> {
 
 // var undef = itsadate.parse('11/01/1990 12/01/1991');
 
-function wrapper (description, fn) {
-  test(description, t => {
-    const m = setup();
-    fn(t, m);
-    t.end();
-  });
+function wrapper(description, fn) {
+	test(description, t => {
+		const m = setup();
+		fn(t, m);
+		t.end();
+	});
 }
 
 function setup() {
 	const now = new Date();
 	const date = moment(now);
 
-  	return date;
+	return date;
 }

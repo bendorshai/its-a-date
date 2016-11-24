@@ -10,7 +10,7 @@ exports.russianToEnglish = function (russianConvention) {
     }
 
     // Minute conventions
-    if (russianConvention == 'минуту' || russianConvention == 'минут') {
+    if (russianConvention == 'минуту' || russianConvention == 'минут' || russianConvention.indexOf('мин') != -1) {
         return consts.timeTypes[consts.timeTypes.minute];
     }
 
