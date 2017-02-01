@@ -26,7 +26,7 @@ exports.tokens = [{
             currentYear = currentYear.substr(2, currentYear.toString().length);
 
             // If current year is greater than given year, it's century 21, otherwise it's century 20...'
-            year = parseInt(currentYear) > year ? parseInt("20" + year.toString()) : parseInt("19" + year.toString()); 
+            year = parseInt(currentYear) >= year ? parseInt("20" + year.toString()) : parseInt("19" + year.toString()); 
         }
 
         // If the day_before_month format flag is on,

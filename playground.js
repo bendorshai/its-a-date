@@ -2,7 +2,7 @@ var itsadate = require('./index.js');
 
 // Playground starts here --->
 
+var s = itsadate.parse('10/11/17');
 
-var k = itsadate.parse('next friday');
-console.log(k);
+console.log(s);
 
