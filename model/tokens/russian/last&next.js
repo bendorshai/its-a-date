@@ -1,5 +1,5 @@
 var consts = require('../../consts.js');
-var converter = require('../common/week_day_converter.js');
+var converter = require('../../tokens_util/common/week_day_converter.js');
 
 exports.tokens = [
     {
@@ -11,7 +11,7 @@ exports.tokens = [
             timeType: 1,
         },
         affectsGenerator: function (match) {
-            var dayValue = converter.translate(match[this.variables.timeType]);
+            var dayValue = converter.convert(match[this.variables.timeType]);
             var currentDay = new Date().getDay();
             var calculatedValue = converter.calculateLastConvention(currentDay, dayValue);
             timeType = 'day';

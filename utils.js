@@ -15,5 +15,17 @@ exports.calculateGMT = function(date, gmt) {
     return date;
 }
 
+// try any translator function until one succeeds
+exports.translate = function(word, translators) {
+    for (var translator of translators) {
 
+        var translated = translator(word);
+
+        if (translated) {
+            return translated;
+        }
+    }
+
+    return undefined;
+}
    

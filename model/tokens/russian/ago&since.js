@@ -1,5 +1,5 @@
 var consts = require('../../consts.js');
-var translator = require('./translator.js');
+var translator = require('../../tokens_util/russian/translator.js');
 
 exports.tokens = [
     {
