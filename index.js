@@ -18,10 +18,10 @@ exports.parse = function (dateString, alternativeSettings) {
 
     var ofTheKing;
 
-    var languagesDetected = langDetector.detect(dateString);
+    var langMatches = getStringMatches(dateString);
 
-    for (var i = 0; i < languagesDetected.length; i++) {
-        var currLang = languagesDetected[i][0];
+    for (var i = 0; i < langMatches.length; i++) {
+        var langMatch = langMatches[i];
 
         // Copy settings
         var currentSettings = new Settings();
@@ -39,7 +39,7 @@ exports.parse = function (dateString, alternativeSettings) {
 
         try {
             // Run compiler with aleternative settings if provided, otherwise with default settings
-            ofTheKing = compiler.getDateFromString(dateString, currentSettings, currLang);
+            ofTheKing = compiler.calculateDate(dateString, langMatch.matches, currentSettings);
 
             // Gmt fix
             ofTheKing = gmtFix(ofTheKing, currentSettings);
@@ -49,7 +49,7 @@ exports.parse = function (dateString, alternativeSettings) {
         }
         catch (e) {
             // If in strict mode and loop has ended
-            if (currentSettings.get('strict') && i + 1 == languagesDetected.length) {
+            if (currentSettings.get('strict') && i + 1 == langMatches.length) {
                 // Compiler didn't succeed
                 return undefined;
             }
@@ -63,14 +63,14 @@ exports.parse = function (dateString, alternativeSettings) {
         try {
 
             // Run compiler with aleternative settings if provided, otherwise with default settings
-            ofTheKing = compiler.getDateFromString(dateString, currentSettings, currLang);
+            ofTheKing = compiler.calculateDate(dateString, langMatch.matches, currentSettings);
 
             // Gmt fix
             ofTheKing = gmtFix(ofTheKing, currentSettings);
         }
         catch (e) {
             // Loop not ended yet?
-            if (i + 1 < languagesDetected.length) {
+            if (i + 1 < langMatches.length) {
                 continue;
             }
 
@@ -93,6 +93,41 @@ function gmtFix(date, settings) {
     }
 
     return date;
+}
+
+function getStringMatches(dateString) {
+
+    var langMatches = [];
+
+    // Detect string's language
+    var languagesDetected = langDetector.detect(dateString);
+
+    for (var i = 0; i < languagesDetected.length; i++) {
+        var currLang = languagesDetected[i];
+
+        langMatches.push({
+            "langName": currLang[0],
+            "langProb": currLang[1],
+            "matches": compiler.getStringMatches(dateString, currLang[0]),
+        });
+    }
+
+    // At this point we have all the matches, sort them by number of matches and then by language probability
+    langMatches.sort(
+        function (a, b) {
+            var aMatches = a.matches == null ? 0 : a.matches.length;
+            var bMatches = b.matches == null ? 0 : b.matches.length;
+
+            if (aMatches < bMatches) return 1;
+            if (aMatches > bMatches) return -1;
+
+            if (a.langProb < b.langProb) return 1;
+            if (b.langProb > b.langProb) return -1;
+
+            return 0;
+        });
+
+    return langMatches;
 }
 
 // Expose all tokens and what they can do to you!
