@@ -3,6 +3,7 @@ var tokens = require('./model/tokens.js');
 var parser = require('./model/parser.js');
 var Settings = require('./model/settings.js');
 var utils = require('./utils.js')
+var langDetector = require('./model/tokens/common/language_detector.js');
 
 // Init a setting object
 var settings = new Settings();
@@ -15,67 +16,118 @@ exports.parse = function (dateString, alternativeSettings) {
     // Lower
     dateString = dateString.toLowerCase();
 
-    var of_the_king;
+    var ofTheKing;
 
-    // Init fallback settings
-    var currentSettings = settings;
+    var langMatches = getStringMatches(dateString);
 
-    // If user requested to use alternative settings, create an object
-    if (alternativeSettings) {
-        currentSettings.set(alternativeSettings);
-    }
+    for (var i = 0; i < langMatches.length; i++) {
+        var langMatch = langMatches[i];
 
-    try {
-        // Run compiler with aleternative settings if provided, otherwise with default settings
-        of_the_king = compiler.getDateFromString(dateString, currentSettings);
-        
-        // Gmt fix
-        of_the_king = gmtFix(of_the_king, currentSettings);
-        
-        // Finish
-        return of_the_king;
-    }
-    catch (e) {
+        // Copy settings
+        var currentSettings = new Settings();
+        var getter = {
+            day_before_month: settings.get('day_before_month'),
+            strict: settings.get('strict'),
+            gmt: settings.get('gmt'),
+        }
+        currentSettings.set(getter);
 
-        // If in strict mode
-        if (currentSettings.get('strict')) {
-            // Compiler didn't succeed
+        // If user requested to use alternative settings, create an object
+        if (alternativeSettings) {
+            currentSettings.set(alternativeSettings);
+        }
+
+        try {
+            // Run compiler with aleternative settings if provided, otherwise with default settings
+            ofTheKing = compiler.calculateDate(dateString, langMatch.matches, currentSettings);
+
+            // Gmt fix
+            ofTheKing = gmtFix(ofTheKing, currentSettings);
+
+            // Finish
+            return ofTheKing;
+        }
+        catch (e) {
+            // If in strict mode and loop has ended
+            if (currentSettings.get('strict') && i + 1 == langMatches.length) {
+                // Compiler didn't succeed
+                return undefined;
+            }
+        }
+
+        // Flip hint because strick is false
+        var normal = currentSettings.get('day_before_month');
+        var flipped = !normal;
+        currentSettings.set({ 'day_before_month': flipped });
+
+        try {
+
+            // Run compiler with aleternative settings if provided, otherwise with default settings
+            ofTheKing = compiler.calculateDate(dateString, langMatch.matches, currentSettings);
+
+            // Gmt fix
+            ofTheKing = gmtFix(ofTheKing, currentSettings);
+        }
+        catch (e) {
+            // Loop not ended yet?
+            if (i + 1 < langMatches.length) {
+                continue;
+            }
+
             return undefined;
         }
     }
 
-    // Flip hint because strick is false
-    var normal = currentSettings.get('day_before_month');
-    var flipped = !normal;
-    currentSettings.set({'day_before_month':flipped});
-
-    try {
-
-        // Run compiler with aleternative settings if provided, otherwise with default settings
-        of_the_king = compiler.getDateFromString(dateString, settings);
-        
-        // Gmt fix
-        of_the_king = gmtFix(of_the_king, currentSettings);
-    }
-    catch (e) {
-        return undefined;
-    }
-
     // If all is well
-    return of_the_king;
+    return ofTheKing;
 }
 
 
 function gmtFix(date, settings) {
-    
+
     // calculate GMT
     var gmt = settings.get('gmt');
-        
+
     if (gmt != 'auto') {
         date = utils.calculateGMT(date, gmt);
     }
 
     return date;
+}
+
+function getStringMatches(dateString) {
+
+    var langMatches = [];
+
+    // Detect string's language
+    var languagesDetected = langDetector.detect(dateString);
+
+    for (var i = 0; i < languagesDetected.length; i++) {
+        var currLang = languagesDetected[i];
+
+        langMatches.push({
+            "langName": currLang[0],
+            "langProb": currLang[1],
+            "matches": compiler.getStringMatches(dateString, currLang[0]),
+        });
+    }
+
+    // At this point we have all the matches, sort them by number of matches and then by language probability
+    langMatches.sort(
+        function (a, b) {
+            var aMatches = a.matches == null ? 0 : a.matches.length;
+            var bMatches = b.matches == null ? 0 : b.matches.length;
+
+            if (aMatches < bMatches) return 1;
+            if (aMatches > bMatches) return -1;
+
+            if (a.langProb < b.langProb) return 1;
+            if (b.langProb > b.langProb) return -1;
+
+            return 0;
+        });
+
+    return langMatches;
 }
 
 // Expose all tokens and what they can do to you!
@@ -106,13 +158,11 @@ exports.settings = function (query) {
         return settings.get();
     }
     // if an object sent then update
-    else if (typeof(query) == 'object')
-    {
+    else if (typeof (query) == 'object') {
         settings.set(query);
     }
     // parameter is not an object
-    else 
-    {
+    else {
         return settings.get(query);
     }
 }

@@ -31,7 +31,7 @@ test('English dates tests', t => {
 	t.equal(parse("11/1/1990").getDate(), 11, '11');
 	t.equal(parse("23-5-1983").getDate(), 23, '23');
 	t.equal(parse('27-08-11 06:14').getFullYear(), 2011, '2011');
-	t.equal(parse('27-08-17 06:14').getFullYear(), 1917, '1917');
+	t.equal(parse('27-08-17 06:14').getFullYear(), 2017, '2017');
 	t.equal(parse('27-08-95 06:14').getFullYear(), 1995, '1995');
 
 	t.equal(parse("1:00pm").getHours(), 13, '1:00pm');
@@ -221,6 +221,11 @@ test('Russian dates tests', t => {
 		t.equal(parse('5 дней назад').getDate(), fiveDaysAgo);
 	});
 
+	wrapper('Ru a week ago', (t, m) => {
+		const sevenDaysAgo = m.add(-7, 'day').toDate().getDate();
+		t.equal(parse('1 неделю назад').getDate(), sevenDaysAgo);
+	});
+
 	t.equal(parse("Дек 19, 2015").getDate(), 19, 'Ru December 19 2016 - first check');
 	t.equal(parse("Дек 19, 2015").getMonth(), 11, 'Ru December 19 2016 - second check');
 
@@ -282,6 +287,11 @@ test('Arabic dates tests', t => {
 	t.equal(parse("أكتوبر").getMonth(), 9, 'Ar oct');
 	t.equal(parse("نوفمبر").getMonth(), 10, 'Ar nov');
 	t.equal(parse("ديسمبر").getMonth(), 11, 'Ar dec');
+
+	wrapper('Ar a week ago', (t, m) => {
+		const sevenDaysAgo = m.add(-7, 'day').toDate().getDate();
+		t.equal(parse('قبل أسبوع').getDate(), sevenDaysAgo);
+	});
 
 	wrapper('Ar 10 hours ago', (t, m) => {
 		t.equal(parse('قبل 10 ساعات').getHours(), m.add(-10, 'hour').hours());
@@ -384,6 +394,44 @@ test('Arabic dates tests', t => {
 	t.end();
 });
 
+test('Turkish dates tests', t => {
+	t.equal(parse("Ocak").getMonth(), 0, 'Tr jan');
+	t.equal(parse("Şubat").getMonth(), 1, 'Tr feb');
+	t.equal(parse("Mart").getMonth(), 2, 'Tr mar');
+	t.equal(parse("Nisan").getMonth(), 3, 'Tr apr');
+	t.equal(parse("Mayıs").getMonth(), 4, 'Tr may');
+	t.equal(parse("Haziran").getMonth(), 5, 'Tr jun');
+	t.equal(parse("Temmuz").getMonth(), 6, 'Tr jul');
+	t.equal(parse("Ağustos").getMonth(), 7, 'Tr aug');
+	t.equal(parse("Eylül").getMonth(), 8, 'Tr sep');
+	t.equal(parse("Ekim").getMonth(), 9, 'Tr oct');
+	t.equal(parse("Kasım").getMonth(), 10, 'Tr nov');
+	t.equal(parse("Aralık").getMonth(), 11, 'Tr dec');
+
+	wrapper('Tr 10 hours ago', (t, m) => {
+		t.equal(parse('10 saat önce').getHours(), m.add(-10, 'hour').hours());
+	});
+
+	wrapper('Tr An hour ago', (t, m) => {
+		t.equal(parse('Bir saat önce').getHours(), m.add(-1, 'hour').hours());
+	});
+
+	wrapper('Tr 10 minutes ago', (t, m) => {
+		t.equal(parse('10 dakika önce').getMinutes(), m.add(-10, 'minute').minute());
+	});
+
+	wrapper('Tr 4 days ago', (t, m) => {
+		const fourDaysAgo = m.add(-4, 'day').toDate().getDate();
+		t.equal(parse('4 gün önce').getDate(), fourDaysAgo);
+	});
+
+	wrapper('Tr 1 week ago', (t, m) => {
+		t.equal(parse("1 Hafta önce").getDate(), m.add(-7, 'd').date());
+	});
+
+	t.end();
+});
+
 test('alternative settings day', t => {
 	const actual = parse("11/1/1990", { 'day_before_month': false }).getDate();
 	t.equal(actual, 1);
@@ -458,10 +506,6 @@ test('auto hint switch', t => {
 	t.equal(parse('2016-09-21').getDate(), 21);
 	t.end();
 });
-
-
-
-
 
 // var undef = itsadate.parse('11/01/1990 12/01/1991');
 

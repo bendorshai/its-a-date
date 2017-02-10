@@ -4,6 +4,11 @@ var consts = require('../../consts.js');
 exports.russianToEnglish = function (russianConvention) {
     russianConvention = russianConvention.toLowerCase();
 
+    // Week conventions
+    if (russianConvention == 'неделю') {
+        return consts.timeTypes[consts.timeTypes.week];
+    }
+
     // Day conventions
     if (russianConvention == 'день' || russianConvention == 'дня' || russianConvention == 'дней') {
         return consts.timeTypes[consts.timeTypes.day];

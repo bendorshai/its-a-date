@@ -16,6 +16,7 @@ function State() {
     this.modificationQueues = [];
     this.modificationQueues[consts.timeTypes.year] = [];
     this.modificationQueues[consts.timeTypes.month] = [];
+    this.modificationQueues[consts.timeTypes.week] = [];
     this.modificationQueues[consts.timeTypes.day] = [];
     this.modificationQueues[consts.timeTypes.hour] = [];
     this.modificationQueues[consts.timeTypes.minute] = [];

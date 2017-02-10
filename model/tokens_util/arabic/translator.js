@@ -3,6 +3,11 @@ var consts = require('../../consts.js');
 // Converts an arabic word convention to one of our english conventions
 exports.arabicToEnglish = function (arabicConvention) {
 
+    // Week conventions
+    if (arabicConvention == 'أسبوع') {
+        return consts.timeTypes[consts.timeTypes.week];
+    }
+
     // Day conventions
     if (arabicConvention == 'ثانية') {
         return consts.timeTypes[consts.timeTypes.day];

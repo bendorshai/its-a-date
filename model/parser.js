@@ -1,11 +1,10 @@
 var tokens = require('./tokens.js');
 
-// Get all token that appear in date string
-exports.getTokens = function (dateString) {
-
+exports.parseLangTokens = function (dateString, langTokens) {
+    
     var of_the_jedi = [];
 
-    for (var token of tokens) {
+    for (var token of langTokens) {
 
         var match = token.regex.exec(dateString);
 
