@@ -1,23 +1,26 @@
 var parser = require('./parser.js');
 var interpreter = require('./interpreter.js')
 var State = require('./state.js');
+var Tokens = require('./tokens.js');
 
-exports.getDateFromString = function (dateString, settings) {
+exports.getDateFromString = function (dateString, settings, currLang) {
     // New state each time
     var state = new State();
 
-    // Get all tokens found in date string
-    var tokens = parser.getTokens(dateString);
+    // Attempt to find tokens based on current language
+    var languageTokens = Tokens.getLangTokens(currLang);
 
-    if (tokens.length == 0) {
+    // Failed to get language tokens? Parse by all tokens, otherwise parse by langugage tokens
+    var matches = !languageTokens ? null : parser.parseLangTokens(dateString, languageTokens);
+
+    if (!matches || matches.length == 0) {
         throw 'ERROR: No token matched the string'
     }
 
-    // Execute all tokens
-    for (var token of tokens) {
+    for (var match of matches) {
 
         // Execute the token from the dateString onto the state
-        interpreter.executeToken(token, dateString, state, settings);
+        interpreter.executeToken(match, dateString, state, settings);
     }
 
     // Caculate the state

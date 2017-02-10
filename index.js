@@ -3,6 +3,7 @@ var tokens = require('./model/tokens.js');
 var parser = require('./model/parser.js');
 var Settings = require('./model/settings.js');
 var utils = require('./utils.js')
+var langDetector = require('./model/tokens/common/language_detector.js');
 
 // Init a setting object
 var settings = new Settings();
@@ -15,62 +16,78 @@ exports.parse = function (dateString, alternativeSettings) {
     // Lower
     dateString = dateString.toLowerCase();
 
-    var of_the_king;
+    var ofTheKing;
 
-    // Init fallback settings
-    var currentSettings = settings;
+    var languagesDetected = langDetector.detect(dateString);
 
-    // If user requested to use alternative settings, create an object
-    if (alternativeSettings) {
-        currentSettings.set(alternativeSettings);
-    }
+    for (var i = 0; i < languagesDetected.length; i++) {
+        var currLang = languagesDetected[i][0];
 
-    try {
-        // Run compiler with aleternative settings if provided, otherwise with default settings
-        of_the_king = compiler.getDateFromString(dateString, currentSettings);
-        
-        // Gmt fix
-        of_the_king = gmtFix(of_the_king, currentSettings);
-        
-        // Finish
-        return of_the_king;
-    }
-    catch (e) {
+        // Copy settings
+        var currentSettings = new Settings();
+        var getter = {
+            day_before_month: settings.get('day_before_month'),
+            strict: settings.get('strict'),
+            gmt: settings.get('gmt'),
+        }
+        currentSettings.set(getter);
 
-        // If in strict mode
-        if (currentSettings.get('strict')) {
-            // Compiler didn't succeed
+        // If user requested to use alternative settings, create an object
+        if (alternativeSettings) {
+            currentSettings.set(alternativeSettings);
+        }
+
+        try {
+            // Run compiler with aleternative settings if provided, otherwise with default settings
+            ofTheKing = compiler.getDateFromString(dateString, currentSettings, currLang);
+
+            // Gmt fix
+            ofTheKing = gmtFix(ofTheKing, currentSettings);
+
+            // Finish
+            return ofTheKing;
+        }
+        catch (e) {
+            // If in strict mode and loop has ended
+            if (currentSettings.get('strict') && i + 1 == languagesDetected.length) {
+                // Compiler didn't succeed
+                return undefined;
+            }
+        }
+
+        // Flip hint because strick is false
+        var normal = currentSettings.get('day_before_month');
+        var flipped = !normal;
+        currentSettings.set({ 'day_before_month': flipped });
+
+        try {
+
+            // Run compiler with aleternative settings if provided, otherwise with default settings
+            ofTheKing = compiler.getDateFromString(dateString, currentSettings, currLang);
+
+            // Gmt fix
+            ofTheKing = gmtFix(ofTheKing, currentSettings);
+        }
+        catch (e) {
+            // Loop not ended yet?
+            if (i + 1 < languagesDetected.length) {
+                continue;
+            }
+
             return undefined;
         }
     }
 
-    // Flip hint because strick is false
-    var normal = currentSettings.get('day_before_month');
-    var flipped = !normal;
-    currentSettings.set({'day_before_month':flipped});
-
-    try {
-
-        // Run compiler with aleternative settings if provided, otherwise with default settings
-        of_the_king = compiler.getDateFromString(dateString, settings);
-        
-        // Gmt fix
-        of_the_king = gmtFix(of_the_king, currentSettings);
-    }
-    catch (e) {
-        return undefined;
-    }
-
     // If all is well
-    return of_the_king;
+    return ofTheKing;
 }
 
 
 function gmtFix(date, settings) {
-    
+
     // calculate GMT
     var gmt = settings.get('gmt');
-        
+
     if (gmt != 'auto') {
         date = utils.calculateGMT(date, gmt);
     }
@@ -106,13 +123,11 @@ exports.settings = function (query) {
         return settings.get();
     }
     // if an object sent then update
-    else if (typeof(query) == 'object')
-    {
+    else if (typeof (query) == 'object') {
         settings.set(query);
     }
     // parameter is not an object
-    else 
-    {
+    else {
         return settings.get(query);
     }
 }
