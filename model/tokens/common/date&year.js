@@ -1,47 +1,46 @@
 var consts = require('../../consts.js');
 var _ = require('underscore');
-var ago_and_since = require('../english/ago&since.js');
 var en_ago_and_since = require('../english/ago&since.js');
 var ru_ago_and_since = require('../russian/ago&since.js');
 var ar_ago_and_since = require('../arabic/ago&since.js');
 
 exports.tokens = [
     {
-    example: '1945',
-    category: 'year & date',
-    regex: /(?:^|[\s,])(\d{4})(?:$|[\s,])/,
-    affects: [{
-        timeType: consts.timeTypes.year,
-        affectType: consts.reltivity.absolute
-    }]
-    }, 
-    {
-    example: '1st',
-    category: 'year & date',
-    regex: /(?:^|\s)(\d{1,2})(?:th|st|nd|rd)?(?:$|\s|,)/,
-    affects: [{
-        timeType: consts.timeTypes.day,
-        affectType: consts.reltivity.absolute
-    }],
-    variables: {
-        day: 1
+        example: '1945',
+        category: 'year & date',
+        regex: /(?:^|[\s,])(\d{4})(?:$|[\s,])/,
+        affects: [{
+            timeType: consts.timeTypes.year,
+            affectType: consts.reltivity.absolute
+        }]
     },
-    // only if verifier returns true the affects take place
-    // Verify that this number doesn't relate to 'ago', example: '4 days ago', 4 is not the number of the date
-    verifier: agoSinceMulitLanguageVerifier = function (match, dateString, state, settings, token) {
+    {
+        example: '1st',
+        category: 'year & date',
+        regex: /(?:^|\s)(\d{1,2})(?:th|st|nd|rd)?(?:$|\s|,)/,
+        affects: [{
+            timeType: consts.timeTypes.day,
+            affectType: consts.reltivity.absolute
+        }],
+        variables: {
+            day: 1
+        },
+        // only if verifier returns true the affects take place
+        // Verify that this number doesn't relate to 'ago', example: '4 days ago', 4 is not the number of the date
+        verifier: agoSinceMulitLanguageVerifier = function (match, dateString, state, settings, token) {
 
-        if (isCollision(match, en_ago_and_since, dateString, token)) {
-            return false;
+            if (isCollision(match, en_ago_and_since, dateString, token)) {
+                return false;
+            }
+            if (isCollision(match, ru_ago_and_since, dateString, token)) {
+                return false;
+            }
+            if (isCollision(match, ar_ago_and_since, dateString, token)) {
+                return false;
+            }
+            return true;
         }
-        if (isCollision(match, ru_ago_and_since, dateString, token)) {
-            return false;
-        }
-        if (isCollision(match, ar_ago_and_since, dateString, token)) {
-            return false;
-        }
-        return true;
-    }
-}];
+    }];
 
 // Return true if there is absolute collision, for example: ago token matched in a certain language
 function isCollision(match, multiLanguageAgoAndSince, dateString, token) {
