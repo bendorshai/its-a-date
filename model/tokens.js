@@ -48,8 +48,9 @@ arabicArray = arabicArray.concat(ar_months.tokens).concat(ar_ago_and_since.token
 // Turkish section
 var tr_months = require('./tokens/turkish/months.js');
 var tr_ago_and_since = require('./tokens/turkish/ago&since.js');
+var tr_yesterday_and_tomorrow = require('./tokens/turkish/yesterday&tomorrow.js');
 
-turkishArray = turkishArray.concat(tr_months.tokens).concat(tr_ago_and_since.tokens);
+turkishArray = turkishArray.concat(tr_months.tokens).concat(tr_ago_and_since.tokens).concat(tr_yesterday_and_tomorrow.tokens);
 
 exports.push.apply(exports, commonArray);
 exports.push.apply(exports, englishArray);

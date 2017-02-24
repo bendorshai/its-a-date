@@ -438,6 +438,19 @@ test('Turkish dates tests', t => {
 		t.equal(parse("1 Hafta önce").getDate(), m.add(-7, 'd').date());
 	});
 
+	wrapper('Tr tomorrow at 15:15', (t, m) => {
+		t.equal(parse('Yarın sabah 15:15\'te').getDate(), m.add(1, 'd').date());
+	});
+
+	wrapper('Tr yesterday', (t, m) => {
+		const yesterDate = m.add(-1, 'day').toDate().getDate();
+		t.equal(parse('Dün saat 5:18 PM').getDate(), yesterDate, 'Tr yesterday at 17:18');
+	});
+
+	wrapper('Tr today at 9:32', (t, m) => {
+		t.equal(parse('Bugün saat 9:32 AM').getHours(), 9);
+	});
+
 	t.end();
 });
 

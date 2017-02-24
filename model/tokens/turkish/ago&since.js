@@ -6,7 +6,7 @@ exports.tokens = [
         // Examples: 5 years ago. 2 months ago, 1 day before __
         example: '10 dakika önce',
         category: 'ago since before & after',
-        regex: /(?:\b|^)(\d+|Bir)\s+(saniye|dakika|saat|gün|hafta)\s+(?:önce)(?:\b|$)/,
+        regex: /(?:\b|^)(\d+|Bir|bir)\s+(saniye|dakika|saat|gün|hafta)\s+(?:önce)(?:\b|$)/,
         // The indexes of capturing gorups in the match
         variables: {
             value: 1,
