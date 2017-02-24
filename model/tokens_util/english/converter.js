@@ -3,7 +3,6 @@ var consts = require('../../consts.js');
 /* 
 Converts a day word convention in any language to its numeric value
 Note: Keep in mind that the values start from 0
-TODO - support other languages
 */
 exports.dayOfWeekToNum = function (day) {
 
@@ -43,5 +42,5 @@ exports.dayOfWeekToNum = function (day) {
     }
 
     // Non of the above?
-    return undefined;
+    return -1;
 }

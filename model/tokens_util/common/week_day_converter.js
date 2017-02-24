@@ -1,13 +1,14 @@
 var consts = require('../../consts.js');
 var english = require('../english/converter.js');
 var russian = require('../russian/converter.js');
+var arabic = require('../arabic/converter.js');
 var utils = require('../../../utils.js')
 
-var dayConvertors = [russian.dayOfWeekToNum, english.dayOfWeekToNum]
+var dayConvertors = [russian.dayOfWeekToNum, english.dayOfWeekToNum, arabic.dayOfWeekToNum]
 
 exports.convert = function (day) {
     // Note: Convertors function as translators in this manner
-    utils.translate(day, dayConvertors)
+    return utils.translate(day, dayConvertors)
 }
 
 exports.calculateThisConvention = function (currentDay, requestedDay) {

@@ -391,6 +391,15 @@ test('Arabic dates tests', t => {
 	t.equal(parse("صباح 26 جانفي 2016").getDate(), 26, 'Ar January 26 2016 - third check');
 	t.equal(parse("صباح 26 جانفي 2016").getMonth(), 0, 'Ar January 26 2016 - fourth check');
 
+	// These tests are tricky and require manual check 
+	parse('يوم الأحد في 13:15');
+	parse('يوم الاثنين عند الساعة 13:15');
+	parse('يوم الثلاثاء في 13:15');
+	parse('يوم الأربعاء في الساعة 13:15');
+	parse('يوم الخميس في الساعة 13:15');
+	parse('يوم الجمعة في الساعة 13:15');
+	parse('يوم السبت في الساعة 13:15');
+
 	t.end();
 });
 

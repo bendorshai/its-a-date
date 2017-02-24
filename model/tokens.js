@@ -41,8 +41,9 @@ russianArray = russianArray.concat(ru_months.tokens).concat(ru_last_next.tokens)
 // Arabic section
 var ar_months = require('./tokens/arabic/months.js');
 var ar_ago_and_since = require('./tokens/arabic/ago&since.js');
+var ar_last_next = require('./tokens/arabic/last&next.js');
 
-arabicArray = arabicArray.concat(ar_months.tokens).concat(ar_ago_and_since.tokens);
+arabicArray = arabicArray.concat(ar_months.tokens).concat(ar_ago_and_since.tokens).concat(ar_last_next.tokens);
 
 // Turkish section
 var tr_months = require('./tokens/turkish/months.js');

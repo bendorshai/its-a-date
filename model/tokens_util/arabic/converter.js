@@ -7,37 +7,37 @@ Note: Keep in mind that the values start from 0
 exports.dayOfWeekToNum = function (day) {
 
     // Sunday conventions
-    if (day == 'воскресенье') {
+    if (day == 'الأحد') {
         return 0;
     }
 
     // Monday conventions
-    if (day == 'понедельник') {
+    if (day == 'الإثنين' || day == 'الاثنين') {
         return 1;
     }
 
     // Tuesday conventions
-    if (day == 'вторник') {
+    if (day == 'الثلاثاء') {
         return 2;
     }
 
     // Wednesday conventions
-    if (day == 'среда') {
+    if (day == 'الأربعاء') {
         return 3;
     }
 
     // Thursday conventions
-    if (day == 'четверг') {
+    if (day == 'الخميس') {
         return 4;
     }
 
     // Friday conventions
-    if (day == 'пятница') {
+    if (day == 'الجمعة') {
         return 5;
     }
 
     // Saturday conventions
-    if (day == 'суббота') {
+    if (day == 'السبت') {
         return 6;
     }
 

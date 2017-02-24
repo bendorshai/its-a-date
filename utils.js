@@ -21,7 +21,7 @@ exports.translate = function(word, translators) {
 
         var translated = translator(word);
 
-        if (translated) {
+        if (translated != -1) {
             return translated;
         }
     }

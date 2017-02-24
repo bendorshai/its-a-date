@@ -12,7 +12,7 @@ exports.tokens = [
             dayValue: 2
         },
         affectsGenerator: function (match) {
-            var dayValue = converter.translate(match[this.variables.dayValue]);
+            var dayValue = converter.convert(match[this.variables.dayValue]);
             var currentDay = new Date().getDay();
             var calculatedValue = converter.calculateLastConvention(currentDay, dayValue);
             timeType = 'day';
@@ -56,7 +56,7 @@ exports.tokens = [
             dayValue: 2
         },
         affectsGenerator: function (match) {
-            var dayValue = converter.translate(match[this.variables.dayValue]);
+            var dayValue = converter.convert(match[this.variables.dayValue]);
             var currentDay = new Date().getDay();
             var calculatedValue = converter.calculateThisConvention(currentDay, dayValue);
             timeType = 'day';
