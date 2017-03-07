@@ -7,6 +7,7 @@ var englishArray = [];
 var russianArray = [];
 var arabicArray = [];
 var turkishArray = [];
+var spanishArray = [];
 
 // Common section
 var date_and_year = require('./tokens/common/date&year.js');
@@ -43,20 +44,32 @@ var ar_months = require('./tokens/arabic/months.js');
 var ar_ago_and_since = require('./tokens/arabic/ago&since.js');
 var ar_last_next = require('./tokens/arabic/last&next.js');
 
-arabicArray = arabicArray.concat(ar_months.tokens).concat(ar_ago_and_since.tokens).concat(ar_last_next.tokens);
+arabicArray = arabicArray.concat(ar_months.tokens).concat(ar_ago_and_since.tokens)
+                    .concat(ar_last_next.tokens);
 
 // Turkish section
 var tr_months = require('./tokens/turkish/months.js');
 var tr_ago_and_since = require('./tokens/turkish/ago&since.js');
 var tr_yesterday_and_tomorrow = require('./tokens/turkish/yesterday&tomorrow.js');
 
-turkishArray = turkishArray.concat(tr_months.tokens).concat(tr_ago_and_since.tokens).concat(tr_yesterday_and_tomorrow.tokens);
+turkishArray = turkishArray.concat(tr_months.tokens).concat(tr_ago_and_since.tokens)
+                    .concat(tr_yesterday_and_tomorrow.tokens);
+
+// Spanish section
+var sp_months = require('./tokens/spanish/months.js');
+var sp_last_next = require('./tokens/spanish/last&next.js');
+var sp_ago_and_since = require('./tokens/spanish/ago&since.js');
+var sp_yesterday_and_tomorrow = require('./tokens/spanish/yesterday&tomorrow.js');
+
+spanishArray = spanishArray.concat(sp_months.tokens).concat(sp_last_next.tokens)
+            .concat(sp_ago_and_since.tokens).concat(sp_yesterday_and_tomorrow.tokens);
 
 exports.push.apply(exports, commonArray);
 exports.push.apply(exports, englishArray);
 exports.push.apply(exports, russianArray);
 exports.push.apply(exports, arabicArray);
 exports.push.apply(exports, turkishArray);
+exports.push.apply(exports, spanishArray);
 
 // Return the language tokens given its code.
 // Common tokens are always returned in addition to the actual language
@@ -79,10 +92,9 @@ exports.getLangTokens = function (langCode) {
         case 'tur':
             return commonArray.concat(turkishArray);
             break;
-
-        // The following languages are not supported YET
         case 'spa':
-            return null;
+            return commonArray.concat(spanishArray);
+        // The following languages are not supported YET
         case 'ell':
             return null;
         case 'pes':
