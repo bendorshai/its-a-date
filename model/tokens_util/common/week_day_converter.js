@@ -4,10 +4,12 @@ var english = require('../english/converter.js');
 var russian = require('../russian/converter.js');
 var turkish = require('../turkish/converter.js');
 var spanish = require('../spanish/converter.js');
+var greek = require('../greek/converter.js');
 var utils = require('../../../utils.js')
 
-var dayConvertors = 
-    [russian.dayOfWeekToNum, english.dayOfWeekToNum, arabic.dayOfWeekToNum, turkish.dayOfWeekToNum, spanish.dayOfWeekToNum]
+var dayConvertors = [russian.dayOfWeekToNum, english.dayOfWeekToNum,
+         arabic.dayOfWeekToNum, turkish.dayOfWeekToNum, 
+         spanish.dayOfWeekToNum, greek.dayOfWeekToNum]
 
 exports.convert = function (day) {
     // Note: Convertors function as translators in this manner
