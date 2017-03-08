@@ -1,4 +1,5 @@
 var consts = require('../../consts.js');
+var gr_ddmmyyy = require('../greek/ddmmyyyy&hhmm');
 
 exports.tokens = [{
     example: '11.1.1990',
@@ -26,7 +27,7 @@ exports.tokens = [{
             currentYear = currentYear.substr(2, currentYear.toString().length);
 
             // If current year is greater than given year, it's century 21, otherwise it's century 20...'
-            year = parseInt(currentYear) >= year ? parseInt("20" + year.toString()) : parseInt("19" + year.toString()); 
+            year = parseInt(currentYear) >= year ? parseInt("20" + year.toString()) : parseInt("19" + year.toString());
         }
 
         // If the day_before_month format flag is on,
@@ -72,83 +73,106 @@ exports.tokens = [{
         }
     }
 },
-    {
-        example: '1990.1.11',
-        category: 'ddmmyyyy & hhmm',
-        regex: /(?:^|\b)(\d{4})[\u2027\/\\.-](\d{1,2})[\u2027\/\\.-](\d{1,2})(?:$|\b)/,
-        affectsGenerator: function (match, settings) {
+{
+    example: '1990.1.11',
+    category: 'ddmmyyyy & hhmm',
+    regex: /(?:^|\b)(\d{4})[\u2027\/\\.-](\d{1,2})[\u2027\/\\.-](\d{1,2})(?:$|\b)/,
+    affectsGenerator: function (match, settings) {
 
-            var day_before_month = settings.get('day_before_month');
+        var day_before_month = settings.get('day_before_month');
 
-            // If the middle endian format flag is on,
-            // Set first capture group as month and second as day
-            if (!day_before_month) {
-                return [
-                    // First capture group
-                    {
-                        timeType: consts.timeTypes.year,
-                        affectType: consts.reltivity.absolute
-                    },
-                    // Second capture group
-                    {
-                        timeType: consts.timeTypes.month,
-                        affectType: consts.reltivity.absolute
-                    },
-                    // Third capture group
-                    {
-                        timeType: consts.timeTypes.day,
-                        affectType: consts.reltivity.absolute
-                    }]
-            }
-            // Else, set first capture group as day and second as month
-            else {
-                return [
-                    // First capture group
-                    {
-                        timeType: consts.timeTypes.year,
-                        affectType: consts.reltivity.absolute
-                    },
-                    // Second capture group
-                    {
-                        timeType: consts.timeTypes.day,
-                        affectType: consts.reltivity.absolute
-                    },
-                    // Third capture group
-                    {
-                        timeType: consts.timeTypes.month,
-                        affectType: consts.reltivity.absolute
-                    }]
-            }
-        }
-    },
-    {
-        example: '1:55pm',
-        category: 'ddmmyyyy & hhmm',
-        regex: /(?:^|\b)(\d{1,2}):(\d{1,2})(?::\d{1,2})?\s*(am|pm)?(?:$|\b)/,
-        variables: {
-            hour: 1,
-            minute: 2,
-            ampm: 3
-        },
-        affectsGenerator: function (match) {
-
-            var hour = match[this.variables.hour];
-
-            // If pm, add 12 only if the hour is until 11
-            if (match[this.variables.ampm] == 'pm' && hour <= 11) {
-                hour = Number(hour) + 12;
-            }
-
+        // If the middle endian format flag is on,
+        // Set first capture group as month and second as day
+        if (!day_before_month) {
             return [
+                // First capture group
                 {
-                    timeType: consts.timeTypes.hour,
-                    affectType: consts.reltivity.absolute,
-                    value: hour
+                    timeType: consts.timeTypes.year,
+                    affectType: consts.reltivity.absolute
                 },
+                // Second capture group
                 {
-                    timeType: consts.timeTypes.minute,
-                    affectType: consts.reltivity.absolute,
-                    value: match[this.variables.minute]
+                    timeType: consts.timeTypes.month,
+                    affectType: consts.reltivity.absolute
+                },
+                // Third capture group
+                {
+                    timeType: consts.timeTypes.day,
+                    affectType: consts.reltivity.absolute
                 }]
         }
-    }];
+        // Else, set first capture group as day and second as month
+        else {
+            return [
+                // First capture group
+                {
+                    timeType: consts.timeTypes.year,
+                    affectType: consts.reltivity.absolute
+                },
+                // Second capture group
+                {
+                    timeType: consts.timeTypes.day,
+                    affectType: consts.reltivity.absolute
+                },
+                // Third capture group
+                {
+                    timeType: consts.timeTypes.month,
+                    affectType: consts.reltivity.absolute
+                }]
+        }
+    }
+},
+{
+    example: '1:55pm',
+    category: 'ddmmyyyy & hhmm',
+    regex: /(?:^|\b)(\d{1,2}):(\d{1,2})(?::\d{1,2})?\s*(am|pm)?(?:$|\b)/,
+    // only if verifier returns true the affects take place
+    // Verify that this number doesn't relate to 'ago', example: '4 days ago', 4 is not the number of the date
+    verifier: overrideVerifier = function (match, dateString, state, settings, token) {
+
+        if (isOverride(match, gr_ddmmyyy, dateString)) {
+            return false;
+        }
+        return true;
+    },
+    variables: {
+        hour: 1,
+        minute: 2,
+        ampm: 3
+    },
+    affectsGenerator: function (match) {
+
+        var hour = match[this.variables.hour];
+
+        // If pm, add 12 only if the hour is until 11
+        if (match[this.variables.ampm] == 'pm' && hour <= 11) {
+            hour = Number(hour) + 12;
+        }
+
+        return [
+            {
+                timeType: consts.timeTypes.hour,
+                affectType: consts.reltivity.absolute,
+                value: hour
+            },
+            {
+                timeType: consts.timeTypes.minute,
+                affectType: consts.reltivity.absolute,
+                value: match[this.variables.minute]
+            }]
+    }
+}];
+
+// The function checks whether override variable is used and there's a match.
+// If both conditions are met then the common ddmmyyyy regex should NOT be used
+function isOverride(match, multiLangDdmmyyyy, dateString) {
+    var index = 0;
+    var override = multiLangDdmmyyyy.tokens[index].override;
+    var match = multiLangDdmmyyyy.tokens[index].regex.exec(dateString);
+
+    if (override && match) {
+        return true;
+    }
+
+    return false;
+}
