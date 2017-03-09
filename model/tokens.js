@@ -9,6 +9,7 @@ var arabicArray = [];
 var turkishArray = [];
 var spanishArray = [];
 var greekArray = [];
+var persianArray = [];
 
 // Common section
 var date_and_year = require('./tokens/common/date&year.js');
@@ -75,6 +76,14 @@ var gr_yesterday_and_tomorrow = require('./tokens/greek/yesterday&tomorrow.js');
 greekArray = greekArray.concat(gr_months.tokens).concat(gr_last_next.tokens)
     .concat(gr_ago_and_since.tokens).concat(gr_ddmmyyyy_and_hhmm.tokens).concat(gr_yesterday_and_tomorrow.tokens);
 
+// Persian section
+var pr_months = require('./tokens/persian/months.js');
+var pr_ago_and_since = require('./tokens/persian/ago&since.js');
+var pr_last_next = require('./tokens/persian/last&next.js');
+
+persianArray = persianArray.concat(pr_months.tokens).concat(pr_ago_and_since.tokens)
+    .concat(pr_last_next.tokens);
+
 exports.push.apply(exports, commonArray);
 exports.push.apply(exports, englishArray);
 exports.push.apply(exports, russianArray);
@@ -82,6 +91,7 @@ exports.push.apply(exports, arabicArray);
 exports.push.apply(exports, turkishArray);
 exports.push.apply(exports, spanishArray);
 exports.push.apply(exports, greekArray);
+exports.push.apply(exports, persianArray);
 
 // Return the language tokens given its code.
 // Common tokens are always returned in addition to the actual language
@@ -108,9 +118,8 @@ exports.getLangTokens = function (langCode) {
             return commonArray.concat(spanishArray);
         case 'ell':
             return commonArray.concat(greekArray);
-        // The following languages are not supported YET
         case 'pes':
-            return null;
+            return commonArray.concat(persianArray);
     }
 
     return returnLanguages;

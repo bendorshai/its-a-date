@@ -6,6 +6,7 @@ var ar_ago_and_since = require('../arabic/ago&since.js');
 var tr_ago_and_since = require('../turkish/ago&since.js');
 var sp_ago_and_since = require('../spanish/ago&since.js');
 var gr_ago_and_since = require('../greek/ago&since.js');
+var pr_ago_and_since = require('../persian/ago&since.js');
 
 exports.tokens = [
     {
@@ -50,6 +51,10 @@ exports.tokens = [
             if (isCollision(match, gr_ago_and_since, dateString, token)) {
                 return false;
             }
+            if (isCollision(match, pr_ago_and_since, dateString, token)) {
+                return false;
+            }
+
             return true;
         }
     }];
