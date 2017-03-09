@@ -7,6 +7,10 @@ Currently supporting languages:
 * English
 * Russian
 * Arabic 
+* Persian
+* Turkish
+* Greek
+* Spanish
 
 ## Installation
 
