@@ -60,8 +60,17 @@ function executeModificationsQueue(modifications, timeType, context) {
 
     var absoluteCount = counts[absolute];
 
-    if (absoluteCount >= 2) {
-        throw 'ERROR: Two or more absolute modifications are not allowed on the same date entity'
+    // More than one absolute count is allowed only if the value is the same.
+    if (absoluteCount > 1) {
+        var value = modifications[0].value;
+
+        for (var modification of modifications) {
+            if (value != modification.value) {
+                throw 'ERROR: Two or more absolute modifications are not allowed on the same date entity';
+            }
+
+            value = modification.value;
+        }
     }
 
     // If there is one absolute I want to calculate it first, so I sort by it
@@ -92,7 +101,7 @@ function executeModification(modification, timeType, context) {
                 context.date.year(value);
                 return;
             case consts.timeTypes.month:
-                context.date.month(value-1); 
+                context.date.month(value - 1);
                 return;
             case consts.timeTypes.day:
                 context.date.date(value);
@@ -115,11 +124,11 @@ function executeModification(modification, timeType, context) {
 
         context.date.add(value, momentTimeType);
     }
-}  
+}
 
 
 function modificationVerifier(affectType, timeTypes, value) {
-    
+
     // Only absolutes can be not verified
     if (affectType != absolute) {
         return true;
@@ -138,6 +147,6 @@ function modificationVerifier(affectType, timeTypes, value) {
     }
 
     if (timeTypes == consts.timeTypes.month && value > 12) {
-         throw 'ERROR: Invalid value for month';
+        throw 'ERROR: Invalid value for month';
     }
 }
