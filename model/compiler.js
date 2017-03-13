@@ -1,12 +1,12 @@
 var parser = require('./parser.js');
 var interpreter = require('./interpreter.js')
 var State = require('./state.js');
-var Tokens = require('./tokens.js');
+var tokens = require('./tokens.js');
 
 exports.getStringMatches = function (dateString, currLang) {
 
     // Attempt to find tokens based on current language
-    var languageTokens = Tokens.getLangTokens(currLang);
+    var languageTokens = tokens.getLangTokens(currLang);
 
     // Failed to get language tokens? Return null, otherwise parse by langugage tokens
     var matches = !languageTokens ? null : parser.parseLangTokens(dateString, languageTokens);

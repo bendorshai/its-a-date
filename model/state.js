@@ -62,15 +62,7 @@ function executeModificationsQueue(modifications, timeType, context) {
 
     // More than one absolute count is allowed only if the value is the same.
     if (absoluteCount > 1) {
-        var value = modifications[0].value;
-
-        for (var modification of modifications) {
-            if (value != modification.value) {
-                throw 'ERROR: Two or more absolute modifications are not allowed on the same date entity';
-            }
-
-            value = modification.value;
-        }
+        throw 'ERROR: Two or more absolute modifications are not allowed on the same date entity';
     }
 
     // If there is one absolute I want to calculate it first, so I sort by it

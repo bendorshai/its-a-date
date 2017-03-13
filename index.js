@@ -2,7 +2,7 @@ var compiler = require('./model/compiler.js');
 var tokens = require('./model/tokens.js');
 var parser = require('./model/parser.js');
 var Settings = require('./model/settings.js');
-var utils = require('./utils.js')
+var utils = require('./utils.js');
 var langDetector = require('./model/tokens/common/language_detector.js');
 
 // Init a setting object

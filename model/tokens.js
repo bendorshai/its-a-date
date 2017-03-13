@@ -2,96 +2,81 @@ var consts = require('./consts.js');
 
 module.exports = exports = [];
 
-var commonArray = [];
-var englishArray = [];
-var russianArray = [];
-var arabicArray = [];
-var turkishArray = [];
-var spanishArray = [];
-var greekArray = [];
-var persianArray = [];
-
 // Common section
-var date_and_year = require('./tokens/common/date&year.js');
-var ddmmyyyy_and_hhmm = require('./tokens/common/ddmmyyyy&hhmm.js');
-
-commonArray = commonArray.concat(date_and_year.tokens).concat(ddmmyyyy_and_hhmm.tokens);
+var commonArray = [
+    require('./tokens/common/date&year.js').tokens,
+    require('./tokens/common/ddmmyyyy&hhmm.js').tokens
+];
+commonArray = [].concat.apply([], commonArray);
 
 // English section
-var en_now = require('./tokens/english/now.js');
-var en_months = require('./tokens/english/months.js');
-var en_facebook = require('./tokens/english/facebook.js');
-var en_last_next = require('./tokens/english/last&next.js');
-var en_ago_and_since = require('./tokens/english/ago&since.js');
-var en_special_hours = require('./tokens/english/special_hours.js');
-var en_yesterday_and_tomorrow = require('./tokens/english/yesterday&tomorrow.js');
-
-englishArray = englishArray.concat(en_now.tokens).concat(en_months.tokens)
-    .concat(en_facebook.tokens).concat(en_last_next.tokens)
-    .concat(en_ago_and_since.tokens).concat(en_special_hours.tokens)
-    .concat(en_yesterday_and_tomorrow.tokens);
-
+var englishArray = [
+    require('./tokens/english/now.js').tokens,
+    require('./tokens/english/months.js').tokens,
+    require('./tokens/english/facebook.js').tokens,
+    require('./tokens/english/last&next.js').tokens,
+    require('./tokens/english/ago&since.js').tokens,
+    require('./tokens/english/special_hours.js').tokens,
+    require('./tokens/english/yesterday&tomorrow.js').tokens
+];
+englishArray = [].concat.apply([], englishArray);
 
 // Russian section
-var ru_months = require('./tokens/russian/months.js');
-var ru_last_next = require('./tokens/russian/last&next.js');
-var ru_ago_and_since = require('./tokens/russian/ago&since.js');
-var ru_yesterday_and_tomorrow = require('./tokens/russian/yesterday&tomorrow.js');
-
-russianArray = russianArray.concat(ru_months.tokens).concat(ru_last_next.tokens)
-    .concat(ru_ago_and_since.tokens).concat(ru_yesterday_and_tomorrow.tokens);
+var russianArray = [
+    require('./tokens/russian/months.js').tokens,
+    require('./tokens/russian/last&next.js').tokens,
+    require('./tokens/russian/ago&since.js').tokens,
+    require('./tokens/russian/yesterday&tomorrow.js').tokens
+];
+russianArray = [].concat.apply([], russianArray);
 
 // Arabic section
-var ar_months = require('./tokens/arabic/months.js');
-var ar_ago_and_since = require('./tokens/arabic/ago&since.js');
-var ar_last_next = require('./tokens/arabic/last&next.js');
-
-arabicArray = arabicArray.concat(ar_months.tokens).concat(ar_ago_and_since.tokens)
-    .concat(ar_last_next.tokens);
+var arabicArray = [
+    require('./tokens/arabic/months.js').tokens,
+    require('./tokens/arabic/ago&since.js').tokens,
+    require('./tokens/arabic/last&next.js').tokens
+];
+arabicArray = [].concat.apply([], arabicArray);
 
 // Turkish section
-var tr_months = require('./tokens/turkish/months.js');
-var tr_ago_and_since = require('./tokens/turkish/ago&since.js');
-var tr_yesterday_and_tomorrow = require('./tokens/turkish/yesterday&tomorrow.js');
-
-turkishArray = turkishArray.concat(tr_months.tokens).concat(tr_ago_and_since.tokens)
-    .concat(tr_yesterday_and_tomorrow.tokens);
+var turkishArray = [
+    require('./tokens/turkish/months.js').tokens,
+    require('./tokens/turkish/ago&since.js').tokens,
+    require('./tokens/turkish/yesterday&tomorrow.js').tokens
+];
+turkishArray = [].concat.apply([], turkishArray);
 
 // Spanish section
-var sp_months = require('./tokens/spanish/months.js');
-var sp_last_next = require('./tokens/spanish/last&next.js');
-var sp_ago_and_since = require('./tokens/spanish/ago&since.js');
-var sp_yesterday_and_tomorrow = require('./tokens/spanish/yesterday&tomorrow.js');
-
-spanishArray = spanishArray.concat(sp_months.tokens).concat(sp_last_next.tokens)
-    .concat(sp_ago_and_since.tokens).concat(sp_yesterday_and_tomorrow.tokens);
+var spanishArray = [
+    require('./tokens/spanish/months.js').tokens,
+    require('./tokens/spanish/last&next.js').tokens,
+    require('./tokens/spanish/ago&since.js').tokens,
+    require('./tokens/spanish/yesterday&tomorrow.js').tokens
+];
+spanishArray = [].concat.apply([], spanishArray);
 
 // Greek section
-var gr_months = require('./tokens/greek/months.js');
-var gr_last_next = require('./tokens/greek/last&next.js');
-var gr_ago_and_since = require('./tokens/greek/ago&since.js');
-var gr_ddmmyyyy_and_hhmm = require('./tokens/greek/ddmmyyyy&hhmm.js');
-var gr_yesterday_and_tomorrow = require('./tokens/greek/yesterday&tomorrow.js');
-
-greekArray = greekArray.concat(gr_months.tokens).concat(gr_last_next.tokens)
-    .concat(gr_ago_and_since.tokens).concat(gr_ddmmyyyy_and_hhmm.tokens).concat(gr_yesterday_and_tomorrow.tokens);
+var greekArray = [
+    require('./tokens/greek/months.js').tokens,
+    require('./tokens/greek/last&next.js').tokens,
+    require('./tokens/greek/ago&since.js').tokens,
+    require('./tokens/greek/ddmmyyyy&hhmm.js').tokens,
+    require('./tokens/greek/yesterday&tomorrow.js').tokens
+];
+greekArray = [].concat.apply([], greekArray);
 
 // Persian section
-var pr_months = require('./tokens/persian/months.js');
-var pr_ago_and_since = require('./tokens/persian/ago&since.js');
-var pr_last_next = require('./tokens/persian/last&next.js');
+var persianArray = [
+    require('./tokens/persian/months.js').tokens,
+    require('./tokens/persian/ago&since.js').tokens,
+    require('./tokens/persian/last&next.js').tokens
+];
+persianArray = [].concat.apply([], persianArray);
 
-persianArray = persianArray.concat(pr_months.tokens).concat(pr_ago_and_since.tokens)
-    .concat(pr_last_next.tokens);
-
-exports.push.apply(exports, commonArray);
-exports.push.apply(exports, englishArray);
-exports.push.apply(exports, russianArray);
-exports.push.apply(exports, arabicArray);
-exports.push.apply(exports, turkishArray);
-exports.push.apply(exports, spanishArray);
-exports.push.apply(exports, greekArray);
-exports.push.apply(exports, persianArray);
+var merged = [commonArray, englishArray, russianArray, arabicArray,
+    turkishArray, spanishArray, greekArray, persianArray];
+merged = [].concat.apply([], merged);
+exports.push.apply(exports, merged);
 
 // Return the language tokens given its code.
 // Common tokens are always returned in addition to the actual language
