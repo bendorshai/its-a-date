@@ -54,5 +54,14 @@ test('Turkish dates tests', t => {
         t.equal(parse('Bugün saat 9:32 AM').getHours(), 9);
     });
 
+    // These tests are tricky and require manual check 
+    parse('15:15 de son pazar');
+    parse('Pazartesi günü saat 15.15\'te');
+    parse('Geçen salı, 15: 15\'te');
+    parse('Son çarşamba, saat 15.15\'te');
+    parse('Son perşembe günü saat 15.15\'te');
+    parse('Son cuma akşam 15: 15\'te');
+    parse('Son cumartesi 15: 15\'te');
+
     t.end();
 });

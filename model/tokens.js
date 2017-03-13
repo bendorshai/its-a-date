@@ -34,7 +34,7 @@ russianArray = [].concat.apply([], russianArray);
 var arabicArray = [
     require('./tokens/arabic/months.js').tokens,
     require('./tokens/arabic/ago&since.js').tokens,
-    require('./tokens/arabic/last&next.js').tokens
+    require('./tokens/arabic/last&next.js').tokens,
 ];
 arabicArray = [].concat.apply([], arabicArray);
 
@@ -42,7 +42,8 @@ arabicArray = [].concat.apply([], arabicArray);
 var turkishArray = [
     require('./tokens/turkish/months.js').tokens,
     require('./tokens/turkish/ago&since.js').tokens,
-    require('./tokens/turkish/yesterday&tomorrow.js').tokens
+    require('./tokens/turkish/last&next.js').tokens,
+    require('./tokens/turkish/yesterday&tomorrow.js').tokens,
 ];
 turkishArray = [].concat.apply([], turkishArray);
 
