@@ -10,6 +10,12 @@ test('alternative settings day', t => {
     t.end();
 });
 
+test('normal settings day', t => {
+    const actual = parse("11/1/1990", { 'day_before_month': true }).getDate();
+    t.equal(actual, 11);
+    t.end();
+});
+
 test('GMT Tests', t => {
     var date = new Date();
     var ilNow = parse("now");

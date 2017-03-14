@@ -7,34 +7,25 @@ exports.push.apply(exports, languageManager.getAllTokens());
 // Return the language tokens given its code.
 // Common tokens are always returned in addition to the actual language
 exports.getLangTokens = function (langCode) {
-    var commonArray = [].concat.apply([], languageManager.getCommonTokens());
-
     // English - eng, Arabic - urd, Russian - rus, Greek - ell, Persian - pes, Spanish - spa, Turkish - tur
     switch (langCode) {
         // Undefined
         case 'und':
             return exports;
         case 'eng':
-            var englishArray = [].concat.apply([], languageManager.getEnglishTokens());
-            return commonArray.concat(englishArray);
+            return languageManager.getEnglishTokens();
         case 'urd':
-            var arabicArray = [].concat.apply([], languageManager.getArabicTokens());
-            return commonArray.concat(arabicArray);
+            return languageManager.getArabicTokens();
         case 'rus':
-            var russianArray = [].concat.apply([], languageManager.getRussianTokens());
-            return commonArray.concat(russianArray);
+            return languageManager.getRussianTokens();
         case 'tur':
-            var turkishArray = [].concat.apply([], languageManager.getTurkishTokens());
-            return commonArray.concat(turkishArray);
+            return languageManager.getTurkishTokens();
         case 'spa':
-            var spanishArray = [].concat.apply([], languageManager.getSpanishTokens());
-            return commonArray.concat(spanishArray);
+            return languageManager.getSpanishTokens();
         case 'ell':
-            var greekArray = [].concat.apply([], languageManager.getGreekTokens());
-            return commonArray.concat(greekArray);
+            return languageManager.getGreekTokens();
         case 'pes':
-            var persianArray = [].concat.apply([], languageManager.getPersianTokens());
-            return commonArray.concat(persianArray);
+            return languageManager.getPersianTokens();
     }
 
     return returnLanguages;

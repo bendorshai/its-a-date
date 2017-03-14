@@ -1,5 +1,4 @@
 var consts = require('../../consts.js');
-var gr_ddmmyyy = require('../greek/ddmmyyyy&hhmm');
 
 exports.tokens = [{
     example: '11.1.1990',
@@ -67,7 +66,8 @@ exports.tokens = [{
                 // Third capture group
                 {
                     timeType: consts.timeTypes.year,
-                    affectType: consts.reltivity.absolute
+                    affectType: consts.reltivity.absolute,
+                    value: year
                 }]
 
         }
@@ -126,15 +126,6 @@ exports.tokens = [{
     example: '1:55pm',
     category: 'ddmmyyyy & hhmm',
     regex: /(?:^|\b)(\d{1,2}):(\d{1,2})(?::\d{1,2})?\s*(am|pm)?(?:$|\b)/,
-    // only if verifier returns true the affects take place
-    // Verify that this number doesn't relate to 'ago', example: '4 days ago', 4 is not the number of the date
-    verifier: overrideVerifier = function (match, dateString, state, settings, token) {
-
-        if (isOverride(match, gr_ddmmyyy, dateString)) {
-            return false;
-        }
-        return true;
-    },
     variables: {
         hour: 1,
         minute: 2,
@@ -162,17 +153,3 @@ exports.tokens = [{
             }]
     }
 }];
-
-// The function checks whether override variable is used and there's a match.
-// If both conditions are met then the common ddmmyyyy regex should NOT be used
-function isOverride(match, multiLangDdmmyyyy, dateString) {
-    var index = 0;
-    var override = multiLangDdmmyyyy.tokens[index].override;
-    var match = multiLangDdmmyyyy.tokens[index].regex.exec(dateString);
-
-    if (override && match) {
-        return true;
-    }
-
-    return false;
-}

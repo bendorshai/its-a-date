@@ -31,10 +31,10 @@ var commonTokens = [
     require('./tokens/common/ddmmyyyy&hhmm.js').tokens
 ];
 exports.getCommonTokens = function () {
-    return commonTokens;
+    return [].concat.apply([], commonTokens);
 }
 
-var englishtokens = [
+var englishTokens = [
     require('./tokens/english/now.js').tokens,
     require('./tokens/english/months.js').tokens,
     require('./tokens/english/facebook.js').tokens,
@@ -44,7 +44,8 @@ var englishtokens = [
     require('./tokens/english/yesterday&tomorrow.js').tokens
 ];
 exports.getEnglishTokens = function () {
-    return englishtokens;
+    var englishArray = [].concat.apply([], englishTokens);
+    return this.getCommonTokens().concat(englishArray);
 }
 
 var russianTokens = [
@@ -54,7 +55,8 @@ var russianTokens = [
     require('./tokens/russian/yesterday&tomorrow.js').tokens
 ];
 exports.getRussianTokens = function () {
-    return russianTokens;
+    var russianArray = [].concat.apply([], russianTokens);
+    return this.getCommonTokens().concat(russianArray);
 }
 
 var arabicTokens = [
@@ -63,7 +65,8 @@ var arabicTokens = [
     require('./tokens/arabic/last&next.js').tokens,
 ];
 exports.getArabicTokens = function () {
-    return arabicTokens;
+    var arabicArray = [].concat.apply([], arabicTokens);
+    return this.getCommonTokens().concat(arabicArray);
 }
 
 var turkishTokens = [
@@ -73,7 +76,8 @@ var turkishTokens = [
     require('./tokens/turkish/yesterday&tomorrow.js').tokens,
 ];
 exports.getTurkishTokens = function () {
-    return turkishTokens;
+    var turkishArray = [].concat.apply([], turkishTokens);
+    return this.getCommonTokens().concat(turkishArray);
 }
 
 var spanishTokens = [
@@ -83,7 +87,8 @@ var spanishTokens = [
     require('./tokens/spanish/yesterday&tomorrow.js').tokens
 ];
 exports.getSpanishTokens = function () {
-    return spanishTokens;
+    var spanishArray = [].concat.apply([], spanishTokens);
+    return this.getCommonTokens().concat(spanishArray);
 }
 
 var greekTokens = [
@@ -94,7 +99,20 @@ var greekTokens = [
     require('./tokens/greek/yesterday&tomorrow.js').tokens
 ];
 exports.getGreekTokens = function () {
-    return greekTokens;
+    var commonTokens = this.getCommonTokens();
+
+    // In Greek language we'd like to use its own file and not the common one
+    for (var i = 0; i < commonTokens.length; i++) {
+        var currentRegex = commonTokens[i].regex;
+        var matchIndex = currentRegex.source.indexOf("am|pm");
+
+        if (matchIndex && matchIndex != -1) {
+            commonTokens.splice(i,1);
+        }
+    }
+
+    var greekArray = [].concat.apply([], greekTokens);
+    return commonTokens.concat(greekArray);
 }
 
 var persianTokens = [
@@ -103,21 +121,14 @@ var persianTokens = [
     require('./tokens/persian/last&next.js').tokens
 ];
 exports.getPersianTokens = function () {
-    return persianTokens;
+    var persianArray = [].concat.apply([], persianTokens);
+    return this.getCommonTokens().concat(persianArray);
 }
 
 exports.getAllTokens = function () {
-    var commonArray = [].concat.apply([], this.getCommonTokens());
-    var englishArray = [].concat.apply([], this.getEnglishTokens());
-    var russianArray = [].concat.apply([], this.getRussianTokens());
-    var arabicArray = [].concat.apply([], this.getArabicTokens());
-    var turkishArray = [].concat.apply([], this.getTurkishTokens());
-    var spanishArray = [].concat.apply([], this.getSpanishTokens());
-    var greekArray = [].concat.apply([], this.getGreekTokens());
-    var persianArray = [].concat.apply([], this.getPersianTokens());
-
-    var merged = [commonArray, englishArray, russianArray, arabicArray,
-        turkishArray, spanishArray, greekArray, persianArray];
+    var merged = [commonTokens, englishTokens, russianTokens, arabicTokens,
+        turkishTokens, spanishTokens, greekTokens, persianTokens];
+    merged = [].concat.apply([], merged);
     merged = [].concat.apply([], merged);
 
     return merged;
@@ -137,5 +148,6 @@ exports.getAllAgoAndSince = function () {
 }
 
 exports.getSupportedLangCodes = function () {
+    // English - eng, Arabic - urd, Russian - rus, Greek - ell, Persian - pes, Spanish - spa, Turkish - tur
     return ['eng', 'urd', 'rus', 'ell', 'pes', 'spa', 'tur'];
 }

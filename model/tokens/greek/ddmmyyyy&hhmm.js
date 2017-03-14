@@ -2,8 +2,6 @@ var consts = require('../../consts.js');
 
 exports.tokens = [
     {
-        // Override means - do you use the common one, but this one instead
-        override: true,
         example: '1:55pm',
         category: 'ddmmyyyy & hhmm',
         regex: /(?:^|\b)(\d{1,2})[:\.](\d{1,2})(?::\d{1,2})?\s*(πμ|μμ|π\.μ\.|μ\.μ\.)/,
