@@ -1,5 +1,5 @@
 var consts = require('./consts.js');
-var _ = require('underscore');
+var _ = require('lodash');
 var moment = require('moment');
 
 const absolute = consts.reltivity.absolute;

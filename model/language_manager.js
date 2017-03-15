@@ -1,5 +1,5 @@
 const concatArray = require('../utils.js').concatArray;
-const _ = require('underscore');
+const _ = require('lodash');
 const franc = require('franc');
 
 // Public section
