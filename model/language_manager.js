@@ -155,6 +155,3 @@ exports.detect = function (dateString) {
 function concatArray(array) {
     return [].concat.apply([], array);
 }
-function clone(obj) {
-    return JSON.parse(JSON.stringify(obj));
-}
