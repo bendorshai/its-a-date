@@ -1,5 +1,5 @@
 var consts = require('./consts.js');
-var languageManager = require('./languageManager.js');
+var languageManager = require('./language_manager.js');
 
 module.exports = exports = [];
 exports.push.apply(exports, languageManager.getAllTokens());

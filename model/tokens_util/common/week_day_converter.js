@@ -1,6 +1,6 @@
 var consts = require('../../consts.js');
 var utils = require('../../../utils.js')
-var languageManager = require('../../languageManager.js');
+var languageManager = require('../../language_manager.js');
 
 var dayConvertors = languageManager.getDayConvertors();
 

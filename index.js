@@ -3,7 +3,7 @@ var tokens = require('./model/tokens.js');
 var parser = require('./model/parser.js');
 var Settings = require('./model/settings.js');
 var utils = require('./utils.js');
-var langDetector = require('./model/tokens/common/language_detector.js');
+var langManager = require('./model/language_manager.js');
 
 // Init a setting object
 var settings = new Settings();
@@ -100,7 +100,7 @@ function getStringMatches(dateString) {
     var langMatches = [];
 
     // Detect string's language
-    var languagesDetected = langDetector.detect(dateString);
+    var languagesDetected = langManager.detect(dateString);
 
     for (var i = 0; i < languagesDetected.length; i++) {
         var currLang = languagesDetected[i];

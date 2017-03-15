@@ -1,6 +1,6 @@
 var _ = require('underscore');
 var consts = require('../../consts.js');
-var languageManager = require('../../languageManager.js');
+var languageManager = require('../../language_manager.js');
 
 exports.tokens = [
     {
