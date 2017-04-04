@@ -29,3 +29,6 @@ exports.translate = function(word, translators) {
     return undefined;
 }
    
+exports.concatArray = function (array) {
+    return [].concat.apply([], array);
+}

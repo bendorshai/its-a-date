@@ -1,4 +1,4 @@
-var _ = require('underscore');
+var _ = require('lodash');
 var consts = require('../../consts.js');
 var languageManager = require('../../language_manager.js');
 

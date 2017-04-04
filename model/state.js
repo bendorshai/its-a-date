@@ -1,5 +1,5 @@
 var consts = require('./consts.js');
-var _ = require('underscore');
+var _ = require('lodash');
 var moment = require('moment');
 
 const absolute = consts.reltivity.absolute;
@@ -53,7 +53,7 @@ function executeModificationsQueue(modifications, timeType, context) {
     }
 
     // Count the absolute affect types (allowed between 1-0)
-    var affectTypes = _.pluck(modifications, 'affectType');
+    var affectTypes = _.map(modifications, 'affectType');
     var counts = _.countBy(affectTypes, function (type) {
         return type == absolute ? absolute : 'other';
     });
