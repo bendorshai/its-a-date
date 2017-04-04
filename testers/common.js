@@ -4,6 +4,18 @@ const parse = itsadate.parse;
 const settings = itsadate.settings;
 const moment = require('moment');
 
+test('month and year only', t => {
+    actual = parse("11/1990").getMonth();
+    t.equal(actual, 10);
+
+    actual = parse("08/2021").getMonth();
+    t.equal(actual, 7);
+
+    actual = parse("08/2021").getFullYear();
+    t.equal(actual, 2021);
+    t.end();
+});
+
 test('alternative settings day', t => {
     const actual = parse("11/1/1990", { 'day_before_month': false }).getDate();
     t.equal(actual, 1);
