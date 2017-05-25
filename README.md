@@ -87,7 +87,7 @@ itsadate.parse("11/1/1990");
 ```
 
 ```js
-// Don't allow its-a-date to guess any other format then specified (day MUST be before month or vise-versa)
+// Don't allow its-a-date to guess any other format than specified (day MUST be before month or vise-versa)
 itsadate.settings({'strict':true});
 ```
 
