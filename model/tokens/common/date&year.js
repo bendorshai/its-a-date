@@ -2,15 +2,35 @@ var _ = require('lodash');
 var consts = require('../../consts.js');
 var languageManager = require('../../language_manager.js');
 
+var ddmmyyyy_and_hhmm = require('./ddmmyyyy&hhmm.js');
+
+var fullDateTokens = [
+    ddmmyyyy_and_hhmm.tokens[0],
+    ddmmyyyy_and_hhmm.tokens[1],
+    ddmmyyyy_and_hhmm.tokens[2]];
+
 exports.tokens = [
     {
         example: '1945',
         category: 'year & date',
-        regex: /(?:^|[\s,])(\d{4})(?:$|[\s,])/,
+        regex: /(?:^|[\s,])(\d{4})(?:$|[\s,.])/,
         affects: [{
             timeType: consts.timeTypes.year,
             affectType: consts.reltivity.absolute
-        }]
+        }],
+        // Make sure there is no collision with (example) 12.4.2017
+        verifier: function (match, dateString, state, settings, token) {
+
+            for (var token of fullDateTokens) {
+                var match = token.regex.exec(dateString);
+
+                if (match) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
     },
     {
         example: '1st',

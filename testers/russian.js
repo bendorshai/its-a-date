@@ -120,3 +120,11 @@ test('Russian dates tests', t => {
 
     t.end();
 });
+
+
+test('Russian dates tests', t => {
+
+    t.equal(parse('август 30, 2006.').getFullYear(), 2006, 'Recent bugs');
+
+    t.end();
+});
