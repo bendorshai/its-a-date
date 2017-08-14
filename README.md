@@ -11,6 +11,7 @@ Currently supporting languages:
 * Turkish
 * Greek
 * Spanish
+* French
 
 ## Installation
 
