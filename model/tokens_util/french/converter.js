@@ -7,37 +7,37 @@ Note: Keep in mind that the values start from 0
 exports.dayOfWeekToNum = function (day) {
 
     // Sunday conventions
-    if (day == 'dimanche' || day == 'Dimanche') {
+    if (day == 'dimanche') {
         return 0;
     }
 
     // Monday conventions
-    if (day == 'lundi' || day == 'Lundi') {
+    if (day == 'lundi') {
         return 1;
     }
 
     // Tuesday conventions
-    if (day == 'mardi' || day == 'Mardi') {
+    if (day == 'mardi') {
         return 2;
     }
 
     // Wednesday conventions
-    if (day == 'mercredi' || day == 'Mercredi') {
+    if (day == 'mercredi') {
         return 3;
     }
 
     // Thursday conventions
-    if (day == 'jeudi' || day == 'Jeudi') {
+    if (day == 'jeudi') {
         return 4;
     }
 
     // Friday conventions
-    if (day == 'vendredi' || day == 'Vendredi') {
+    if (day == 'vendredi') {
         return 5;
     }
 
     // Saturday conventions
-    if (day == 'samedi' || day == 'Samedi') {
+    if (day == 'samedi') {
         return 6;
     }
 
