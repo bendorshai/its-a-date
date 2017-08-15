@@ -26,6 +26,8 @@ exports.getLangTokens = function (langCode) {
             return languageManager.getGreekTokens();
         case 'pes':
             return languageManager.getPersianTokens();
+        case 'fra':
+            return languageManager.getFrenchTokens();
     }
 
     return returnLanguages;
