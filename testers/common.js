@@ -4,6 +4,7 @@ const parse = itsadate.parse;
 const settings = itsadate.settings;
 const moment = require('moment');
 
+
 test('month and year only', t => {
     actual = parse("11/1990").getMonth();
     t.equal(actual, 10);
@@ -93,6 +94,12 @@ test('Doron test', t => {
 test('auto hint switch', t => {
     // Doesn't work according to day_before_month hint, but because it is not in strict mode, it will try the other way around
     t.equal(parse('2016-09-21').getDate(), 21);
+    t.end();
+});
+
+test('h&m', t => {
+    t.equal(parse('15:00').getHours(), parse('15:00 1h').getHours() + 1);
+    t.equal(parse('15:50').getMinutes(), parse('15:50 25m').getMinutes() + 25);
     t.end();
 });
 
