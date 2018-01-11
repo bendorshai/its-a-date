@@ -129,7 +129,8 @@ var dayConvertors = [
 
 var commonTokens = [
     require('./tokens/common/date&year.js').tokens,
-    require('./tokens/common/ddmmyyyy&hhmm.js').tokens
+    require('./tokens/common/ddmmyyyy&hhmm.js').tokens,
+    require('./tokens/common/h&m.js').tokens
 ];
 
 var englishTokens = [
