@@ -7,7 +7,8 @@ var ddmmyyyy_and_hhmm = require('./ddmmyyyy&hhmm.js');
 var fullDateTokens = [
     ddmmyyyy_and_hhmm.tokens[0],
     ddmmyyyy_and_hhmm.tokens[1],
-    ddmmyyyy_and_hhmm.tokens[2]];
+    ddmmyyyy_and_hhmm.tokens[2]
+];
 
 exports.tokens = [
     {
@@ -43,19 +44,56 @@ exports.tokens = [
         variables: {
             day: 1
         },
-        // only if verifier returns true the affects take place
-        // Verify that this number doesn't relate to 'ago', example: '4 days ago', 4 is not the number of the date
-        verifier: agoSinceMulitLanguageVerifier = function (match, dateString, state, settings, token) {
-            var allAgoAndSince = languageManager.getAllAgoAndSince();
-
-            for (var agoAndSince of allAgoAndSince) {
-                if (isCollision(match, agoAndSince, dateString, token)) {
-                    return false;
-                }
-            }
-            return true;
+        // Note: only if verifier returns true the affects take place
+        verifier: function (match, dateString, state, settings, token) {
+            
+            /* We want to verify 2 things:
+                1. The number doesn't relate to 'ago', example: '4 days ago', 4 is not the number of the date
+                2. The date description contains a month token
+            */
+            
+            return conatinsMonthToken(dateString) && 
+                !relatesToRelativeDescription(dateString, match, token);
         }
     }];
+
+/**
+ * Example: 
+ * 25 may => true
+ * 26 weeks => false
+ * @param {*} dateString 
+ */
+function conatinsMonthToken(dateString) {
+
+    for (const monthToken of languageManager.allMonthTokens)
+    {
+        if (monthToken.regex.exec(dateString)) {
+            
+            // Found month token!
+            return true;
+        }
+    }
+
+    return false;
+}
+
+/**
+ * 25 may => false
+ * 25 weeks ago => true
+ * @param {*} dateString 
+ */
+function relatesToRelativeDescription(dateString, match, token) {
+
+    var allAgoAndSince = languageManager.getAllAgoAndSince();
+
+    for (var agoAndSince of allAgoAndSince) {
+        if (isCollision(match, agoAndSince, dateString, token)) {
+            return true;
+        }
+    }
+
+    return false;
+}
 
 // Return true if there is absolute collision, for example: ago token matched in a certain language
 function isCollision(match, multiLanguageAgoAndSince, dateString, token) {

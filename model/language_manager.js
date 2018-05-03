@@ -77,6 +77,7 @@ exports.getAllTokens = function () {
     return merged;
 }
 
+// TODO: why not return a single array?
 exports.getAllAgoAndSince = function () {
     return [
         require('./tokens/english/ago&since.js'),
@@ -89,6 +90,18 @@ exports.getAllAgoAndSince = function () {
         require('./tokens/french/ago&since.js')
     ];
 }
+
+// TODO: put flags in tokens and then select them dinamicly?
+exports.allMonthTokens = concatArray([
+    require('./tokens/english/months.js').tokens,
+    require('./tokens/russian/months.js').tokens,
+    require('./tokens/arabic/months.js').tokens,
+    require('./tokens/turkish/months.js').tokens,
+    require('./tokens/spanish/months.js').tokens,
+    require('./tokens/greek/months.js').tokens,
+    require('./tokens/persian/months.js').tokens,
+    require('./tokens/french/months.js').tokens
+]);
 
 exports.getSupportedLangCodes = function () {
     // English - eng, Arabic - urd, Russian - rus, Greek - ell, 

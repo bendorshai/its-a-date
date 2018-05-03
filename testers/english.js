@@ -85,6 +85,12 @@ test('English dates tests', t => {
 		t.equal(parse("1 week ago").getDate(), m.add(-7, 'd').date());
 	});
 
+	t.equal(parse("date of: 5 days and 3 minutes before 6/4/2017 20:05").getDate(), 
+		parse("01/04/2017 20:02").getDate());
+	
+	t.equal(parse("minutes of: 5 days and 3 minutes before 6/4/2017 20:05").getMinutes(), 
+		parse("01/04/2017 20:02").getMinutes());
+
 	t.equal(parse("askdjasd"), undefined, 'undefined');
 	t.equal(parse('1st of november 02/03/2000'), undefined, 'conflict');
 
@@ -157,6 +163,9 @@ test('English dates tests', t => {
 	t.equal(parse('2 years before 11/1/1990').getFullYear(), 1988, '2 year before 11/1/1990');
 
 	t.equal(parse('1/1/1990 at midnight').getHours(), 0, 'Midnight');
+
+
+
 
 	t.end();
 });
