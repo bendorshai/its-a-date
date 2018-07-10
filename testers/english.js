@@ -164,8 +164,9 @@ test('English dates tests', t => {
 
 	t.equal(parse('1/1/1990 at midnight').getHours(), 0, 'Midnight');
 
-
-
+	t.equal(parse("03-Jun-2018").getMonth(), 5, 'month ddmmytyyy eng');
+	t.equal(parse("03-Jun-2018").getDate(), 3, 'day ddmmytyyy eng');
+	t.equal(parse("03-Jun-2018").getFullYear(), 2018, 'year ddmmytyyy eng');
 
 	t.end();
 });
