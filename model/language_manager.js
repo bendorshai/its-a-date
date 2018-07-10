@@ -153,7 +153,8 @@ var englishTokens = [
     require('./tokens/english/last&next.js').tokens,
     require('./tokens/english/ago&since.js').tokens,
     require('./tokens/english/special_hours.js').tokens,
-    require('./tokens/english/yesterday&tomorrow.js').tokens
+    require('./tokens/english/yesterday&tomorrow.js').tokens,
+    require('./tokens/english/ddmmyyyy&hhmm.js').tokens 
 ];
 
 var russianTokens = [
