@@ -14,7 +14,7 @@ exports.tokens = [
     {
         example: '1945',
         category: 'year & date',
-        regex: /(?:^|[\s,])(\d{4})(?:$|[\s,.])/,
+        regex: /(?:^|[\s,])(\d{4})(?:$|[\s年,.])/,
         affects: [{
             timeType: consts.timeTypes.year,
             affectType: consts.reltivity.absolute
@@ -36,7 +36,7 @@ exports.tokens = [
     {
         example: '1st',
         category: 'year & date',
-        regex: /(?:^|\s)(\d{1,2})(?:th|st|nd|rd)?(?:$|\s|,)/,
+        regex: /(?:^|\s|-)(\d{1,2})(?:th|st|nd|rd|日)?(?:$|\s|,)/,
         affects: [{
             timeType: consts.timeTypes.day,
             affectType: consts.reltivity.absolute

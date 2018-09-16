@@ -1,7 +1,7 @@
 {
   "name": "its-a-date",
   "description": "A Natural Language Date Description Processor",
-  "version": "1.2.8",
+  "version": "1.2.9",
   "main": "index.js",
   "scripts": {
     "test": "tape test.js | tap-min"
@@ -16,6 +16,11 @@
       "name": "Or Bergman",
       "email": "orbergman9@gmail.com",
       "url": "https://github.com/bbbergman/"
+    },
+    {
+      "name": "Yonatan Perel",
+      "email": "yonatanpe27@gmail.com",
+      "url": "https://github.com/YonatanPerel"
     },
     {
       "name": "Shahar Katz",
@@ -42,8 +47,8 @@
   "license": "ISC",
   "dependencies": {
     "franc": "^2.0.0",
-    "lodash": "^4.17.4",
-    "moment": "2.14.1"
+    "lodash": "^4.17.11",
+    "moment": "^2.14.1"
   },
   "keywords": [
     "date",
