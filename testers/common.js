@@ -103,6 +103,16 @@ test('h&m', t => {
     t.end();
 });
 
+test('Chenese Hack', t => {
+
+    var d = parse('2017年-Apr-25日 13:22');
+
+    t.equal(d.getDate(), 25);
+    t.equal(d.getMonth(), 3);
+    t.equal(d.getFullYear(), 2017);
+    t.end();
+});
+
 exports.wrapper = function (description, fn) {
     test(description, t => {
         const m = setup();
