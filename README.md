@@ -160,6 +160,3 @@ interpret them as modifications on the perceived date.
 
 https://github.com/bendorshai/its-a-date
 
-## How it works?
-
-Read the [post](http://edge64.net/?p=21) I wrote about this project
