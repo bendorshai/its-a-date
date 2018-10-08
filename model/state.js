@@ -86,7 +86,7 @@ function executeModification(modification, timeType, context) {
     // Throw exception if there is an error
     modificationVerifier(modification.affectType, timeType, value);
 
-    // If avsolute
+    // If absolute
     if (modification.affectType == absolute) {
         switch (timeType) {
             case consts.timeTypes.year:
@@ -130,7 +130,7 @@ function modificationVerifier(affectType, timeTypes, value) {
         throw 'ERROR: Invalid value for minutes';
     }
 
-    if (timeTypes == consts.timeTypes.hour && value > 60) {
+    if (timeTypes == consts.timeTypes.hour && value > 60) { // Q: WHY ARE HOURS LIMITED TO 60 AND NOT 24?
         throw 'ERROR: Invalid value for hours';
     }
 

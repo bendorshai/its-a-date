@@ -5,7 +5,7 @@ exports.tokens = [
         // january
         example: 'enero',
         category: 'months',
-        regex: /(^|\b)(enero)(\b|$)/,
+        regex: /(^|\b)(ene|enero)(\b|$)/,
         affects: [{
             timeType: consts.timeTypes.month,
             affectType: consts.reltivity.absolute,
@@ -16,7 +16,7 @@ exports.tokens = [
         // february
         example: 'febrero',
         category: 'months',
-        regex: /(^|\b)(febrero)(\b|$)/,
+        regex: /(^|\b)(feb|febrero)(\b|$)/,
         affects: [{
             timeType: consts.timeTypes.month,
             affectType: consts.reltivity.absolute,
@@ -27,7 +27,7 @@ exports.tokens = [
         // march
         example: 'marzo',
         category: 'months',
-        regex: /(^|\b)(marzo)(\b|$)/,
+        regex: /(^|\b)(mar|marzo)(\b|$)/,
         affects: [{
             timeType: consts.timeTypes.month,
             affectType: consts.reltivity.absolute,
@@ -38,7 +38,7 @@ exports.tokens = [
         // april
         example: 'abril',
         category: 'months',
-        regex: /(^|\b)(abril)(\b|$)/,
+        regex: /(^|\b)(abr|abril)(\b|$)/,
         affects: [{
             timeType: consts.timeTypes.month,
             affectType: consts.reltivity.absolute,
@@ -49,7 +49,7 @@ exports.tokens = [
         // may
         example: 'mayo',
         category: 'months',
-        regex: /(^|\b)(mayo)(\b|$)/,
+        regex: /(^|\b)(may|mayo)(\b|$)/,
         affects: [{
             timeType: consts.timeTypes.month,
             affectType: consts.reltivity.absolute,
@@ -60,7 +60,7 @@ exports.tokens = [
         // june
         example: 'junio',
         category: 'months',
-        regex: /(^|\b)(junio)(\b|$)/,
+        regex: /(^|\b)(jun|junio)(\b|$)/,
         affects: [{
             timeType: consts.timeTypes.month,
             affectType: consts.reltivity.absolute,
@@ -71,7 +71,7 @@ exports.tokens = [
         // july
         example: 'julio',
         category: 'months',
-        regex: /(^|\b)(julio)(\b|$)/,
+        regex: /(^|\b)(jul|julio)(\b|$)/,
         affects: [{
             timeType: consts.timeTypes.month,
             affectType: consts.reltivity.absolute,
@@ -82,7 +82,7 @@ exports.tokens = [
         // august
         example: 'agosto',
         category: 'months',
-        regex: /(^|\b)(agosto)(\b|$)/,
+        regex: /(^|\b)(ago|agosto)(\b|$)/,
         affects: [{
             timeType: consts.timeTypes.month,
             affectType: consts.reltivity.absolute,
@@ -93,7 +93,7 @@ exports.tokens = [
         // september
         example: 'septiembre',
         category: 'months',
-        regex: /(^|\b)(septiembre)(\b|$)/,
+        regex: /(^|\b)(sep|septiembre)(\b|$)/,
         affects: [{
             timeType: consts.timeTypes.month,
             affectType: consts.reltivity.absolute,
@@ -104,7 +104,7 @@ exports.tokens = [
         // october
         example: 'octubre',
         category: 'months',
-        regex: /(^|\b)(octubre)(\b|$)/,
+        regex: /(^|\b)(oct|octubre)(\b|$)/,
         affects: [{
             timeType: consts.timeTypes.month,
             affectType: consts.reltivity.absolute,
@@ -115,7 +115,7 @@ exports.tokens = [
         // november
         example: 'noviembre',
         category: 'months',
-        regex: /(^|\b)(noviembre)(\b|$)/,
+        regex: /(^|\b)(nov|noviembre)(\b|$)/,
         affects: [{
             timeType: consts.timeTypes.month,
             affectType: consts.reltivity.absolute,
@@ -126,7 +126,7 @@ exports.tokens = [
         // december
         example: 'diciembre',
         category: 'months',
-        regex: /(^|\b)(diciembre)(\b|$)/,
+        regex: /(^|\b)(dic|diciembre)(\b|$)/,
         affects: [{
             timeType: consts.timeTypes.month,
             affectType: consts.reltivity.absolute,

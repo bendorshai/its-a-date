@@ -39,7 +39,7 @@ exports.executeToken = function (token, dateString, state, settings) {
         if (affect.value != undefined) {
             calculatedValue = affect.value;
         }
-        // Otherwise use, what's captured
+        // Otherwise use what's captured
         else {
             calculatedValue = match[captureGroup];
             captureGroup++;

@@ -9,6 +9,10 @@ exports.tokens = [
         // 4 weeks ago
         // 4 weeks and 3 days ago
         regex: /(?:\b|^)(\d+)\s+(day|month|year|week|hour|minute)s?\s+(and\s+(\d+)\s+(day|month|year|week|hour|minute)s?\s+)?(?:ago|before)(?:\b|$)/,
+        variables: {
+            value: 1,
+            timeType: 2
+        },
         affectsGenerator: function (match) {
 
             // Group Indexes

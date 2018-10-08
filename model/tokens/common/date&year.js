@@ -105,7 +105,7 @@ function isCollision(match, multiLanguageAgoAndSince, dateString, token) {
 
     // If in this langauge there is a definition for "AGO"
     if (multiLanguageAgoAndSince.tokens[AGO]) {
-        // If it maches
+        // If it matches
         collisionMatch[AGO] = multiLanguageAgoAndSince.tokens[AGO].regex.exec(dateString);
     }
     // If in this langauge there is a definition for "Since"

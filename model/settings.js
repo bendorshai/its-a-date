@@ -65,7 +65,7 @@ function traverseSettingByNameRecursive(name, settings, value) {
         // If current property is traversable
         if(settings.propertyIsEnumerable(key) && typeof(settings) == 'object') {
             
-            // Traverse trhough it
+            // Traverse through it
             var setting = traverseSettingByNameRecursive(name, settings[key], value);
 
             // If we got answer return it
