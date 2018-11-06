@@ -113,7 +113,7 @@ exports.tokens = [
     {
         example: '1990.1.11',
         category: 'ddmmyyyy & hhmm',
-        regex: /(?:^|\b)(\d{4})[\u2027\/\\.-](\d{1,2})[\u2027\/\\.-](\d{1,2})(?:$|\b)/,
+        regex: /(?:^|\b)(\d{4})[\u2027\/\\.年-](\d{1,2})[\u2027\/\\.月日-](\d{1,2})[月日]?(?:$|\b)/,
         affectsGenerator: function (match, settings) {
 
             var day_before_month = settings.get('day_before_month');
