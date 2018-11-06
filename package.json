@@ -1,7 +1,7 @@
 {
   "name": "its-a-date",
   "description": "A Natural Language Date Description Processor",
-  "version": "1.2.10",
+  "version": "1.2.11",
   "main": "index.js",
   "scripts": {
     "test": "tape test.js | tap-min"
@@ -38,6 +38,10 @@
     {
       "name": "Doron Brikman",
       "url": "https://github.com/doronbrikman"
+    },
+    {
+      "name": "Yaron Leiby",
+      "url": "https://github.com/norayz"
     }
   ],
   "repository": {
