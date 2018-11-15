@@ -9,7 +9,7 @@ exports.arabicToEnglish = function (arabicConvention) {
     }
 
     // Day conventions
-    if (arabicConvention == 'ثانية') {
+    if (arabicConvention == 'ثانية' || arabicConvention == "يوم") {
         return consts.timeTypes[consts.timeTypes.day];
     }
 
