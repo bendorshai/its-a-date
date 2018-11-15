@@ -50,8 +50,8 @@
   },
   "license": "ISC",
   "dependencies": {
-    "franc": "^2.0.0",
-    "lodash": "^4.17.11",
+    "franc": "2.0.0",
+    "lodash": "4.17.11",
     "moment": "2.14.1"
   },
   "keywords": [
