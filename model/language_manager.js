@@ -110,10 +110,16 @@ exports.getSupportedLangCodes = function () {
 }
 
 exports.detect = function (dateString) {
-    return franc.all(dateString, {
-        'whitelist': this.getSupportedLangCodes(),
+    var whitelist = this.getSupportedLangCodes();
+    var langs = franc.all(dateString, {
+        'whitelist': whitelist,
         'minLength': 3
     });
+    // When franc is 100% sure of the languege it detected, it ignores the whitelist we sent it, so we check again.
+    if ((langs.length === 1) && whitelist.indexOf(langs[0][0]) == -1){
+        langs[0] = ["und", 1];
+    }
+    return langs;
 }
 
 // Private section
