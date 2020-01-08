@@ -29,6 +29,7 @@ exports.parse = function (dateString, alternativeSettings) {
             day_before_month: settings.get('day_before_month'),
             strict: settings.get('strict'),
             gmt: settings.get('gmt'),
+            base_date: settings.get('base_date'),
         }
         currentSettings.set(getter);
 

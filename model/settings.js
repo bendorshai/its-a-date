@@ -15,10 +15,15 @@ function Settings(alternativeSettings) {
             gmt: 'auto',
             desc: 'The GMT offset to add to the date in hours (e.g. -3)'
         },
+        base_date : {
+            base_date: new Date(),
+            desc: 'What is the date from which you wish to calculate a relative date? (yesterday for 2010/10/10 != yesterday for today)'
+        },
         restore: function() {
             that.set({'gmt':'auto',
                       'day_before_month':true,
-                      'strict':false});
+                      'strict':false,
+                      'base_date':new Date()});
         }
     }; 
     

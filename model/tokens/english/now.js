@@ -4,35 +4,35 @@ exports.tokens = [
     {
         example: 'now',
         category: 'now',
-        regex: /(?:\b|^)now(?:\b|$)/,
-        affectsGenerator: function () {
-            var now = new Date();
+        regex: /(?:\b|^)now|today(?:\b|$)/,
+        affectsGenerator: function (match, settings) {
+            var currentDate = settings.settings.base_date.base_date;
 
             return [
                 {
                     timeType: consts.timeTypes.year,
                     affectType: consts.reltivity.absolute,
-                    value: now.getFullYear()
+                    value: currentDate.getFullYear()
                 },
                 {
                     timeType: consts.timeTypes.month,
                     affectType: consts.reltivity.absolute,
-                    value: now.getMonth() + 1 //  <-- stupidest thing in js :(
+                    value: currentDate.getMonth() + 1
                 },
                 {
                     timeType: consts.timeTypes.day,
                     affectType: consts.reltivity.absolute,
-                    value: now.getDate()
+                    value: currentDate.getDate()
                 },
                 {
                     timeType: consts.timeTypes.hour,
                     affectType: consts.reltivity.absolute,
-                    value: now.getHours()
+                    value: currentDate.getHours()
                 },
                 {
                     timeType: consts.timeTypes.minute,
                     affectType: consts.reltivity.absolute,
-                    value: now.getMinutes()
+                    value: currentDate.getMinutes()
                 }];
         }
     }

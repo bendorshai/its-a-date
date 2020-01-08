@@ -5,12 +5,10 @@ var moment = require('moment');
 const absolute = consts.reltivity.absolute;
 
 // ctor
-function State() {
+function State(settings) {
 
     // Init date as current
-    this.date = moment();
-    this.date.seconds(0);
-    this.date.milliseconds(0);
+    this.date = moment(settings.settings.base_date.base_date);    
 
     // Init the modification queue that logs the modification on each date part
     this.modificationQueues = [];

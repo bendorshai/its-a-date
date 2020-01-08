@@ -21,7 +21,7 @@ exports.calculateDate = function (dateString, matches, settings) {
     }
 
     // New state each time
-    var state = new State();
+    var state = new State(settings);
 
     for (var match of matches) {
 
