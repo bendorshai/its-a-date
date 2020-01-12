@@ -6,7 +6,7 @@ exports.tokens = [
         category: 'now',
         regex: /(?:\b|^)now|today(?:\b|$)/,
         affectsGenerator: function (match, settings) {
-            var currentDate = settings.settings.base_date.base_date;
+            var currentDate = new Date(settings.settings.base_date.base_date);
 
             return [
                 {
