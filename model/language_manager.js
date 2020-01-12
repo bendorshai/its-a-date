@@ -167,6 +167,7 @@ var russianTokens = [
     require('./tokens/russian/months.js').tokens,
     require('./tokens/russian/last&next.js').tokens,
     require('./tokens/russian/ago&since.js').tokens,
+    require('./tokens/russian/now.js').tokens,
     require('./tokens/russian/yesterday&tomorrow.js').tokens
 ];
 
