@@ -176,6 +176,9 @@ exports.tokens = [
             if (match[this.variables.ampm] == 'pm' && hour <= 11) {
                 hour = Number(hour) + 12;
             }
+            else if (match[this.variables.ampm] == 'am' && hour == 12) {
+                hour = 0;
+            }
 
             return [
                 {

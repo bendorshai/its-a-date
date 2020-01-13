@@ -6,3 +6,4 @@ require('./testers/turkish.js');
 require('./testers/spanish.js');
 require('./testers/greek.js');
 require('./testers/french.js');
+require('./testers/common.js');
