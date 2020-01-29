@@ -9,8 +9,8 @@ exports.executeToken = function (token, dateString, state, settings) {
     if (token.verifier) {
 
         // If verifier doesn't indicate true, break token
-        if (!token.verifier(match, dateString, state, settings, token)) {
-            return;
+        if (!token.verifier(match, dateString, state, settings, token)) {            
+            return false;
         }
     }
 
@@ -51,5 +51,6 @@ exports.executeToken = function (token, dateString, state, settings) {
                 affectType: affect.affectType,
                 value: calculatedValue
             });
+        return true;
     }
 }

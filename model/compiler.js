@@ -14,19 +14,28 @@ exports.getStringMatches = function (dateString, currLang) {
     return matches;
 }
 
-exports.calculateDate = function (dateString, matches, settings) {
+exports.calculateDate = function (dateString, /* tokens (according to detected languge) */matches, settings) {
 
     if (!matches || matches.length == 0) {
         throw 'ERROR: No token matched the string'
     }
 
     // New state each time
-    var state = new State(settings);
+    var state = new State(settings);    
+    var matchesWithCollsion = 0;
 
     for (var match of matches) {
 
-        // Execute the token from the dateString onto the state
-        interpreter.executeToken(match, dateString, state, settings);
+        // Execute the token from the dateString onto the state and count collisions
+        success = interpreter.executeToken(match, dateString, state, settings);
+        if (!success){
+            matchesWithCollsion++;
+        }
+    }
+
+    // If all matches have a collision throw and try the next language
+    if (matches.length == matchesWithCollsion){
+        throw 'ERROR: All tokens contain collisions with other languages'
     }
 
     // Caculate the state

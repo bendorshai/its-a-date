@@ -1,7 +1,7 @@
 var itsadate = require('./index.js');
 
 // Playground starts here --->
-var currentDate = new Date(2010, 10, 10)
+var currentDate = new Date(2020, 0, 14)
 var settings = {
     format_hints: {
             day_before_month: true,
@@ -27,7 +27,6 @@ var settings = {
     }
 }; 
 
-var s = itsadate.parse('Только что', settings);
+var s = itsadate.parse("1 week ago", settings);
 
 console.log(s);
-
