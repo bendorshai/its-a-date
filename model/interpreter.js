@@ -51,6 +51,6 @@ exports.executeToken = function (token, dateString, state, settings) {
                 affectType: affect.affectType,
                 value: calculatedValue
             });
+        }
         return true;
-    }
 }
