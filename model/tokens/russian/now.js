@@ -4,7 +4,7 @@ exports.tokens = [
     {
         example: 'только что',
         category: 'now',
-        regex: /(?:\b|^)только что(?:\b|$)/,
+        regex: /(?:\b|^)только что|сегодня(?:\b|$)/,
         affectsGenerator: function (match, settings) {
             var currentDate = settings.settings.base_date.base_date;
 
