@@ -6,7 +6,7 @@ exports.tokens = [
         // Examples: 10 hours ago
         example: 'há 10 horas',
         category: 'ago since before & after',
-        regex: /(?:\b|^)(?:h[aá])\s(\d+)\s+(dia|mes|ano|semana|hora|minuto)(?:s|es)?(?:\b|$)/,
+        regex: /(?:\b|^)(?:h[aá]\s)?(\d+)\s+(dia|mes|ano|semana|hora|minuto)(?:s|es)?\s?(atr[aá]s|antes)?(?:\b|$)/,
         // The indexes of capturing gorups in the match
         variables: {
             value: 1,

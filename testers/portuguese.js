@@ -22,6 +22,7 @@ test('Portuguese dates tests', t => {
 
     wrapper('Sp 10 hours ago', (t, m) => {
         t.equal(parse('há 10 horas').getHours(), m.add(-10, 'hour').hours());
+        t.equal(parse('10 horas atrás').getHours(), m.add(-10, 'hour').hours());
     });
 
     wrapper('Sp An hour ago', (t, m) => {
