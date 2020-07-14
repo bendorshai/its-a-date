@@ -41,6 +41,11 @@ exports.getSpanishTokens = function () {
     return this.getCommonTokens().concat(spanishArray);
 }
 
+exports.getPortugueseTokens = function () {
+    var portugueseArray = concatArray(portugueseTokens);
+    return this.getCommonTokens().concat(portugueseArray);
+}
+
 exports.getGreekTokens = function () {
     var commonTokens = _.clone(this.getCommonTokens());
 
@@ -87,7 +92,8 @@ exports.getAllAgoAndSince = function () {
         require('./tokens/spanish/ago&since.js'),
         require('./tokens/greek/ago&since.js'),
         require('./tokens/persian/ago&since.js'),
-        require('./tokens/french/ago&since.js')
+        require('./tokens/french/ago&since.js'),
+        require('./tokens/portuguese/ago&since.js'),
     ];
 }
 
@@ -100,13 +106,15 @@ exports.allMonthTokens = concatArray([
     require('./tokens/spanish/months.js').tokens,
     require('./tokens/greek/months.js').tokens,
     require('./tokens/persian/months.js').tokens,
-    require('./tokens/french/months.js').tokens
+    require('./tokens/french/months.js').tokens,
+    require('./tokens/portuguese/months.js').tokens,
 ]);
 
 exports.getSupportedLangCodes = function () {
     // English - eng, Arabic - urd, Russian - rus, Greek - ell, 
-    // Persian - pes, Spanish - spa, Turkish - tur, French - fra
-    return ['eng', 'urd', 'rus', 'ell', 'pes', 'spa', 'tur', 'fra'];
+    // Persian - pes, Spanish - spa, Turkish - tur, French - fra,
+    // Portuguese - por
+    return ['eng', 'urd', 'rus', 'ell', 'pes', 'spa', 'tur', 'fra', 'por'];
 }
 
 exports.detect = function (dateString) {
@@ -132,7 +140,8 @@ var translators = [
     require('./tokens_util/spanish/translator'),
     require('./tokens_util/greek/translator'),
     require('./tokens_util/persian/translator'),
-    require('./tokens_util/french/translator')
+    require('./tokens_util/french/translator'),
+    require('./tokens_util/portuguese/translator'),
 ];
 
 var dayConvertors = [
@@ -143,7 +152,9 @@ var dayConvertors = [
     require('./tokens_util/spanish/converter.js').dayOfWeekToNum,
     require('./tokens_util/greek/converter.js').dayOfWeekToNum,
     require('./tokens_util/persian/converter.js').dayOfWeekToNum,
-    require('./tokens_util/french/converter.js').dayOfWeekToNum
+    require('./tokens_util/french/converter.js').dayOfWeekToNum,
+    require('./tokens_util/portuguese/converter.js').dayOfWeekToNum,
+    
 ];
 
 var commonTokens = [
@@ -211,4 +222,11 @@ var frenchTokens = [
     require('./tokens/french/last&next.js').tokens,
     require('./tokens/french/ddmmyyyy&hhmm.js').tokens,
     require('./tokens/french/yesterday&tomorrow.js').tokens
+];
+
+var portugueseTokens = [
+    require('./tokens/portuguese/months.js').tokens,
+    require('./tokens/portuguese/last&next.js').tokens,
+    require('./tokens/portuguese/ago&since.js').tokens,
+    require('./tokens/portuguese/yesterday&tomorrow.js').tokens
 ];
