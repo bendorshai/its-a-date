@@ -12,6 +12,7 @@ Currently supporting languages:
 * Greek
 * Spanish
 * French
+* Portuguese
 
 ## Installation
 
