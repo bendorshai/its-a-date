@@ -8,7 +8,7 @@ exports.tokens = [
         // Examples: 10 hours ago
         example: 'há 10 horas',
         category: 'ago since before & after',
-        regex: new RegExp(`(?:\\b|^)(?:(?:h[aá]|faz|fazem)\\s)?(${patterns.numbers})\\s+(?:de\s)?(dia|mes|ano|semana|hora|minuto)(?:s|es)?\\s?(atr[aá]s|antes)?(?:\\b|$)`),
+        regex: new RegExp(`(?:\\b|^)(?:(?:h[aá]|faz|fazem)\\s)?(${patterns.numbers})\\s+(?:de\\s)?(dia|mes|mês|ano|semana|hora|minuto)(?:s|es)?\\s?(atr[aá]s|antes|passado)?(?:\\b|$)`),
         // The indexes of capturing gorups in the match
         variables: {
             value: 1,

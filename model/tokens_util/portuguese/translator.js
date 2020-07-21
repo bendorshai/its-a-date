@@ -3,6 +3,16 @@ var consts = require('../../consts.js');
 // Converts a portuguese word convention to one of our english conventions
 exports.portugueseToEnglish = function (portugueseConvention) {
 
+    // Year conventions
+    if (portugueseConvention == 'ano') {
+        return consts.timeTypes[consts.timeTypes.year];
+    }
+
+    // Month conventions
+    if (portugueseConvention == 'mes' || portugueseConvention == 'mês') {
+        return consts.timeTypes[consts.timeTypes.month];
+    }
+
     // Week conventions
     if (portugueseConvention == 'semana') {
         return consts.timeTypes[consts.timeTypes.week];
