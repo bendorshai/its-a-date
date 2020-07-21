@@ -10,7 +10,7 @@ exports.tokens = [
         // Examples: 
         // 4 weeks ago
         // 4 weeks and 3 days ago
-        regex: new RegExp(`(?:\\b|^)(${patterns.numbers})\\s+(day|month|year|week|hour|minute)s?\\s+(and\s+(\\d+)\\s+(day|month|year|week|hour|minute)s?\\s+)?(?:ago|before)(?:\\b|$)`),
+        regex: new RegExp(`(?:\\b|^)(${patterns.numbers})\\s+(day|month|year|week|hour|minute)s?\\s+(and\s+(${patterns.numbers})\\s+(day|month|year|week|hour|minute)s?\\s+)?(?:ago|before)(?:\\b|$)`),
         variables: {
             value: 1,
             timeType: 2
@@ -48,7 +48,11 @@ exports.tokens = [
             if (match[extensionToRelativenessIdx]) {
 
                 var timeType = match[secondaryTimeType];
-                var firstValue = match[secondaryValueIdx] * (-1);
+                var firstValue = match[secondaryValueIdx];
+                if(!/\d+/.test(firstValue)){
+                    firstValue = converter.wordsToNumbers(firstValue)
+                }
+                firstValue = firstValue * (-1);
     
                 affects.push(
                     pasrseToAffect(timeType, firstValue)
