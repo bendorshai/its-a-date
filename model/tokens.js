@@ -29,7 +29,9 @@ exports.getLangTokens = function (langCode) {
         case 'fra':
             return languageManager.getFrenchTokens();
         case 'por':
-            return languageManager.getPortugueseTokens();    
+            return languageManager.getPortugueseTokens();
+        case 'cmn':
+            return languageManager.getChineseTokens();        
     }
 
     return returnLanguages;
