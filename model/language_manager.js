@@ -21,6 +21,11 @@ exports.getEnglishTokens = function () {
     return this.getCommonTokens().concat(englishArray);
 }
 
+exports.getChineseTokens = function () {
+    var chineseArray = concatArray(chineseTokens);
+    return this.getCommonTokens().concat(chineseArray);
+}
+
 exports.getRussianTokens = function () {
     var russianArray = concatArray(russianTokens);
     return this.getCommonTokens().concat(russianArray);
@@ -114,7 +119,7 @@ exports.getSupportedLangCodes = function () {
     // English - eng, Arabic - urd, Russian - rus, Greek - ell, 
     // Persian - pes, Spanish - spa, Turkish - tur, French - fra,
     // Portuguese - por
-    return ['eng', 'urd', 'rus', 'ell', 'pes', 'spa', 'tur', 'fra', 'por'];
+    return ['eng', 'urd', 'rus', 'ell', 'pes', 'spa', 'tur', 'fra', 'por','cmn'];
 }
 
 exports.detect = function (dateString) {
@@ -142,6 +147,7 @@ var translators = [
     require('./tokens_util/persian/translator'),
     require('./tokens_util/french/translator'),
     require('./tokens_util/portuguese/translator'),
+    require('./tokens_util/chinese/translator'),
 ];
 
 var dayConvertors = [
@@ -229,4 +235,9 @@ var portugueseTokens = [
     require('./tokens/portuguese/last&next.js').tokens,
     require('./tokens/portuguese/ago&since.js').tokens,
     require('./tokens/portuguese/yesterday&tomorrow.js').tokens
+];
+
+var chineseTokens = [
+    require('./tokens/chinese/ago&since.js').tokens,
+    require('./tokens/chinese/now.js').tokens
 ];
