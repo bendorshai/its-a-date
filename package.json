@@ -52,7 +52,7 @@
   "dependencies": {
     "franc": "^4.0.0",
     "lodash": "^4.17.11",
-    "moment": "2.14.1"
+    "moment": "2.19.3"
   },
   "keywords": [
     "date",
