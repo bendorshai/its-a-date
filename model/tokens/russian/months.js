@@ -1,10 +1,9 @@
 var consts = require('../../consts.js')
 
-exports.tokens = [
-    {
+exports.tokens = [{
         example: 'Янв',
         category: 'months',
-        regex: /(^|[\s,\.-])(Янв|Январь)([\s,\.-]|$)/i,
+        regex: /(^|[\s,\.-])(Янв|Январь|Января)([\s,\.-]|$)/i,
         affects: [{
             timeType: consts.timeTypes.month,
             affectType: consts.reltivity.absolute,
@@ -15,7 +14,7 @@ exports.tokens = [
         // february
         example: 'Фев',
         category: 'months',
-        regex: /(^|[\s,\.-])(Фев|Февраль)([\s,\.-]|$)/i,
+        regex: /(^|[\s,\.-])(Фев|Февраль|Февраля)([\s,\.-]|$)/i,
         affects: [{
             timeType: consts.timeTypes.month,
             affectType: consts.reltivity.absolute,
@@ -26,7 +25,7 @@ exports.tokens = [
         // march
         example: 'Мар',
         category: 'months',
-        regex: /(^|[\s,\.-])(Мар|Март)([\s,\.-]|$)/i,
+        regex: /(^|[\s,\.-])(Мар|Март|Марта)([\s,\.-]|$)/i,
         affects: [{
             timeType: consts.timeTypes.month,
             affectType: consts.reltivity.absolute,
@@ -37,7 +36,7 @@ exports.tokens = [
         // april
         example: 'Апр',
         category: 'months',
-        regex: /(^|[\s,\.-])(Апр|Апрель)([\s,\.-]|$)/i,
+        regex: /(^|[\s,\.-])(Апр|Апрель|Апреля)([\s,\.-]|$)/i,
         affects: [{
             timeType: consts.timeTypes.month,
             affectType: consts.reltivity.absolute,
@@ -48,7 +47,7 @@ exports.tokens = [
         // may
         example: 'Май',
         category: 'months',
-        regex: /(^|[\s,\.-])(Май)([\s,\.-]|$)/i,
+        regex: /(^|[\s,\.-])(Май|Мая)([\s,\.-]|$)/i,
         affects: [{
             timeType: consts.timeTypes.month,
             affectType: consts.reltivity.absolute,
@@ -59,7 +58,7 @@ exports.tokens = [
         // june
         example: 'Июн',
         category: 'months',
-        regex: /(^|[\s,\.-])(Июн|Июнь)([\s,\.-]|$)/i,
+        regex: /(^|[\s,\.-])(Июн|Июнь|Июня)([\s,\.-]|$)/i,
         affects: [{
             timeType: consts.timeTypes.month,
             affectType: consts.reltivity.absolute,
@@ -70,7 +69,7 @@ exports.tokens = [
         // july
         example: 'Июл',
         category: 'months',
-        regex: /(^|[\s,\.-])(Июл|Июль)([\s,\.-]|$)/i,
+        regex: /(^|[\s,\.-])(Июл|Июль|Июля)([\s,\.-]|$)/i,
         affects: [{
             timeType: consts.timeTypes.month,
             affectType: consts.reltivity.absolute,
@@ -81,7 +80,7 @@ exports.tokens = [
         // august
         example: 'Авг',
         category: 'months',
-        regex: /(^|[\s,\.-])(Авг|Август)([\s,\.-]|$)/i,
+        regex: /(^|[\s,\.-])(Авг|Август|Августа)([\s,\.-]|$)/i,
         affects: [{
             timeType: consts.timeTypes.month,
             affectType: consts.reltivity.absolute,
@@ -92,7 +91,7 @@ exports.tokens = [
         // september
         example: 'Сен',
         category: 'months',
-        regex: /(^|[\s,\.-])(Сен|Сентябрь)([\s,\.-]|$)/i,
+        regex: /(^|[\s,\.-])(Сен|Сентябрь|Сентября)([\s,\.-]|$)/i,
         affects: [{
             timeType: consts.timeTypes.month,
             affectType: consts.reltivity.absolute,
@@ -103,7 +102,7 @@ exports.tokens = [
         // october
         example: 'Окт',
         category: 'months',
-        regex: /(^|[\s,\.-])(Окт|Октябрь)([\s,\.-]|$)/i,
+        regex: /(^|[\s,\.-])(Окт|Октябрь|Октября)([\s,\.-]|$)/i,
         affects: [{
             timeType: consts.timeTypes.month,
             affectType: consts.reltivity.absolute,
@@ -114,7 +113,7 @@ exports.tokens = [
         // november
         example: 'Ноя',
         category: 'months',
-        regex: /(^|[\s,\.-])(Ноя|Ноябрь)([\s,\.-]|$)/i,
+        regex: /(^|[\s,\.-])(Ноя|Ноябрь|Ноября)([\s,\.-]|$)/i,
         affects: [{
             timeType: consts.timeTypes.month,
             affectType: consts.reltivity.absolute,
@@ -125,10 +124,11 @@ exports.tokens = [
         // december
         example: 'Дек',
         category: 'months',
-        regex: /(^|[\s,\.-])(Дек|Декабрь)([\s,\.-]|$)/i,
+        regex: /(^|[\s,\.-])(Дек|Декабрь|Декабря)([\s,\.-]|$)/i,
         affects: [{
             timeType: consts.timeTypes.month,
             affectType: consts.reltivity.absolute,
             value: 12
         }]
-    }]; // Until next year*/
+    }
+]; // Until next year*/
