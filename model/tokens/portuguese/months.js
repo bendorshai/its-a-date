@@ -91,8 +91,10 @@ exports.tokens = [
                 // Note: only if verifier returns true the affects take place
         verifier: function (match, dateString, state, settings, token) {
             // Make sure this ago is for the spanish month and not relative dating in english  
-            var regex = /(?:\b|^)(\d+)\s+(day|month|year|week|hour|minute|min|second|sec)s?/;          
-            return !regex.exec(dateString);
+            var patterns = require('../../patterns/english/numbers')
+            var regex = new RegExp(`(?:\\b|^)(${patterns.numbers})\\s+(day|month|year|week|hour|minute|min|second|sec)s?`)
+            
+            return true;
         }
     },
     {
